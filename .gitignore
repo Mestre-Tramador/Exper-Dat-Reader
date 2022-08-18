@@ -1,0 +1,33 @@
+# Laravel and Lumen specific
+app/storage/
+bootstrap/compiled.php
+public/hot
+public/storage
+public_html/hot
+public_html/storage
+
+# Homestead and Vagrant specific
+Homestead.json
+Homestead.yaml
+/.vagrant
+
+# Environment files
+.env
+.env.backup
+
+# Database file
+database/database.sqlite
+
+# Composer
+/vendor
+
+# NPM
+/node_modules
+
+# PHPUnit
+.phpunit.result.cache
+
+# IDE specific
+/.idea
+/.vscode
+/.vs

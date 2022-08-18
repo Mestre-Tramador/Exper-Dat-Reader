@@ -1,0 +1,27 @@
+# EditorConfig is awesome: https://editorconfig.org
+
+# Root File.
+root = true
+
+
+# Optimezed to UNIX like OS.
+#
+# Also note that these config
+# will be more seen on other
+# of my repositores.
+[*]
+indent_style = space
+indent_size = 4
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+# JSON, XML, YAML and so are better
+# with less indent spacing.
+[*.{json,xml,yml,yaml,lock}]
+indent_size = 2
+
+# Markdown rules require no trailing.
+[*.md]
+trim_trailing_whitespace = false
