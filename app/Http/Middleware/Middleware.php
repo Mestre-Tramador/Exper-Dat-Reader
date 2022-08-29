@@ -2,10 +2,6 @@
 
 namespace App\Http\Middleware;
 
-use Closure;
-
-use Illuminate\Http\Request;
-
 abstract class Middleware
 {
     /**
@@ -16,5 +12,5 @@ abstract class Middleware
      * @param  string|null  $guard
      * @return mixed
      */
-    abstract function handle(Request $request, Closure $next, ?string $guard = null): mixed;
+    abstract function handle(\Illuminate\Http\Request $request, \Closure $next, ?string $guard = null): mixed;
 }

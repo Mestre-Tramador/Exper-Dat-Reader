@@ -60,7 +60,7 @@ class AuthController extends Controller
              */
             $token = auth()->fromUser($user);
 
-            return response()->json(compact('user', 'token'),201);
+            return response()->json(compact('user', 'token'), 201);
         }
         catch(\Illuminate\Database\QueryException $e)
         {

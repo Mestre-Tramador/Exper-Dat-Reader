@@ -18,4 +18,4 @@ CHANGELOG.md export-ignore
 
 # Fix .env example File being considered
 # a Shell Script.
-*.env.example linguist-language=Text
+*.env.example linguist-language=INI

@@ -49,7 +49,10 @@ $app->configure('jwt');
 |--------------------------------------------------------------------------
 */
 
-$app->routeMiddleware(['auth' => \App\Http\Middleware\Authenticate::class]);
+$app->routeMiddleware([
+    'auth' => \App\Http\Middleware\Authenticate::class,
+    'file' => \App\Http\Middleware\HasFile::class
+]);
 
 /*
 |--------------------------------------------------------------------------

@@ -2,8 +2,6 @@
 
 namespace App\Http\Middleware;
 
-use Closure, Exception;
-
 use Illuminate\Contracts\Auth\Factory as Auth;
 
 class Authenticate extends Middleware
@@ -27,15 +25,18 @@ class Authenticate extends Middleware
     }
 
     /**
-     * @inheritDoc
+     * Verify the presence of a JSON Web Token and authenticate it.
+     *
+     * If any error is found, internally an Exception is raised and
+     * a response with the 401 HTTP code is returned.
      */
-    public function handle($request, Closure $next, $guard = null)
+    public function handle(\Illuminate\Http\Request $request, \Closure $next, ?string $guard = null): mixed
     {
         try
         {
             $this->auth->guard($guard)->authenticate();
         }
-        catch(Exception $e)
+        catch(\Exception $e)
         {
             /**
              * Status to return on error message.

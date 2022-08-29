@@ -21,10 +21,24 @@ $router->group(['middleware' => 'auth:api'], function() use ($router) {
 */
 
 $router->group(['prefix' => 'api'], function() use ($router) {
+
+    /*
+    |----------------------------------------------------------
+    | Auth
+    |----------------------------------------------------------
+    */
     $router->post('register', 'AuthController@register');
     $router->post('login', 'AuthController@login');
+    $router->post('logout', 'AuthController@logout');
 
-    $router->group(['middleware' => 'auth:api'], function() use ($router) {
-        $router->post('logout', 'AuthController@logout');
-    });
+
+    /*
+    |----------------------------------------------------------
+    | Dat
+    |----------------------------------------------------------
+    */
+    $router->get('dat', 'DatController@list');
+    $router->get('dat/{id}', 'DatController@read');
+    $router->post('dat', 'DatController@store');
+
 });

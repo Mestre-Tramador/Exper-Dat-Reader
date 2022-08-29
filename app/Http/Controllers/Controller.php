@@ -23,7 +23,7 @@ class Controller extends BaseController
      * Generate a response containing an error formatted JSON.
      *
      * @param string|array $error
-     * @param integer $code
+     * @param int $code
      * @return JsonResponse
      */
     protected function respondWithError(string|array $error, int $code = 400): JsonResponse

@@ -1,2 +1,7 @@
 *
 !.gitignore
+
+# Data folders are required to the application.
+!data/
+!data/in/
+!data/out/
