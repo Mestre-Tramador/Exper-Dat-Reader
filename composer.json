@@ -23,6 +23,7 @@
     "illuminate/support": "^9.24",
     "laravel/lumen-framework": "^9.0",
     "league/flysystem": "^3.2",
+    "notihnio/php-multipart-form-data-parser": "^2.0",
     "tomfordrumm/jwt-auth": "dev-develop"
   },
   "require-dev": {

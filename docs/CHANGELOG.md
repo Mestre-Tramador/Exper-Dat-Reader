@@ -7,13 +7,45 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-- Dat Files Routes of updating and deletion
-- Dumping to Done Dat Files
 - Frontend
 - Changelog on different languages
-- GitHub Issues templates
+- GitHub Issues templates on different languages
 - GitHub Pull Requests templates
+
+## [0.0.3] - 2022-09-02
+
+### Created
+
+- DoneDat file Model
+- DoneDat file Controller
+- FormData parser for PUT method Middleware
 - Contribution Guidelines
+- GitHub Issues templates
+
+### Implemented
+
+- Update Dat API Route
+- Delete Dat API Route
+- Dump API Route
+- List Dump API Route
+- Read Dump API Route
+- Delete Dump API Route
+
+### Improved
+
+- Markdown readme files
+
+### Added
+
+- Composer [notihnio/php-multipart-form-data-parser] Package
+- Logo image
+- Extra badges
+
+### Fixed
+
+- EditorConfig deprecated Markdown rule
+- Incorrect command on `.env.example` file documentation
+- Minor word errors on code documentation
 
 ## [0.0.2] - 2022-08-29
 
@@ -65,7 +97,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Documented PHP files as of Laravel's Standards
 - Set documentation for Github's Community Standards
 
-[Unreleased]: <https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.2...HEAD>
+[Unreleased]: <https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.3...HEAD>
 [0.0.3]: <https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.2...v0.0.3>
 [0.0.2]: <https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.1...v0.0.2>
 [0.0.1]: <https://github.com/Mestre-Tramador/Exper-Dat-Reader/releases/tag/v0.0.1>
+[notihnio/php-multipart-form-data-parser]: https://github.com/notihnio/php-multipart-form-data-parser

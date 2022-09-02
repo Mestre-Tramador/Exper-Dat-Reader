@@ -2,10 +2,34 @@
 
 namespace App\Models\Util;
 
-use App\Models\Dat;
+use Exception, LogicException, ReflectionException;
+
+use App\Models\{Dat, DoneDat};
 
 trait IsFile
 {
+    /**
+     * Additionally has two new attributes for the files:
+     * * **name:** Return a string on the format `id.ext`;
+     * * **file:** Get the contents of the stored file, or return `null`.
+     *
+     * For other `$key`s, it calls its parents implementations.
+     *
+     * @param string $key
+     * @return mixed
+     */
+    public function __get($key)
+    {
+        switch($key)
+        {
+            case 'name': return $this->callIfExtConstIsDefined(fn() => $this->getFileName($this->id, $this::class::EXT));
+            case 'file': return $this->callIfExtConstIsDefined(fn() => app('storage')::disk('local')->get(
+                "{$this->getDataPath()}/{$this->getFileName($this->id, $this::class::EXT)}"
+            ));
+            default:     return parent::__get($key);
+        }
+    }
+
     /**
      * Assemble a full name of the following file, basically
      * concatenating both params with a dot.
@@ -37,8 +61,63 @@ trait IsFile
     {
         switch($this::class)
         {
-            case Dat::class: return 'data/in';
-            default:         return 'data';
+            case Dat::class:     return 'data/in';
+            case DoneDat::class: return 'data/out';
+            default:             return 'data';
+        }
+    }
+
+    /**
+     * An internal function to control if the `class`
+     * which use the `trait` have a constant named
+     * "*EXT*".
+     *
+     * If the `class` have the constant, then the `$fn`
+     * call is returned.
+     *
+     * @param callable $fn
+     * @return mixed
+     * @throws \LogicException
+     */
+    private function callIfExtConstIsDefined(callable $fn): mixed
+    {
+        try
+        {
+            /**
+             * The `class` name.
+             *
+             * @var string $class
+             */
+            $class = $this::class;
+
+            /**
+             * A reflection to know if the constant is implemented.
+             *
+             * @var \ReflectionClassConstant $constant
+             */
+            $constant = new \ReflectionClassConstant($class, 'EXT');
+
+            /**
+             * The value of the constant.
+             *
+             * @var bool|int|float|string|array $value
+             */
+            $value = $constant->getValue();
+
+            if($value && is_string($value))
+            {
+                return $fn();
+            }
+
+            throw new Exception("Class {$class} has a non-string value for the constant EXT");
+        }
+        catch(ReflectionException $r)
+        {
+            throw new LogicException("Class {$class} does not implements constant EXT");
+        }
+        catch(Exception $e)
+        {
+            throw new LogicException($e->getMessage());
         }
     }
 }

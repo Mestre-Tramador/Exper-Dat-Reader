@@ -1,0 +1,38 @@
+#######################################
+# ISSUE TEMPLATE FOR FEATURE REQUESTS #
+#######################################
+
+name: Feature Request
+description: A Feature shall be implemented on the package.
+title: "[FEAT]: "
+labels: ["Type: Feature Request", "Status: Opened"]
+assignees:
+  - Mestre-Tramador
+body:
+  - type: textarea
+    id: feature_description
+    attributes:
+      label: Feature Description
+      description: Please explain concisely what is the behavior requested to implement.
+    validations:
+      required: true
+  - type: textarea
+    id: problems_solution
+    attributes:
+      label: Problems Solution
+      description: >
+        Please explain concisely possible problems this feature will resolve,
+        or benefits it will bring (not required).
+    validations:
+      required: false
+  - type: markdown
+    attributes:
+      value: ---
+  - type: checkboxes
+    id: no_duplicates
+    attributes:
+      label: Confirmation of No Duplicates
+      description: Please make a Feature Request only if none was made, or else go check the existing one.
+      options:
+      - label: I have searched the existing issues and not found any equal.
+        required: true

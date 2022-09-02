@@ -1,0 +1,10 @@
+################################
+# ISSUE TEMPLATE CONFIGURATION #
+################################
+#                              #
+# Currently blank issues are   #
+# not permitted on favor of    #
+# the form models.             #
+################################
+
+blank_issues_enabled: false

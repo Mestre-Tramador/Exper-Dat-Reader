@@ -64,28 +64,6 @@ class Dat extends Model implements ModelFile
     ];
 
     /**
-     * Additionally has two new attributes for the files:
-     * * **name:** Return a string on the format `id.ext`;
-     * * **file:** Get the contents of the stored file, or return `null`.
-     *
-     * For other `$key`s, it calls its parents implementations.
-     *
-     * @param string $key
-     * @return mixed
-     */
-    public function __get($key)
-    {
-        switch($key)
-        {
-            case 'name': return $this->getFileName($this->id, self::EXT);
-            case 'file': return app('storage')::disk('local')->get(
-                "{$this->getDataPath()}/{$this->getFileName($this->id, self::EXT)}"
-            );
-            default:     return parent::__get($key);
-        }
-    }
-
-    /**
      * Validate if an uploaded file is actually a valid `.dat` file.
      *
      * @param UploadedFile $file
@@ -93,9 +71,9 @@ class Dat extends Model implements ModelFile
      */
     public static function validate(UploadedFile $file): bool
     {
-        if($file->getClientOriginalExtension() === Dat::EXT)
+        if($file->getClientOriginalExtension() === self::EXT)
         {
-            return (substr_count(trim($file->getContent()), Dat::SEPARATOR) % 3) == 0;
+            return (substr_count(trim($file->getContent()), self::SEPARATOR) % 3) == 0;
         }
 
         return false;
@@ -104,7 +82,7 @@ class Dat extends Model implements ModelFile
     /**
      * The returned `array` contains three keys:
      * * **sellers:** An `array` with CPF, Name and Wage;
-     * * **Customers:** An `array` with CNPJ, Name and Business Branch;
+     * * **customers:** An `array` with CNPJ, Name and Business Branch;
      * * **sales:** An `array` with ID, Seller and also another `array`
      * of items with theirs ID, Price and Quantity;
      *

@@ -21,7 +21,3 @@ insert_final_newline = true
 # with less indent spacing.
 [*.{json,xml,yml,yaml,lock}]
 indent_size = 2
-
-# Markdown rules require no trailing.
-[*.md]
-trim_trailing_whitespace = false

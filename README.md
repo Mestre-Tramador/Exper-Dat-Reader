@@ -1,12 +1,35 @@
 # Exper-Dat-Reader
 
-[![PHP](./docs/assets/badges/php.svg)](#exper-dat-reader-api)
-[![Lumen](./docs/assets/badges/lumen.svg)](#exper-dat-reader-api)
-[![SQLite](./docs/assets/badges/sqlite.svg)](#exper-dat-reader-api)
-[![Json Web Tokens](./docs/assets/badges/jwt.svg)](#exper-dat-reader-api)
-[![Keep a Changelog](./docs/assets/badges/changelog.svg)](#exper-dat-reader-api)
+<!--  markdownlint-disable MD033  -->
+<p align="center">
+    <a href="#exper-dat-reader">
+        <img
+            src="./docs/assets/images/logo.png"
+            alt="Exper-Dat-Reader logo"
+            width="1282"
+            height="140"
+        />
+    </a>
+</p>
+<!--  markdownlint-enable MD033  -->
 
 **Read it also in: [Español], [Português Brasileiro]**
+
+---
+
+<!--  markdownlint-disable MD013 MD033  -->
+<p align="center">
+    <a href="https://www.php.net/" target="_blank"><img src="./docs/assets/badges/php.svg" alt="PHP" /></a>
+    <a href="https://lumen.laravel.com/docs/9.x" target="_blank"><img src="./docs/assets/badges/lumen.svg" alt="Lumen" /></a>
+    <a href="https://www.sqlite.org/index.html" target="_blank"><img src="./docs/assets/badges/sqlite.svg" alt="SQLite" /></a>
+</p>
+<p align="center">
+    <a href="https://getcomposer.org/" target="_blank"><img src="./docs/assets/badges/composer.svg" alt="Composer" /></a>
+    <a href="https://jwt.io/" target="_blank"><img src="./docs/assets/badges/jwt.svg" alt="Json Web Tokens" /></a>
+    <a href="https://editorconfig.org/" target="_blank"><img src="./docs/assets/badges/editorconfig.svg" alt="EditorConfig" /></a>
+    <a href="https://keepachangelog.com/en/1.0.0/" target="_blank"><img src="./docs/assets/badges/changelog.svg" alt="Keep a Changelog" /></a>
+</p>
+<!--  markdownlint-enable MD013 MD033  -->
 
 The Exper-Dat-Reader is a project based on an old test to a job application which
 required a PHP/JS system to read encrypted `.dat` files and dump their data into
@@ -71,8 +94,7 @@ have fun:
 
 ## Contribution
 
-Currently I'm working on a Contribution Guidelines file, soon it will be available
-to anyone who seeks to help this project to be improved!
+If you are interested on contribute, please consider read the [Contribution Guidelines].
 
 Also, if is of your desire to fork this code, please be sure to do it! Always have
 faith in your the code, nonetheless!
@@ -87,4 +109,5 @@ Exper-Dat-Reader is currently licensed under the [MIT License], as is Lumen.
 [SQLite]: https://www.sqlite.org/index.html
 [Vue.js]: https://vuejs.org/
 [Composer]: https://getcomposer.org/
+[Contribution Guidelines]: ./docs/CONTRIBUTING.md
 [MIT License]: ./LICENSE

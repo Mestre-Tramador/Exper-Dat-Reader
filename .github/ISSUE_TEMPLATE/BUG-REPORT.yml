@@ -1,0 +1,82 @@
+##################################
+# ISSUE TEMPLATE FOR BUG REPORTS #
+##################################
+
+name: Bug Report
+description: Report a Bug occurring on one or more functions of the package.
+title: "[BUG]: "
+labels: ["Type: Bug Report", "Status: Opened"]
+assignees:
+  - Mestre-Tramador
+body:
+  - type: textarea
+    id: expected_behavior
+    attributes:
+      label: Expected Behavior
+      description: Please explain concisely what was the behavior expected on your workflow.
+    validations:
+      required: true
+  - type: textarea
+    id: current_behavior
+    attributes:
+      label: Current Behavior
+      description: Please explain concisely what the is bug and the behavior you are facing.
+    validations:
+      required: true
+  - type: textarea
+    id: steps_to_reproduce
+    attributes:
+      label: Steps to Reproduce
+      description: Please explain concisely what the is bug and the behavior you are facing.
+      placeholder:
+      value: |
+        1 -
+        2 -
+        3 -
+        4 -
+        5 -
+        ...
+    validations:
+      required: true
+  - type: textarea
+    id: possible_solution
+    attributes:
+      label: Possible Solution
+      description: Inform a possible suggestion on how to solute the bug (not required).
+    validations:
+      required: false
+  - type: markdown
+    attributes:
+      value: ---
+  - type: input
+    id: php_version
+    attributes:
+      label: PHP Version
+      description: Version of PHP which the API was ran.
+    validations:
+      required: true
+  - type: input
+    id: sqlite_version
+    attributes:
+      label: SQLite Version
+      description: Version of SQLite which the API was ran (specify only if the bug is about the database).
+    validations:
+      required: false
+  - type: input
+    id: API_version
+    attributes:
+      label: API Version
+      description: Version of the API used.
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: ---
+  - type: checkboxes
+    id: no_duplicates
+    attributes:
+      label: Confirmation of No Duplicates
+      description: Please make a Bug Report only if none was made, or else go check the existing one.
+      options:
+      - label: I have searched the existing issues and not found any equal.
+        required: true

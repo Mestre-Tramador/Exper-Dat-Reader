@@ -1,0 +1,31 @@
+#######################################
+# ISSUE TEMPLATE FOR QUESTION ANSWERS #
+#######################################
+
+name: Question Answer
+description: "I have a question that I don't found an answer."
+title: "[QST]: "
+labels: ["Type: Question Answer", "Status: Opened", "Help"]
+assignees:
+  - Mestre-Tramador
+body:
+  - type: textarea
+    id: your_question
+    attributes:
+      label: Your Question
+      description: >
+        Please write what you're questioning, also emphasizing why
+        you can't found any answer on the docs.
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: ---
+  - type: checkboxes
+    id: no_duplicates
+    attributes:
+      label: Confirmation of No Duplicates
+      description: Please ask a Question only if none was made, or else go check the existing one.
+      options:
+      - label: I have searched the existing issues and not found any equal.
+        required: true
