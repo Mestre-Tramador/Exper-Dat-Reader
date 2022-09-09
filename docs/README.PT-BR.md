@@ -1,6 +1,4 @@
-# Exper-Dat-Reader
-
-<!--  markdownlint-disable MD033  -->
+<!-- markdownlint-disable MD033 MD041 -->
 <p align="center">
     <a href="#exper-dat-reader">
         <img
@@ -11,13 +9,13 @@
         />
     </a>
 </p>
-<!--  markdownlint-enable MD033  -->
+<!-- markdownlint-enable MD033 MD041 -->
 
 **Leia também em: [English], [Español]**
 
 ---
 
-<!--  markdownlint-disable MD013 MD033  -->
+<!-- markdownlint-disable MD013 MD033 -->
 <p align="center">
     <a href="https://www.php.net/" target="_blank"><img src="./assets/badges/php.svg" alt="PHP" /></a>
     <a href="https://lumen.laravel.com/docs/9.x" target="_blank"><img src="./assets/badges/lumen.svg" alt="Lumen" /></a>
@@ -29,7 +27,7 @@
     <a href="https://editorconfig.org/" target="_blank"><img src="./assets/badges/editorconfig.svg" alt="EditorConfig" /></a>
     <a href="https://keepachangelog.com/en/1.0.0/" target="_blank"><img src="./assets/badges/changelog.svg" alt="Keep a Changelog" /></a>
 </p>
-<!--  markdownlint-enable MD013 MD033  -->
+<!-- markdownlint-enable MD013 MD033 -->
 
 Exper-Dat-Reader é um projeto baseado em um antigo teste para uma vaga de trabalho
 que exigia que um sistema PHP/JS lesse arquivos `.dat` criptografados e despejasse
@@ -102,7 +100,8 @@ Sempre tenha fé em seu código, não para menos!
 
 ## Licença
 
-O Exper-Dat-Reader está atualmente licenciado sob a [Licença MIT], assim como o Lumen.
+O Exper-Dat-Reader está atualmente licenciado sob a [LICENÇA PÚBLICA GERAL GNU Versão
+3].
 
 [English]: ../README.md
 [Español]: ./docs/README.ES.md
@@ -111,4 +110,4 @@ O Exper-Dat-Reader está atualmente licenciado sob a [Licença MIT], assim como 
 [Vue.js]: https://vuejs.org/
 [Composer]: https://getcomposer.org/
 [Diretrizes de Contribuição]: ./CONTRIBUTING.PT-BR.md
-[Licença MIT]: ../LICENSE
+[LICENÇA PÚBLICA GERAL GNU Versão 3]: ../LICENSE

@@ -1,9 +1,35 @@
 <?php
 
+#region License
+/**
+ * Exper-Dat-Reader is a system to read encrypted .dat files and dump their data into .done.dat files.
+ *  Copyright (C) 2022  Mestre-Tramador
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+#endregion
+
 namespace App\Http\Controllers;
 
 use App\Models\User;
 
+/**
+ * Controller to handle authentication requests of registering,
+ * login and logout.
+ *
+ * @author Mestre-Tramador
+ */
 class AuthController extends Controller
 {
     /**
@@ -60,11 +86,11 @@ class AuthController extends Controller
              */
             $token = auth()->fromUser($user);
 
-            return response()->json(compact('user', 'token'), 201);
+            return $this->respondWithCreated(compact('user', 'token'));
         }
         catch(\Illuminate\Database\QueryException $e)
         {
-            return $this->respondWithError('There was an error saving the User!');
+            return $this->respondWithServerError('There was an error saving the User!');
         }
     }
 
@@ -87,7 +113,7 @@ class AuthController extends Controller
 
         if(auth()->user())
         {
-            return redirect('/');
+            return $this->respondWithFound('/');
         }
 
         try
@@ -104,14 +130,14 @@ class AuthController extends Controller
                 return $this->respondWithUnauthorized();
             }
 
-            return response()->json([
+            return $this->respondWithOK([
                 'access_token' => $token,
                 'token_type' => 'bearer'
             ]);
         }
         catch(\Illuminate\Database\Eloquent\ModelNotFoundException $e)
         {
-            return $this->respondWithError('There is no User with this credentials registered!');
+            return $this->respondWithServerError('There is no User with this credentials registered!');
         }
     }
 
@@ -125,6 +151,6 @@ class AuthController extends Controller
     {
         auth()->logout();
 
-        return redirect('/');
+        return $this->respondWithFound('/');
     }
 }

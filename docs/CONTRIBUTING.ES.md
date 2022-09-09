@@ -27,18 +27,14 @@ instalar y probar el proyecto, seguro que me alegrará verlo!
 ### Informes de Bugs
 
 Si a través de sus pruebas encuentra un bug, infórmelo inmediatamente con una issue.
-Selecciona el plantilla *[Bug Report]* y llene todos los campos con exactamente
+Selecciona el plantilla *[Informe de Bug]* y llene todos los campos con exactamente
 sus hallazgos.
-
-**NOTA:** Actualmente solo en inglés.
 
 ### Solicitudes de Features
 
 Si hay una función que desea ver en el proyecto que también resolverá un problema
 para más DEVs, considere solicitarlo con una issue. Selecciona el plantilla
-*[Feature Request]* y llena los campos con los motivos.
-
-**NOTA:** Actualmente solo en inglés.
+*[Solicitude de Feature]* y llena los campos con los motivos.
 
 ## Pull Requests
 
@@ -53,16 +49,12 @@ Si tiene alguna pregunta al respecto, comuníquese conmigo directamente.
 ¡Mira el [Wiki]! Contiene todas las informaciones relevantes.
 
 Si encuentra algún error en los textos ya existentes, considere crear una issue
-con la plantilla *[Docs Revision]*.
-
-**NOTA:** Actualmente solo en inglés.
+con la plantilla *[Revisión de Documentación]*.
 
 ## Otras Contribuciones
 
-¿Tienes una pregunta? Bueno, puedes crear un problema con la plantilla
-*[Question Answer]*.
-
-**NOTA:** Actualmente solo en inglés.
+¿Tienes una pregunta? Bueno, puedes crear un problema con la plantilla *[Respuesta
+de Pregunta]*.
 
 [Código de conducta]: ./CODE_OF_CONDUCT.ES.md
 [Política de Seguridad]: ./SECURITY.ES.md
@@ -72,8 +64,8 @@ con la plantilla *[Docs Revision]*.
 [Pull Requests]: #pull-requests
 [Documentación]: #documentación
 [Otras Contribuciones]: #otras-contribuciones
-[Bug Report]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/issues/new?assignees=Mestre-Tramador&labels=Type%3A+Bug+Report%2CStatus%3A+Opened&template=BUG-REPORT.yml&title=%5BBUG%5D%3A+
-[Feature Request]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/issues/new?assignees=Mestre-Tramador&labels=Type%3A+Feature+Request%2CStatus%3A+Opened&template=FEATURE-REQUEST.yml&title=%5BFEAT%5D%3A+
+[Informe de Bug]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/issues/new?assignees=Mestre-Tramador&labels=Type%3A+Bug+Report%2CStatus%3A+Opened&template=BUG-REPORT.ES.yml&title=%5BBUG%5D%3A+
+[Solicitude de Feature]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/issues/new?assignees=Mestre-Tramador&labels=Type%3A+Feature+Request%2CStatus%3A+Opened&template=FEATURE-REQUEST.ES.yml&title=%5BFEAT%5D%3A+
 [Wiki]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/wiki
-[Docs Revision]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/issues/new?assignees=Mestre-Tramador&labels=Type%3A+Docs+Revision%2CStatus%3A+Opened&template=DOCS-REVISION.yml&title=%5BDOCS%5D%3A+
-[Question Answer]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/issues/new?assignees=Mestre-Tramador&labels=Type%3A+Question+Answer%2CStatus%3A+Opened%2CHelp&template=QUESTION-ANSWER.yml&title=%5BQST%5D%3A+
+[Revisión de Documentación]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/issues/new?assignees=Mestre-Tramador&labels=Type%3A+Docs+Revision%2CStatus%3A+Opened&template=DOCS-REVISION.ES.yml&title=%5BDOCS%5D%3A+
+[Respuesta de Pregunta]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/issues/new?assignees=Mestre-Tramador&labels=Type%3A+Question+Answer%2CStatus%3A+Opened%2CHelp&template=QUESTION-ANSWER.ES.yml&title=%5BQST%5D%3A+

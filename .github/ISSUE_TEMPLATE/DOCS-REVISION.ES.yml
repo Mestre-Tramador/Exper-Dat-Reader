@@ -1,0 +1,44 @@
+#####################################################
+# PLANTILLA DE ISSUE PARA REVISIÓN DE DOCUMENTACIÓN #
+#####################################################
+
+name: Revisión de Documentación
+description: La documentación necesita revisión en partes específicas.
+title: "[DOCS]: "
+labels: ["Type: Docs Revision", "Status: Opened"]
+assignees:
+  - Mestre-Tramador
+body:
+  - type: dropdown
+    id: revision_type
+    attributes:
+      label: Tipo de Revisión
+      description: Informar el tipo de revisión que se realizará.
+      options:
+        - Error de ortografía
+        - Suma
+        - Enlaces Perdidos
+        - Página no Existente
+        - Contenido Incorrecto
+    validations:
+      required: true
+  - type: textarea
+    id: revision
+    attributes:
+      label: Revisión
+      description:  >
+        De acuerdo con el tipo seleccionado, explique de manera
+        concisa el error encontrado o la información faltante.
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: ---
+  - type: checkboxes
+    id: no_duplicates
+    attributes:
+      label: Confirmación de No Duplicados
+      description: Por favor realice una Revisión de Documentación solo si no se ha realizado ninguna igual, o bien, consulte la existente.
+      options:
+      - label: He buscado las issues existentes y no he encontrado ninguna igual.
+        required: true

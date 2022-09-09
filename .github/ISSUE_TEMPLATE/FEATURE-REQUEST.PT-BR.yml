@@ -1,0 +1,38 @@
+############################################
+# TEMPLATE DE ISSUE PARA PEDIDO DE FEATURE #
+############################################
+
+name: Pedido de Feature
+description: Uma Feature será implementada no projeto.
+title: "[FEAT]: "
+labels: ["Type: Feature Request", "Status: Opened"]
+assignees:
+  - Mestre-Tramador
+body:
+  - type: textarea
+    id: feature_description
+    attributes:
+      label: Descrição da Feature
+      description: Por favor explique concisamente qual é o comportamento pedido a ser implementado.
+    validations:
+      required: true
+  - type: textarea
+    id: problems_solution
+    attributes:
+      label: Problems Solution
+      description: >
+        Por favor explique concisamente possíveis problemas que essa feature
+        irá resolver, ou benefícios que trará (não requirido).
+    validations:
+      required: false
+  - type: markdown
+    attributes:
+      value: ---
+  - type: checkboxes
+    id: no_duplicates
+    attributes:
+      label: Confirmação de Não Duplicadas
+      description: Por favor faça um Pedido de Feature apenas se nenhum outro igual foi feito, senão vá conferir o existente.
+      options:
+      - label: Eu verifiquei as issues existentes e não encontrei nenhuma igual.
+        required: true

@@ -3,7 +3,7 @@
 #######################################
 
 name: Feature Request
-description: A Feature shall be implemented on the package.
+description: A Feature shall be implemented on the system.
 title: "[FEAT]: "
 labels: ["Type: Feature Request", "Status: Opened"]
 assignees:
@@ -32,7 +32,7 @@ body:
     id: no_duplicates
     attributes:
       label: Confirmation of No Duplicates
-      description: Please make a Feature Request only if none was made, or else go check the existing one.
+      description: Please make a Feature Request only if none equal was made, or else go check the existing one.
       options:
       - label: I have searched the existing issues and not found any equal.
         required: true

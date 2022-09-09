@@ -1,6 +1,4 @@
-# Exper-Dat-Reader
-
-<!--  markdownlint-disable MD033  -->
+<!-- markdownlint-disable MD033 MD041 -->
 <p align="center">
     <a href="#exper-dat-reader">
         <img
@@ -11,13 +9,13 @@
         />
     </a>
 </p>
-<!--  markdownlint-enable MD033  -->
+<!-- markdownlint-enable MD033 MD041 -->
 
 **Read it also in: [Español], [Português Brasileiro]**
 
 ---
 
-<!--  markdownlint-disable MD013 MD033  -->
+<!-- markdownlint-disable MD013 MD033 -->
 <p align="center">
     <a href="https://www.php.net/" target="_blank"><img src="./docs/assets/badges/php.svg" alt="PHP" /></a>
     <a href="https://lumen.laravel.com/docs/9.x" target="_blank"><img src="./docs/assets/badges/lumen.svg" alt="Lumen" /></a>
@@ -29,7 +27,7 @@
     <a href="https://editorconfig.org/" target="_blank"><img src="./docs/assets/badges/editorconfig.svg" alt="EditorConfig" /></a>
     <a href="https://keepachangelog.com/en/1.0.0/" target="_blank"><img src="./docs/assets/badges/changelog.svg" alt="Keep a Changelog" /></a>
 </p>
-<!--  markdownlint-enable MD013 MD033  -->
+<!-- markdownlint-enable MD013 MD033 -->
 
 The Exper-Dat-Reader is a project based on an old test to a job application which
 required a PHP/JS system to read encrypted `.dat` files and dump their data into
@@ -101,7 +99,8 @@ faith in your the code, nonetheless!
 
 ## License
 
-Exper-Dat-Reader is currently licensed under the [MIT License], as is Lumen.
+Exper-Dat-Reader is currently licensed under the [GNU GENERAL PUBLIC LICENSE Version
+3].
 
 [Español]: ./docs/README.ES.md
 [Português Brasileiro]: ./docs/README.PT-BR.md
@@ -110,4 +109,4 @@ Exper-Dat-Reader is currently licensed under the [MIT License], as is Lumen.
 [Vue.js]: https://vuejs.org/
 [Composer]: https://getcomposer.org/
 [Contribution Guidelines]: ./docs/CONTRIBUTING.md
-[MIT License]: ./LICENSE
+[GNU GENERAL PUBLIC LICENSE Version 3]: ./LICENSE

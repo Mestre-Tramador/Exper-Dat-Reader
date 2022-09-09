@@ -1,33 +1,35 @@
 <?php
 
+#region License
+/**
+ * Exper-Dat-Reader is a system to read encrypted .dat files and dump their data into .done.dat files.
+ *  Copyright (C) 2022  Mestre-Tramador
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+#endregion
+
 namespace App\Http\Controllers;
 
-use Illuminate\Http\JsonResponse;
+use App\Http\Util\CanRespond;
 
 use Laravel\Lumen\Routing\Controller as BaseController;
 
+/**
+ * Base Controller.
+ */
 class Controller extends BaseController
 {
-    /**
-     * Generate an Unauthorized response, useful to auth requests.
-     *
-     * @param string $error
-     * @return JsonResponse
-     */
-    protected function respondWithUnauthorized(string $error = 'Unauthorized'): JsonResponse
-    {
-        return $this->respondWithError($error, 401);
-    }
-
-    /**
-     * Generate a response containing an error formatted JSON.
-     *
-     * @param string|array $error
-     * @param int $code
-     * @return JsonResponse
-     */
-    protected function respondWithError(string|array $error, int $code = 400): JsonResponse
-    {
-        return response()->json(['error' => $error], $code);
-    }
+    use CanRespond;
 }

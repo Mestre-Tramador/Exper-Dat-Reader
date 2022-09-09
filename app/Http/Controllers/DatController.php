@@ -1,5 +1,25 @@
 <?php
 
+#region License
+/**
+ * Exper-Dat-Reader is a system to read encrypted .dat files and dump their data into .done.dat files.
+ *  Copyright (C) 2022  Mestre-Tramador
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+#endregion
+
 namespace App\Http\Controllers;
 
 use App\Models\Dat;
@@ -8,6 +28,12 @@ use Carbon\Carbon;
 
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
+/**
+ * Controller to handle requests of the CRUD of
+ * `.dat` files, also list them.
+ *
+ * @author Mestre-Tramador
+ */
 class DatController extends Controller
 {
     /**
@@ -40,30 +66,7 @@ class DatController extends Controller
      */
     public function list()
     {
-        return response()->json(Dat::with('user')->get());
-    }
-
-    /**
-     * Read a stored `.dat` file with the given ID.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function read($id)
-    {
-        /**
-         * The Dat file.
-         *
-         * @var Dat|null $dat
-         */
-        $dat = Dat::find($id);
-
-        if(!$dat || $dat->deleted_at)
-        {
-            return response()->json(['error' => 'File not found'], 404);
-        }
-
-        return response()->json($dat->read());
+        return $this->respondWithOK(Dat::with('user')->get()->toArray());
     }
 
     /**
@@ -75,7 +78,7 @@ class DatController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store()
+    public function create()
     {
         /**
          * The files sent on the Request.
@@ -165,7 +168,30 @@ class DatController extends Controller
             $code = 201;
         }
 
-        return response()->json($readFiles, $code);
+        return $this->respond($readFiles, $code);
+    }
+
+    /**
+     * Read a stored `.dat` file with the given ID.
+     *
+     * @param int $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function read($id)
+    {
+        /**
+         * The Dat file.
+         *
+         * @var Dat|null $dat
+         */
+        $dat = Dat::find($id);
+
+        if(!$dat || $dat->deleted_at)
+        {
+            return $this->respondWithNotFound('File');
+        }
+
+        return $this->respondWithOK($dat->read());
     }
 
     /**
@@ -185,7 +211,7 @@ class DatController extends Controller
 
         if(!$dat || $dat->deleted_at)
         {
-            return response()->json(['error' => 'File not found'], 404);
+            return $this->respondWithNotFound('File');
         }
 
         /**
@@ -206,7 +232,7 @@ class DatController extends Controller
 
         if(!Dat::validate($file))
         {
-            return response()->json(['error' => 'Invalid file'], 422);
+            return $this->respondWithUnprocessable('Invalid file');
         }
 
         /**
@@ -218,17 +244,17 @@ class DatController extends Controller
 
         if(!$storage->putFileAs(self::PATH_IN, $file, $dat->name))
         {
-            return response()->json(['error' => 'File was not stored'], 500);
+            return $this->respondWithServerError('File was not stored');
         }
 
         $dat->updated_at = Carbon::now();
 
         if(!$dat->save())
         {
-            return response()->json(['error' => 'File was not saved'], 500);
+            return $this->respondWithServerError('File was not saved');
         }
 
-        return response()->json($dat->toArray() + ['data' => $dat->read()]);
+        return $this->respondWithOK($dat->toArray() + ['data' => $dat->read()]);
     }
 
     /**
@@ -251,16 +277,16 @@ class DatController extends Controller
 
         if(!$dat || $dat->deleted_at)
         {
-            return response()->json(['error' => 'File not found'], 404);
+            return $this->respondWithNotFound('File');
         }
 
         $dat->deleted_at = Carbon::now();
 
         if(!$dat->save())
         {
-            return response()->json(['error' => 'File was not saved'], 500);
+            return $this->respondWithServerError('File was not saved');
         }
 
-        return response()->json(['deleted' => $dat->name]);
+        return $this->respondWithOK(['deleted' => $dat->name]);
     }
 }

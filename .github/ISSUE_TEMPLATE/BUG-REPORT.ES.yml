@@ -1,0 +1,81 @@
+##########################################
+# PLANTILLA DE ISSUE PARA INFORME DE BUG #
+##########################################
+
+name: Informe de Bug
+description: Reporte un bug que ocurra en una o más funciones del sistema.
+title: "[BUG]: "
+labels: ["Type: Bug Report", "Status: Opened"]
+assignees:
+  - Mestre-Tramador
+body:
+  - type: textarea
+    id: expected_behavior
+    attributes:
+      label: Comportamiento Esperado
+      description: Explique de forma concisa cuál era el comportamiento esperado en su flujo de trabajo.
+    validations:
+      required: true
+  - type: textarea
+    id: current_behavior
+    attributes:
+      label: Comportamiento Actual
+      description: Explique de manera concisa cuál es el error y el comportamiento al que se enfrenta.
+    validations:
+      required: true
+  - type: textarea
+    id: steps_to_reproduce
+    attributes:
+      label: Pasos para Reproducir
+      description: Enumere todos los pasos para reproducir el error en el environment.
+      value: |
+        1 -
+        2 -
+        3 -
+        4 -
+        5 -
+        ...
+    validations:
+      required: true
+  - type: textarea
+    id: possible_solution
+    attributes:
+      label: Solución Posible
+      description: Informar una posible sugerencia sobre cómo solucionar el bug (no es obligatorio).
+    validations:
+      required: false
+  - type: markdown
+    attributes:
+      value: ---
+  - type: input
+    id: php_version
+    attributes:
+      label: Versión del PHP
+      description: Versión de PHP con la que se ejecutó el proyecto.
+    validations:
+      required: true
+  - type: input
+    id: sqlite_version
+    attributes:
+      label: Versión del SQLite
+      description: Versión de SQLite en la que se ejecutó el proyecto (especifique solo si el bug se trata de la base de datos).
+    validations:
+      required: false
+  - type: input
+    id: project_version
+    attributes:
+      label: Versión del Proyecto
+      description: Versión del proyecto utilizada.
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: ---
+  - type: checkboxes
+    id: no_duplicates
+    attributes:
+      label: Confirmación de No Duplicados
+      description: Por favor realice un Informe de Bug solo si no se ha realizado ninguno, o bien, consulte el existente.
+      options:
+      - label: He buscado las issues existentes y no he encontrado ninguna igual.
+        required: true

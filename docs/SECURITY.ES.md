@@ -1,6 +1,6 @@
 # Politica de Seguridad
 
-**Lea también en: [English](./SECURITY.md), [Português Brasileiro](./SECURITY.PT-BR.md)**
+**Lea también en: [English], [Português Brasileiro]**
 
 Este proyecto es solo un estudio y un software de código abierto sin la intuición
 de lucrar ni utilizar para obtener ningún dato personal o sensible.
@@ -12,7 +12,11 @@ datos reales en él.
 ## Informar Problemas de Seguridad
 
 Si se encuentra un problema de seguridad en el código o en el repositorio,
-comuníquese conmigo directamente através de mis redes sociales (compruébelo en
-mi [página de perfil](https://github.com/Mestre-Tramador#social-media)).
+comuníquese conmigo directamente através de mis redes sociales (compruébelo en mi
+[página de perfil]).
 Por favor, no cree un Issue o una Pull Request, primero vamonos tratar de forma
 privada para luego organizar la solución más eficiente.
+
+[English]: ./SECURITY.md
+[Português Brasileiro]: ./SECURITY.PT-BR.md
+[página de perfil]: https://github.com/Mestre-Tramador#social-med

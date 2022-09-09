@@ -1,0 +1,38 @@
+###################################################
+# PLANTILLA DE ISSUE PARA SOLICITUDES DE FEATURES #
+###################################################
+
+name: Solicitudes de Features
+description: Se implementará una Feature en el sistema.
+title: "[FEAT]: "
+labels: ["Type: Feature Request", "Status: Opened"]
+assignees:
+  - Mestre-Tramador
+body:
+  - type: textarea
+    id: feature_description
+    attributes:
+      label: Descripción de la Feature
+      description: Por favor, explique de manera concisa cuál es el comportamiento que se solicita implementar.
+    validations:
+      required: true
+  - type: textarea
+    id: problems_solution
+    attributes:
+      label: Solución de Problemas
+      description: >
+        Explique de forma concisa los posibles problemas que resolverá esta
+        característica o los beneficios que traerá (no es obligatorio).
+    validations:
+      required: false
+  - type: markdown
+    attributes:
+      value: ---
+  - type: checkboxes
+    id: no_duplicates
+    attributes:
+      label: Confirmación de No Duplicados
+      description: Por favor realice una Solicitude de Features solo si no se ha realizado ninguna igual, o bien, consulte la existente.
+      options:
+      - label: He buscado las issues existentes y no he encontrado ninguna igual.
+        required: true

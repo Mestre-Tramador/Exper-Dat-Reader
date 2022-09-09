@@ -1,0 +1,81 @@
+#################################################
+# TEMPLATE DE ISSUE TEMPLATE PARA RELATO DE BUG #
+#################################################
+
+name: Relato de Bug
+description: Relate um Bug ocorrendo em uma ou mais funções do sistema.
+title: "[BUG]: "
+labels: ["Type: Bug Report", "Status: Opened"]
+assignees:
+  - Mestre-Tramador
+body:
+  - type: textarea
+    id: expected_behavior
+    attributes:
+      label: Comportamento Esperado
+      description: Por favor explique concisamente qual era o comportamento esperado no fluxo de trabalho.
+    validations:
+      required: true
+  - type: textarea
+    id: current_behavior
+    attributes:
+      label: Comportamento Atual
+      description: Por favor explique concisamente qual é o bug e o comportamento sendo encontrado.
+    validations:
+      required: true
+  - type: textarea
+    id: steps_to_reproduce
+    attributes:
+      label: Passos para Reproduzir
+      description: Por favor liste todos os passos para reproduzir o bug no environment.
+      value: |
+        1 -
+        2 -
+        3 -
+        4 -
+        5 -
+        ...
+    validations:
+      required: true
+  - type: textarea
+    id: possible_solution
+    attributes:
+      label: Possível Solução
+      description: Informe uma possível solução em como resolver o bug (não requirido).
+    validations:
+      required: false
+  - type: markdown
+    attributes:
+      value: ---
+  - type: input
+    id: php_version
+    attributes:
+      label: Versão do PHP
+      description: Versão do PHP em que o projeto foi executado.
+    validations:
+      required: true
+  - type: input
+    id: sqlite_version
+    attributes:
+      label: Versão do SQLite
+      description: Versão do SQLite em que o projeto foi executado (especifique apenas se o bug for relacionado ao banco de dados).
+    validations:
+      required: false
+  - type: input
+    id: project_version
+    attributes:
+      label: Versão do Projeto
+      description: Versão do projeto usada.
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: ---
+  - type: checkboxes
+    id: no_duplicates
+    attributes:
+      label: Confirmação de Não Duplicadas
+      description: Por favor faça um Relato de Bug apenas se nenhum outro igual foi feito, senão vá conferir o existente.
+      options:
+      - label: Eu verifiquei as issues existentes e não encontrei nenhuma igual.
+        required: true

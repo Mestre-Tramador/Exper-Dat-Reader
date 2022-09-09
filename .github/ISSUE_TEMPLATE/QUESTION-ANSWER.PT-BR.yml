@@ -1,0 +1,32 @@
+###############################################
+# TEMPLATE DE ISSUE PARA RESPOSTA DE PERGUNTA #
+###############################################
+
+name: Resposta de Pergunta
+description: Tenho uma pergunta que não encontrei resposta.
+title: "[QST]: "
+labels: ["Type: Question Answer", "Status: Opened", "Help"]
+assignees:
+  - Mestre-Tramador
+body:
+  - type: textarea
+    id: your_question
+    attributes:
+      label: Sua Pergunta
+      description: >
+        Por favor escreva o que você está perguntando, também
+        enfatizando por que não conseguiu encontrar nenhuma resposta
+        na documentação.
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: ---
+  - type: checkboxes
+    id: no_duplicates
+    attributes:
+      label: Confirmação de Não Duplicadas
+      description: Por favor pergunte apenas se nenhuma outra igual foi feita, senão vá conferir a existente.
+      options:
+      - label: Eu verifiquei as issues existentes e não encontrei nenhuma igual.
+        required: true

@@ -1,0 +1,31 @@
+#################################################
+# PLANTILLA DE ISSUE PARA RESPUESTA DE PREGUNTA #
+#################################################
+
+name: Respuesta de Pregunta
+description: Tengo una pregunta que no encuentro respuesta.
+title: "[QST]: "
+labels: ["Type: Question Answer", "Status: Opened", "Help"]
+assignees:
+  - Mestre-Tramador
+body:
+  - type: textarea
+    id: your_question
+    attributes:
+      label: Tu Pregunta
+      description: >
+        Escriba lo que está cuestionando, y también enfatice por qué
+        no puede encontrar ninguna respuesta en la documentación.
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: ---
+  - type: checkboxes
+    id: no_duplicates
+    attributes:
+      label: Confirmación de No Duplicados
+      description: Por favor pregunte solo si no se ha realizado ninguna igual, o bien, consulte la existente.
+      options:
+      - label: He buscado las issues existentes y no he encontrado ninguna igual.
+        required: true

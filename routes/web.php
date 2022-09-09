@@ -39,11 +39,13 @@ $router->group(['prefix' => 'api'], function() use ($router) {
     |----------------------------------------------------------
     */
 
-    $router->get('dat', 'DatController@list');
-    $router->get('dat/{id}', 'DatController@read');
-    $router->post('dat', 'DatController@store');
-    $router->put('dat/{id}', 'DatController@update');
-    $router->delete('dat/{id}', 'DatController@delete');
+    $router->group(['prefix' => 'dat'], function() use ($router) {
+        $router->get('/', 'DatController@list');
+        $router->get('/{id}', 'DatController@read');
+        $router->post('/', 'DatController@create');
+        $router->put('/{id}', 'DatController@update');
+        $router->delete('/{id}', 'DatController@delete');
+    });
 
 
     /*
@@ -51,9 +53,10 @@ $router->group(['prefix' => 'api'], function() use ($router) {
     | DoneDat
     |----------------------------------------------------------
     */
-
-    $router->get('dump', 'DoneDatController@list');
-    $router->get('dump/{id}', 'DoneDatController@read');
-    $router->post('dump', 'DoneDatController@dump');
-    $router->delete('dump/{id}', 'DoneDatController@delete');
+    $router->group(['prefix' => 'dump'], function() use ($router) {
+        $router->get('/', 'DoneDatController@list');
+        $router->get('/{id}', 'DoneDatController@read');
+        $router->post('/', 'DoneDatController@create');
+        $router->delete('/{id}', 'DoneDatController@delete');
+    });
 });

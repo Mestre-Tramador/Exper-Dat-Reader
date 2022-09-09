@@ -3,7 +3,7 @@
 ##################################
 
 name: Bug Report
-description: Report a Bug occurring on one or more functions of the package.
+description: Report a Bug occurring on one or more functions of the system.
 title: "[BUG]: "
 labels: ["Type: Bug Report", "Status: Opened"]
 assignees:
@@ -27,8 +27,7 @@ body:
     id: steps_to_reproduce
     attributes:
       label: Steps to Reproduce
-      description: Please explain concisely what the is bug and the behavior you are facing.
-      placeholder:
+      description: Please list all the steps to reproduce the bug on the environment.
       value: |
         1 -
         2 -
@@ -42,7 +41,7 @@ body:
     id: possible_solution
     attributes:
       label: Possible Solution
-      description: Inform a possible suggestion on how to solute the bug (not required).
+      description: Inform a possible suggestion on how to solve the bug (not required).
     validations:
       required: false
   - type: markdown
@@ -52,21 +51,21 @@ body:
     id: php_version
     attributes:
       label: PHP Version
-      description: Version of PHP which the API was ran.
+      description: Version of PHP which the project was ran.
     validations:
       required: true
   - type: input
     id: sqlite_version
     attributes:
       label: SQLite Version
-      description: Version of SQLite which the API was ran (specify only if the bug is about the database).
+      description: Version of SQLite which the project was ran (specify only if the bug is about the database).
     validations:
       required: false
   - type: input
-    id: API_version
+    id: project_version
     attributes:
-      label: API Version
-      description: Version of the API used.
+      label: Project Version
+      description: Used version of the project.
     validations:
       required: true
   - type: markdown
@@ -76,7 +75,7 @@ body:
     id: no_duplicates
     attributes:
       label: Confirmation of No Duplicates
-      description: Please make a Bug Report only if none was made, or else go check the existing one.
+      description: Please make a Bug Report only if none equal was made, or else go check the existing one.
       options:
       - label: I have searched the existing issues and not found any equal.
         required: true

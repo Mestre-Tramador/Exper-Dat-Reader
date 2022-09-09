@@ -1,0 +1,44 @@
+##################################################
+# TEMPLATE DE ISSUE PARA REVISÃO DE DOCUMENTAÇÃO #
+##################################################
+
+name: Revisão de Documentação
+description: A documentação precisa de revisão em partes específicas.
+title: "[DOCS]: "
+labels: ["Type: Docs Revision", "Status: Opened"]
+assignees:
+  - Mestre-Tramador
+body:
+  - type: dropdown
+    id: revision_type
+    attributes:
+      label: Tipo de Revisão
+      description: Informe o tipo de revisão que deverá será feito.
+      options:
+        - Erro de Ortografia
+        - Adição
+        - Links Quebrados
+        - Página não Existente
+        - Conteúdo Incorreto
+    validations:
+      required: true
+  - type: textarea
+    id: revision
+    attributes:
+      label: Revisão
+      description:  >
+        De acordo com o tipo selecionado, por favor explique
+        concisamente o erro encontrado ou a informação faltante.
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: ---
+  - type: checkboxes
+    id: no_duplicates
+    attributes:
+      label: Confirmação de Não Duplicadas
+      description: Por favor faça uma Revisão de Documentação apenas se nenhuma outra igual foi feito, senão vá conferir a existente.
+      options:
+      - label: Eu verifiquei as issues existentes e não encontrei nenhuma igual.
+        required: true
