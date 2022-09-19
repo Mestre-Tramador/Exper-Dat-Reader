@@ -28,5 +28,5 @@ body:
       label: Confirmação de Não Duplicadas
       description: Por favor pergunte apenas se nenhuma outra igual foi feita, senão vá conferir a existente.
       options:
-      - label: Eu verifiquei as issues existentes e não encontrei nenhuma igual.
-        required: true
+        - label: Eu verifiquei as issues existentes e não encontrei nenhuma igual.
+          required: true

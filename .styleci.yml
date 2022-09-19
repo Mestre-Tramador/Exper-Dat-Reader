@@ -1,3 +1,7 @@
+########################
+# StyleCI for Laravel. #
+########################
+
 php:
   preset: laravel
   disabled:

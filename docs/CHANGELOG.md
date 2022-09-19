@@ -7,9 +7,33 @@ Versioning].
 
 ## [Unreleased]
 
-- Frontend
 - Changelog on different languages
 - GitHub Pull Requests templates
+
+## [0.0.5] - 2022-09-19
+
+### Created
+
+- App Controller to handle the frontend
+- Frontend structure with Laravel Mix and NPM packages
+- First page with Vue.js and Tailwind CSS
+
+### Added
+
+- Favicon icon
+- ESLint and Prettier linting
+- Configuration files for JavaScript packages
+- Documentation headers on most files
+
+### Improved
+
+- URLs paths on Markdown files
+- Badges and texts on Markdown readme files
+
+### Fixed
+
+- Incorrect spacing on GitHub Issue templates
+- Frontend routes not working properly
 
 ## [0.0.4] - 2022-09-08
 
@@ -123,7 +147,8 @@ Versioning].
 
 [Keep a Changelog]: https://keepachangelog.com/en/1.0.0/
 [Semantic Versioning]: https://semver.org/spec/v2.0.0.html
-[Unreleased]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.4...HEAD
+[Unreleased]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.5...HEAD
+[0.0.5]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.4...v0.0.5
 [0.0.4]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.3...v0.0.4
 [0.0.3]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.2...v0.0.3
 [0.0.2]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.1...v0.0.2

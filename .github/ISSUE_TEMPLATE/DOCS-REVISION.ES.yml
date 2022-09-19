@@ -26,7 +26,7 @@ body:
     id: revision
     attributes:
       label: Revisión
-      description:  >
+      description: >
         De acuerdo con el tipo seleccionado, explique de manera
         concisa el error encontrado o la información faltante.
     validations:
@@ -40,5 +40,5 @@ body:
       label: Confirmación de No Duplicados
       description: Por favor realice una Revisión de Documentación solo si no se ha realizado ninguna igual, o bien, consulte la existente.
       options:
-      - label: He buscado las issues existentes y no he encontrado ninguna igual.
-        required: true
+        - label: He buscado las issues existentes y no he encontrado ninguna igual.
+          required: true

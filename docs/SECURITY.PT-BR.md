@@ -15,6 +15,6 @@ contato diretamente comigo pelas redes sociais (verifique em minha [página de p
 Não crie uma Issue ou Pull Request, vamos tratá-lo em particular primeiro para,
 em seguida, arranjar a solução mais eficiente.
 
-[English]: ./SECURITY.md
-[Español]: ./SECURITY.ES.md
+[English]: SECURITY.md
+[Español]: SECURITY.ES.md
 [página de perfil]: https://github.com/Mestre-Tramador#social-media

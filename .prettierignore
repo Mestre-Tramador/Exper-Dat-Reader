@@ -1,0 +1,6 @@
+# Same as ESLint.
+.eslintrc.js
+webpack.mix.js
+postcss.config.js
+tailwind.config.js
+public/**

@@ -52,8 +52,8 @@ issue with *[Docs Revision]* template.
 
 Have a question? Well, you can can create an issue with the *[Question Answer]* template.
 
-[Code of Conduct]: ./CODE_OF_CONDUCT.md
-[Security Policy]: ./SECURITY.md
+[Code of Conduct]: CODE_OF_CONDUCT.md
+[Security Policy]: SECURITY.md
 [Testing]: #testing
 [Bug Reports]: #bug-reports
 [Feature Requests]: #feature-requests

@@ -2,7 +2,7 @@
 <p align="center">
     <a href="#exper-dat-reader">
         <img
-            src="./assets/images/logo.png"
+            src="assets/images/logo.png"
             alt="Exper-Dat-Reader logo"
             width="1282"
             height="140"
@@ -17,15 +17,23 @@
 
 <!--  markdownlint-disable MD013 MD033 -->
 <p align="center">
-    <a href="https://www.php.net/" target="_blank"><img src="./assets/badges/php.svg" alt="PHP" /></a>
-    <a href="https://lumen.laravel.com/docs/9.x" target="_blank"><img src="./assets/badges/lumen.svg" alt="Lumen" /></a>
-    <a href="https://www.sqlite.org/index.html" target="_blank"><img src="./assets/badges/sqlite.svg" alt="SQLite" /></a>
+    <a href="https://www.php.net/" target="_blank"><img src="assets/badges/php.svg" alt="PHP" /></a>
+    <a href="https://www.typescriptlang.org/" target="_blank"><img src="assets/badges/ts.svg" alt="TypeScript" /></a>
+    <a href="https://sass-lang.com/" target="_blank"><img src="assets/badges/sass.svg" alt="Sass" /></a>
+    <a href="https://lumen.laravel.com/docs/9.x" target="_blank"><img src="assets/badges/lumen.svg" alt="Lumen" /></a>
+    <a href="https://vuejs.org/" target="_blank"><img src="assets/badges/vue.svg" alt="Vue.js" /></a>
+    <a href="https://tailwindcss.com/" target="_blank"><img src="assets/badges/tailwindcss.svg" alt="Tailwind CSS" /></a>
+    <a href="https://www.sqlite.org/index.html" target="_blank"><img src="assets/badges/sqlite.svg" alt="SQLite" /></a>
 </p>
 <p align="center">
-    <a href="https://getcomposer.org/" target="_blank"><img src="./assets/badges/composer.svg" alt="Composer" /></a>
-    <a href="https://jwt.io/" target="_blank"><img src="./assets/badges/jwt.svg" alt="Json Web Tokens" /></a>
-    <a href="https://editorconfig.org/" target="_blank"><img src="./assets/badges/editorconfig.svg" alt="EditorConfig" /></a>
-    <a href="https://keepachangelog.com/en/1.0.0/" target="_blank"><img src="./assets/badges/changelog.svg" alt="Keep a Changelog" /></a>
+    <a href="https://getcomposer.org/" target="_blank"><img src="assets/badges/composer.svg" alt="Composer" /></a>
+    <a href="https://jwt.io/" target="_blank"><img src="assets/badges/jwt.svg" alt="Json Web Tokens" /></a>
+    <a href="https://www.npmjs.com/" target="_blank"><img src="assets/badges/npm.svg" alt="npm" /></a>
+    <a href="https://postcss.org/" target="_blank"><img src="assets/badges/postcss.svg" alt="PostCSS" /></a>
+    <a href="https://eslint.org/" target="_blank"><img src="assets/badges/eslint.svg" alt="ESLint" /></a>
+    <a href="https://prettier.io/" target="_blank"><img src="assets/badges/prettier.svg" alt="Prettier" /></a>
+    <a href="https://editorconfig.org/" target="_blank"><img src="assets/badges/editorconfig.svg" alt="EditorConfig" /></a>
+    <a href="https://keepachangelog.com/en/1.0.0/" target="_blank"><img src="assets/badges/changelog.svg" alt="Keep a Changelog" /></a>
 </p>
 <!--  markdownlint-enable MD013 MD033 -->
 
@@ -37,8 +45,7 @@ volcar sus datos en archivos `.done.dat`.
 
 Para entrenar los lenguajes antes mencionados, y también mejorar mi perfil de GitHub,
 decidí hacer este proyecto de nuevo usando el [Lumen] framework con [SQLite] como
-base de datos. El plan es incrementarlo con un frontend [Vue.js], manteniendo siempre
-el sencillez de la idea.
+base de datos. El frontend trabaja con una aplicación [Vue.js] simples.
 
 ## Como ejecutar
 
@@ -83,13 +90,27 @@ SQLite:
     # Los usuarios de Windows y Mac serán diferentes.
 ```
 
-A partir de ahora, ¡ya está todo configurado y listo para comenzar! Solo ejecuta
+A partir de ahora, ¡ el backend está OK y listo para comenzar! Solo ejecuta
 el último comando y diviértete:
 
 ```sh
     php artisan serve
 
     # Alternativamente, puede ejecutar `php -S localhost:8000 -t public`
+```
+
+Para el frontend, abra un nuevo terminal y ejecute el siguiente comando:
+
+```sh
+    npm install
+```
+
+Después de instalar todos los módulos del Node.js, solo tiene que ejecutar este comando:
+
+```sh
+    npm run watch
+
+    # Para compilar los archivos, ejecute `npm run dev`.
 ```
 
 ## Contribución
@@ -104,11 +125,11 @@ Además, si desea bifurcar este código, ¡asegúrese de hacerlo! Sin embargo,
 Exper-Dat-Reader está licenciado actualmente bajo la [LICENCIA PÚBLICA GENERAL DE
 GNU Versión 3].
 
-[English]: ../README.md
-[Português Brasileiro]: ./README.PT-BR.md
+[English]: .README.md
+[Português Brasileiro]: README.PT-BR.md
 [Lumen]: https://lumen.laravel.com/docs/9.x
 [SQLite]: https://www.sqlite.org/index.html
 [Vue.js]: https://vuejs.org/
 [Composer]: https://getcomposer.org/
-[Pautas de Contribución]: ./CONTRIBUTING.ES.md
-[LICENCIA PÚBLICA GENERAL DE GNU Versión 3]: ../LICENSE
+[Pautas de Contribución]: CONTRIBUTING.ES.md
+[LICENCIA PÚBLICA GENERAL DE GNU Versión 3]: .LICENSE

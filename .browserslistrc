@@ -1,0 +1,4 @@
+# Browsers that are supported.
+# More info at: https://browsersl.ist
+
+defaults and supports es6-module

@@ -15,6 +15,6 @@ me by my social media (check it at my [profile page]). Please do not create an I
 or a Pull Request, let treat it privately first to then arrange the most efficient
 solution.
 
-[Español]: ./SECURITY.ES.md
-[Português Brasileiro]: ./SECURITY.PT-BR.md
+[Español]: SECURITY.ES.md
+[Português Brasileiro]: SECURITY.PT-BR.md
 [profile page]: https://github.com/Mestre-Tramador#social-media

@@ -56,8 +56,8 @@ con la plantilla *[Revisión de Documentación]*.
 ¿Tienes una pregunta? Bueno, puedes crear un problema con la plantilla *[Respuesta
 de Pregunta]*.
 
-[Código de conducta]: ./CODE_OF_CONDUCT.ES.md
-[Política de Seguridad]: ./SECURITY.ES.md
+[Código de conducta]: CODE_OF_CONDUCT.ES.md
+[Política de Seguridad]: SECURITY.ES.md
 [Pruebas]: #pruebas
 [Informes de Bugs]: #informes-de-bugs
 [Solicitudes de Features]: #solicitudes-de-features

@@ -4,18 +4,6 @@
 
 /*
 |--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-*/
-
-$router->group(['middleware' => 'auth:api'], function() use ($router) {
-    $router->get('', function () {
-        return app()->version();
-    });
-});
-
-/*
-|--------------------------------------------------------------------------
 | API Routes
 |--------------------------------------------------------------------------
 */
@@ -53,10 +41,29 @@ $router->group(['prefix' => 'api'], function() use ($router) {
     | DoneDat
     |----------------------------------------------------------
     */
+
     $router->group(['prefix' => 'dump'], function() use ($router) {
         $router->get('/', 'DoneDatController@list');
         $router->get('/{id}', 'DoneDatController@read');
         $router->post('/', 'DoneDatController@create');
         $router->delete('/{id}', 'DoneDatController@delete');
     });
+
+    /*
+    |----------------------------------------------------------
+    | Other
+    |----------------------------------------------------------
+    */
+
+    $router->get('/', 'AppController@index');
+    $router->get('/{route:.*}/', 'AppController@index');
 });
+
+/*
+|--------------------------------------------------------------------------
+| Application Routes
+|--------------------------------------------------------------------------
+*/
+
+$router->get('/', 'AppController@app');
+$router->get('/{route:.*}/', 'AppController@index');

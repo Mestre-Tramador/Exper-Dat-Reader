@@ -54,8 +54,8 @@ uma issue com o template *[Revisão de Documentação]*.
 
 Tens uma pergunta? Bem, você pode criar uma issue com o template *[Resposta de Pergunta]*.
 
-[Código de Conduta]: ./CODE_OF_CONDUCT.PT-BR.md
-[Política de Segurança]: ./SECURITY.PT-BR.md
+[Código de Conduta]: CODE_OF_CONDUCT.PT-BR.md
+[Política de Segurança]: SECURITY.PT-BR.md
 [Testando]: #testando
 [Relato de Bugs]: #relato-de-bugs
 [Pedido de Features]: #pedido-de-features

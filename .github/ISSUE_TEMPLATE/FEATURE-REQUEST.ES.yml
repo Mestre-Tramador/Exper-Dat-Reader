@@ -34,5 +34,5 @@ body:
       label: Confirmación de No Duplicados
       description: Por favor realice una Solicitude de Features solo si no se ha realizado ninguna igual, o bien, consulte la existente.
       options:
-      - label: He buscado las issues existentes y no he encontrado ninguna igual.
-        required: true
+        - label: He buscado las issues existentes y no he encontrado ninguna igual.
+          required: true

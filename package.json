@@ -1,0 +1,57 @@
+{
+  "name": "exper-dat-reader",
+  "version": "0.0.5",
+  "description": "Read .dat files easily and store their dumped data.",
+  "keywords": [
+    "exper",
+    "lumen",
+    "dat",
+    "study",
+    "vue.js"
+  ],
+  "homepage": "https://github.com/Mestre-Tramador/Exper-Dat-Reader",
+  "bugs": {
+    "url": "https://github.com/Mestre-Tramador/Exper-Dat-Reader/issues"
+  },
+  "license": "GPL-3.0-only",
+  "author": {
+    "name": "Mestre-Tramador",
+    "url": "https://github.com/Mestre-Tramador"
+  },
+  "scripts": {
+    "dev": "npm run development",
+    "development": "mix",
+    "watch": "mix watch",
+    "watch-poll": "mix watch -- --watch-options-poll=1000",
+    "hot": "mix watch --hot",
+    "prod": "npm run production",
+    "production": "mix --production"
+  },
+  "private": true,
+  "devDependencies": {
+    "@types/eslint": "^8.4.6",
+    "@types/prettier": "^2.7.0",
+    "@types/vue": "^2.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.37.0",
+    "@typescript-eslint/parser": "^5.37.0",
+    "autoprefixer": "^10.4.11",
+    "eslint": "^8.23.1",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-vue": "^9.5.1",
+    "ignore-loader": "^0.1.2",
+    "laravel-mix": "^6.0.49",
+    "laravel-mix-polyfill": "^3.0.1",
+    "mix-tailwindcss": "^1.3.0",
+    "postcss": "^8.4.16",
+    "resolve-url-loader": "^5.0.0",
+    "sass": "^1.54.9",
+    "sass-loader": "^12.6.0",
+    "tailwindcss": "^3.1.8",
+    "ts-loader": "^9.3.1",
+    "typescript": "^4.8.3",
+    "vue": "^3.2.39",
+    "vue-loader": "^17.0.0",
+    "vue-router": "^4.1.5"
+  }
+}

@@ -17,6 +17,6 @@ comuníquese conmigo directamente através de mis redes sociales (compruébelo e
 Por favor, no cree un Issue o una Pull Request, primero vamonos tratar de forma
 privada para luego organizar la solución más eficiente.
 
-[English]: ./SECURITY.md
-[Português Brasileiro]: ./SECURITY.PT-BR.md
+[English]: SECURITY.md
+[Português Brasileiro]: SECURITY.PT-BR.md
 [página de perfil]: https://github.com/Mestre-Tramador#social-med
