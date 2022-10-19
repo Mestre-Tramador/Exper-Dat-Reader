@@ -99,7 +99,7 @@ class AuthController extends Controller
      *
      * If there is already a User, then it's redirected to the main page.
      *
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\JsonResponse
      */
     public function login()
     {
@@ -111,9 +111,14 @@ class AuthController extends Controller
             ]
         );
 
-        if(auth()->user())
+        /**
+         * @var \Tymon\JWTAuth\JWTAuth $auth
+         */
+        $auth = auth();
+
+        if($auth->user())
         {
-            return $this->respondWithFound('/');
+            return $this->respondWithAccepted('Already logged in');
         }
 
         try
@@ -123,7 +128,7 @@ class AuthController extends Controller
              *
              * @var string|null $token
              */
-            $token = auth()->attempt(request(['email', 'password']));
+            $token = $auth->attempt(request(['email', 'password']));
 
             if(!$token)
             {
@@ -132,7 +137,8 @@ class AuthController extends Controller
 
             return $this->respondWithOK([
                 'access_token' => $token,
-                'token_type' => 'bearer'
+                'token_type' => 'bearer',
+                'user' => $auth->user()
             ]);
         }
         catch(\Illuminate\Database\Eloquent\ModelNotFoundException $e)
@@ -145,12 +151,12 @@ class AuthController extends Controller
      * Logout of the system, revoking the JWT and
      * returning to the main page.
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\JsonResponse
      */
     public function logout()
     {
         auth()->logout();
 
-        return $this->respondWithFound('/');
+        return $this->respondWithOK(['message' => 'Successful logout']);
     }
 }

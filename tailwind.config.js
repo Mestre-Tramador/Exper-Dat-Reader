@@ -7,9 +7,28 @@ module.exports = {
   content: [
     "./resources/views/*.blade.php",
     "./resources/ts/Pages/**/*.vue",
+    "./resources/ts/Components/**/*.vue",
   ],
-  plugins: [],
   theme: {
-    extend: {},
-  }
+    extend: {
+        transformOrigin: {
+            "top-center": "top center"
+        },
+        animation: { dropdown: "dropdown 300ms ease-in-out forwards" },
+        keyframes: {
+            dropdown: {
+                "0%": {
+                    transform: "scaleY(0)"
+                },
+                "80%": {
+                    transform: "scaleY(1.1)"
+                },
+                "100%": {
+                    transform: "scaleY(1)"
+                }
+            }
+        }
+    }
+  },
+  plugins: []
 };

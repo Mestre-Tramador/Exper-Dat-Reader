@@ -41,9 +41,13 @@
     </head>
 
     <body class="leading-normal tracking-normal text-white gradient">
-        <main id="app" class="flex h-screen w-screen">
+        <main id="app">
             <router-view></router-view>
         </main>
+
+        <footer class="absolute w-fit inset-x-0 bottom-0 m-auto">
+            Exper-Dat-Reader - {{ $Y }}
+        </footer>
 
         <script src="dist/js/app.js"></script>
     </body>

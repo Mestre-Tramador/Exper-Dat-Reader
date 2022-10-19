@@ -1,6 +1,4 @@
-<?php
-
-#region License
+//#region License
 /**
  * Exper-Dat-Reader is a system to read encrypted .dat files and dump their data into .done.dat files.
  *  Copyright (C) 2022  Mestre-Tramador
@@ -18,43 +16,14 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-#endregion
+//#endregion
 
-namespace App\Http\Controllers;
+import { FormErrors } from "@Interfaces/FormErrors";
 
 /**
- * Controller to handle the frontend App.
- *
- * @author Mestre-Tramador
+ * The errors specific to a `AuthForm`.
  */
-class AppController extends Controller
-{
-    /**
-     * Basically return to the index of the App.
-     *
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function index()
-    {
-        $path = '/';
-
-        $req_path = request()->path();
-
-        if($req_path)
-        {
-            $path .= "?p={$req_path}";
-        }
-
-        return $this->respondWithFound($path);
-    }
-
-    /**
-     * Return the view of the frontend App.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function app(): \Illuminate\View\View
-    {
-        return view('app')->with('Y', date('Y'));
-    }
+export interface AuthFormErrors extends FormErrors {
+    email: string[];
+    password: string[];
 }

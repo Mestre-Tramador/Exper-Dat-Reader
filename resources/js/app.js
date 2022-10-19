@@ -20,8 +20,19 @@
 
 import * as Vue from "vue";
 import * as VueRouter from "vue-router";
+import * as Vuex from "vuex";
 
-import { components, routes } from "../ts/index.ts";
+import axios from "axios";
+import VueAxios from "vue-axios";
+
+import {
+    components,
+    routes,
+    state,
+    mutations,
+    getters,
+    plugins
+} from "../ts/index.ts";
 
 //#region Plugins
 /**
@@ -35,6 +46,20 @@ import { components, routes } from "../ts/index.ts";
 const router = VueRouter.createRouter({
     history: VueRouter.createWebHistory(),
     routes
+});
+
+/**
+ * The store manages and mutates data through the app
+ * and its components, persisting it if needed.
+ *
+ * All store options are made on a Typescript index.
+ * @type {Vuex.Store<UserState>}
+ */
+const store = Vuex.createStore({
+    state,
+    mutations,
+    getters,
+    plugins
 });
 //#endregion
 
@@ -50,6 +75,9 @@ const router = VueRouter.createRouter({
 const app = Vue.createApp({ components });
 
 app.use(router);
+app.use(store);
+
+app.use(VueAxios, axios);
 
 app.mount("#app");
 //#endregion

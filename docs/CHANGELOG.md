@@ -10,6 +10,38 @@ Versioning].
 - Changelog on different languages
 - GitHub Pull Requests templates
 
+## [0.0.6] - 2022-10-18
+
+### Created
+
+- Login Vue Page
+- Main Menu Vue Page
+- Navbar Vue Component
+- Login Inputs Vue Component
+
+### Implemented
+
+- TypeScript Form Model structure with Props and Errors
+- Vue Router based on routes' names
+- Correct persisting of the authentication state with Vuex
+
+### Added
+
+- Footer on all pages
+- License headers on missing files
+- NPM [@heroicons/vue] package for icons
+- Default user image
+
+### Improved
+
+- General readability on some JavaScript and Typescript files
+
+### Fixed
+
+- Changelog itens order
+- Incorrect redirects of the API's routes to the App
+- Login Route JSON response
+
 ## [0.0.5] - 2022-09-19
 
 ### Created
@@ -79,15 +111,15 @@ Versioning].
 - Read Dump API Route
 - Delete Dump API Route
 
-### Improved
-
-- Markdown readme files
-
 ### Added
 
 - Composer [notihnio/php-multipart-form-data-parser] Package
 - Logo image
 - Extra badges
+
+### Improved
+
+- Markdown readme files
 
 ### Fixed
 
@@ -147,10 +179,12 @@ Versioning].
 
 [Keep a Changelog]: https://keepachangelog.com/en/1.0.0/
 [Semantic Versioning]: https://semver.org/spec/v2.0.0.html
-[Unreleased]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.5...HEAD
+[Unreleased]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.6...HEAD
+[0.0.6]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.5...v0.0.6
 [0.0.5]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.4...v0.0.5
 [0.0.4]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.3...v0.0.4
 [0.0.3]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.2...v0.0.3
 [0.0.2]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.1...v0.0.2
 [0.0.1]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/releases/tag/v0.0.1
+[@heroicons/vue]: https://github.com/tailwindlabs/heroicons
 [notihnio/php-multipart-form-data-parser]: https://github.com/notihnio/php-multipart-form-data-parser

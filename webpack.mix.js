@@ -4,9 +4,17 @@
 
 /**
  * Laravel Mix configurator.
+ *
  * @type {import("laravel-mix").Api}
-  */
+ */
 const mix = require("laravel-mix");
+
+/**
+ * Path resolver.
+ *
+ * @type {path.PlatformPath}
+ */
+const path = require("path");
 
 require("mix-tailwindcss");
 require("laravel-mix-polyfill");
@@ -27,11 +35,25 @@ mix.webpackConfig({
                 options: {
                     noEmit: false
                 }
-            },
-        ],
+            }
+        ]
     },
     resolve: {
-        extensions: ["*", ".js", ".jsx", ".ts", ".d.ts", ".tsx", ".vue"]
+        extensions: [
+            "*",
+            ".js",
+            ".jsx",
+            ".ts",
+            ".d.ts",
+            ".tsx",
+            ".vue"
+        ],
+        alias: {
+            "@Components": path.resolve(__dirname, "resources/ts/Components/"),
+            "@Interfaces": path.resolve(__dirname, "resources/ts/Interfaces/"),
+            "@Models": path.resolve(__dirname, "resources/ts/Models/"),
+            "@Pages": path.resolve(__dirname, "resources/ts/Pages/"),
+        }
     },
 });
 //#endregion
@@ -43,7 +65,7 @@ mix.vue({ version: 3 });
 //#endregion
 
 //#region CSS
-mix.sass("resources/sass/index.scss","public/dist/css/app.css");
+mix.sass("resources/sass/index.scss", "public/dist/css/app.css");
 mix.postCss("resources/css/tailwind.css", "public/dist/css").tailwind("./tailwind.config.js");
 //#endregion
 
@@ -62,5 +84,5 @@ mix.copy("resources/imgs/*.*", "public/imgs/");
 
 //#region Source
 mix.version();
-mix.sourceMaps(!mix.inProduction(), "source-map");
+mix.sourceMaps(!mix.inProduction(), "eval-source-map");
 //#endregion

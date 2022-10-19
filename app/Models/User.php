@@ -23,7 +23,6 @@
 namespace App\Models;
 
 use Illuminate\Auth\Authenticatable;
-
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -75,5 +74,16 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     public function dats(): HasMany
     {
         return $this->hasMany(Dat::class);
+    }
+
+    /** @inheritDoc */
+    public function toArray()
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'email' => $this->email,
+            'creation' => $this->created_at->format('Y-m-d h:i:s')
+        ];
     }
 }
