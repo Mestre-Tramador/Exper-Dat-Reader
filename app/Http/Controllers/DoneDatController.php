@@ -26,6 +26,8 @@ use App\Models\{Dat, DoneDat};
 
 use Carbon\Carbon;
 
+use Illuminate\Http\JsonResponse;
+
 /**
  * Controller to handle requests of the CRUD **(except Update)**
  * of `.done.dat` files, also list them.
@@ -54,9 +56,9 @@ class DoneDatController extends Controller
     /**
      * Lists all current stored `.done.dat` files.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
-    public function list()
+    public function list(): JsonResponse
     {
         return $this->respondWithOK(DoneDat::get()->toArray());
     }
@@ -72,9 +74,9 @@ class DoneDatController extends Controller
      * * The most expensive sale;
      * * The worst seller.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
-    public function create()
+    public function create(): JsonResponse
     {
         /**
          * A list of all `.dat` files stored after the last dump.
@@ -153,23 +155,23 @@ class DoneDatController extends Controller
      * Read a stored `.done.dat` file with the given ID.
      *
      * @param int $id
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
-    public function read($id)
+    public function read(int $id): JsonResponse
     {
-        /**
-         * The DoneDat file.
-         *
-         * @var DoneDat|null $doneDat
-         */
-        $doneDat = DoneDat::find($id);
+        return $this->readResponse(DoneDat::find($id));
+    }
 
-        if(!$doneDat || $doneDat->deleted_at)
-        {
-            return $this->respondWithNotFound('File');
-        }
-
-        return $this->respondWithOK($doneDat->read());
+    /**
+     * Read the last stored `.done.dat` file.
+     *
+     * @return JsonResponse
+     */
+    public function last(): JsonResponse
+    {
+        return $this->readResponse(
+            DoneDat::orderBy('created_at', 'desc')->first()
+        );
     }
 
     /**
@@ -179,9 +181,9 @@ class DoneDatController extends Controller
      * `.done.dat` file are really deleted.
      *
      * @param int $id
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
-    public function delete($id)
+    public function delete(int $id): JsonResponse
     {
         /**
          * The DoneDat file.
@@ -203,5 +205,22 @@ class DoneDatController extends Controller
         }
 
         return $this->respondWithOK(['deleted' => $doneDat->name]);
+    }
+
+    /**
+     * Return a JSON response based on the passed `.done.dat` file,
+     * either valid or not.
+     *
+     * @param DoneDat|null $doneDat
+     * @return JsonResponse
+     */
+    private function readResponse(?DoneDat $doneDat): JsonResponse
+    {
+        if(!$doneDat || $doneDat->deleted_at)
+        {
+            return $this->respondWithNotFound('File');
+        }
+
+        return $this->respondWithOK($doneDat->read());
     }
 }

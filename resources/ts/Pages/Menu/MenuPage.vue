@@ -18,50 +18,48 @@
 
 <template>
     <main-layout>
-        <div class="bg-white m-auto rounded">
-            <div class="flex">
-                <img
-                    src="imgs/logo.png"
-                    alt="Exper-Dat-Reader"
-                    class="w-96 my-2 mx-auto"
-                />
-            </div>
+        <div class="flex">
+            <img
+                src="imgs/logo.png"
+                alt="Exper-Dat-Reader"
+                class="w-96 my-2 mx-auto"
+            />
+        </div>
 
-            <hr />
+        <hr />
 
-            <div class="flex mt-4">
-                <!-- Future "Dashboard" button. -->
-                <router-link
-                    class="text-blue-500 hover:text-teal-600 m-auto"
-                    to="/"
-                >
-                    <document-chart-bar-icon class="h-32 w-32" />
-                </router-link>
+        <div class="flex mt-4">
+            <!-- Dashboard button. -->
+            <router-link
+                class="text-blue-500 hover:text-teal-600 m-auto"
+                :to="{ name: 'Dashboard' }"
+            >
+                <document-chart-bar-icon class="h-32 w-32" />
+            </router-link>
 
-                <!-- Future "Add File" button. -->
-                <router-link
-                    class="text-blue-500 hover:text-emerald-500 m-auto"
-                    to="/"
-                >
-                    <document-plus-icon class="h-32 w-32" />
-                </router-link>
+            <!-- Future "Add File" button. -->
+            <router-link
+                class="text-blue-500 hover:text-emerald-500 m-auto"
+                to="/"
+            >
+                <document-plus-icon class="h-32 w-32" />
+            </router-link>
 
-                <!-- Future "File List" button. -->
-                <router-link
-                    class="text-blue-500 hover:text-blue-700 m-auto"
-                    to="/"
-                >
-                    <document-text-icon class="h-32 w-32" />
-                </router-link>
+            <!-- Future "File List" button. -->
+            <router-link
+                class="text-blue-500 hover:text-blue-700 m-auto"
+                to="/"
+            >
+                <document-text-icon class="h-32 w-32" />
+            </router-link>
 
-                <!-- Future "Dump Files" button. -->
-                <router-link
-                    class="text-blue-500 hover:text-cyan-800 m-auto"
-                    to="/"
-                >
-                    <document-check-icon class="h-32 w-32" />
-                </router-link>
-            </div>
+            <!-- Future "Dump Files" button. -->
+            <router-link
+                class="text-blue-500 hover:text-cyan-800 m-auto"
+                to="/"
+            >
+                <document-check-icon class="h-32 w-32" />
+            </router-link>
         </div>
     </main-layout>
 </template>

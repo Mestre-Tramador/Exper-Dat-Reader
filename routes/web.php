@@ -44,7 +44,8 @@ $router->group(['prefix' => 'api'], function() use ($router) {
 
     $router->group(['prefix' => 'dump'], function() use ($router) {
         $router->get('/', 'DoneDatController@list');
-        $router->get('/{id}', 'DoneDatController@read');
+        $router->get('/{id:^[0-9]*$}', 'DoneDatController@read');
+        $router->get('/last', 'DoneDatController@last');
         $router->post('/', 'DoneDatController@create');
         $router->delete('/{id}', 'DoneDatController@delete');
     });

@@ -26,6 +26,8 @@ use App\Models\Dat;
 
 use Carbon\Carbon;
 
+use Illuminate\Http\JsonResponse;
+
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
@@ -62,9 +64,9 @@ class DatController extends Controller
     /**
      * Lists all current stored `.dat` files.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
-    public function list()
+    public function list(): JsonResponse
     {
         return $this->respondWithOK(Dat::with('user')->get()->toArray());
     }
@@ -76,9 +78,9 @@ class DatController extends Controller
      * The other files or invalid ones are also
      * specified in the JSON.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
-    public function create()
+    public function create(): JsonResponse
     {
         /**
          * The files sent on the Request.
@@ -132,6 +134,11 @@ class DatController extends Controller
 
             $dat->user_id = auth()->user()->id;
 
+            /**
+             * The current date.
+             *
+             * @var Carbon $now
+             */
             $now = Carbon::now();
 
             $dat->first_read_at = $now;
@@ -175,9 +182,9 @@ class DatController extends Controller
      * Read a stored `.dat` file with the given ID.
      *
      * @param int $id
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
-    public function read($id)
+    public function read(int $id): JsonResponse
     {
         /**
          * The Dat file.
@@ -198,9 +205,9 @@ class DatController extends Controller
      * Update the current `.dat` file referenced by the `$id`.
      *
      * @param int $id
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
-    public function update($id)
+    public function update(int $id): JsonResponse
     {
         /**
          * The Dat file.
@@ -264,9 +271,9 @@ class DatController extends Controller
      * `.dat` file are really deleted.
      *
      * @param int $id
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
-    public function delete($id)
+    public function delete(int $id): JsonResponse
     {
         /**
          * The Dat file.
@@ -282,7 +289,7 @@ class DatController extends Controller
 
         $dat->deleted_at = Carbon::now();
 
-        if(!$dat->save())
+        if(!$dat->delete())
         {
             return $this->respondWithServerError('File was not saved');
         }

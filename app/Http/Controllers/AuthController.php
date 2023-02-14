@@ -24,6 +24,10 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Database\QueryException;
+use Illuminate\Http\JsonResponse;
+
 /**
  * Controller to handle authentication requests of registering,
  * login and logout.
@@ -51,9 +55,9 @@ class AuthController extends Controller
      * Register a new User on the Database and also grant it
      * a new Json Web Token.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
-    public function register()
+    public function register(): JsonResponse
     {
         $this->validate(
             request(),
@@ -88,7 +92,7 @@ class AuthController extends Controller
 
             return $this->respondWithCreated(compact('user', 'token'));
         }
-        catch(\Illuminate\Database\QueryException $e)
+        catch(QueryException $e)
         {
             return $this->respondWithServerError('There was an error saving the User!');
         }
@@ -99,9 +103,9 @@ class AuthController extends Controller
      *
      * If there is already a User, then it's redirected to the main page.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
-    public function login()
+    public function login(): JsonResponse
     {
         $this->validate(
             request(),
@@ -112,6 +116,8 @@ class AuthController extends Controller
         );
 
         /**
+         * The authentication class.
+         *
          * @var \Tymon\JWTAuth\JWTAuth $auth
          */
         $auth = auth();
@@ -141,7 +147,7 @@ class AuthController extends Controller
                 'user' => $auth->user()
             ]);
         }
-        catch(\Illuminate\Database\Eloquent\ModelNotFoundException $e)
+        catch(ModelNotFoundException $e)
         {
             return $this->respondWithServerError('There is no User with this credentials registered!');
         }
@@ -151,9 +157,9 @@ class AuthController extends Controller
      * Logout of the system, revoking the JWT and
      * returning to the main page.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
-    public function logout()
+    public function logout(): JsonResponse
     {
         auth()->logout();
 

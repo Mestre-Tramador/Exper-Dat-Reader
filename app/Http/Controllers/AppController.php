@@ -22,6 +22,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
+
 /**
  * Controller to handle the frontend App.
  *
@@ -32,15 +35,23 @@ class AppController extends Controller
     /**
      * Basically return to the index of the App.
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
-    public function index()
+    public function index(): RedirectResponse
     {
+        /**
+         * The base path for the app.
+         *
+         * @var string $path
+         */
         $path = '/';
 
-        $req_path = request()->path();
-
-        if($req_path)
+        /**
+         * A possible path on the request.
+         *
+         * @var string $req_path
+         */
+        if($req_path = request()->path())
         {
             $path .= "?p={$req_path}";
         }
@@ -51,9 +62,9 @@ class AppController extends Controller
     /**
      * Return the view of the frontend App.
      *
-     * @return \Illuminate\View\View
+     * @return View
      */
-    public function app(): \Illuminate\View\View
+    public function app(): View
     {
         return view('app')->with('Y', date('Y'));
     }

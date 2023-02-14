@@ -79,7 +79,7 @@ import MainLayout from "@Components/Layout/MainLayout.vue";
 
 import { AuthForm } from "@Models/AuthForm";
 import { AuthFormErrors } from "@Interfaces/AuthFormErrors";
-import { User } from "vuex-types";
+import { LoginData } from "@Interfaces/LoginData";
 
 export default defineComponent({
     components: {
@@ -119,20 +119,12 @@ export default defineComponent({
                     email: this.form.email,
                     password: this.form.password
                 })
-                .then(
-                    (
-                        res: AxiosResponse<{
-                            access_token: string;
-                            token_type: "bearer";
-                            user: User;
-                        }>
-                    ) => {
-                        this.setUser(res.data.user);
-                        this.setToken(res.data.access_token);
+                .then((res: AxiosResponse<LoginData>) => {
+                    this.setUser(res.data.user);
+                    this.setToken(res.data.access_token);
 
-                        this.$router.push({ name: "Menu" });
-                    }
-                )
+                    this.$router.push({ name: "Menu" });
+                })
                 .catch((err: AxiosError<AuthFormErrors>) => {
                     const data = err.response?.data;
 

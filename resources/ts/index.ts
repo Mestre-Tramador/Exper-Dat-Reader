@@ -33,7 +33,8 @@ import type {
 } from "vuex-types";
 
 import LoginPage from "@Pages/Auth/LoginPage.vue";
-import MenuIndex from "@Pages/Menu/MenuIndex.vue";
+import MenuPage from "@Pages/Menu/MenuPage.vue";
+import DashboardPage from "@Pages/Dashboard/DashboardPage.vue";
 
 import "vue-router/dist/vue-router";
 import "vuex/types/vue";
@@ -47,7 +48,8 @@ import "vue-axios/index";
  */
 const components: VueComponents = {
     LoginPage,
-    MenuIndex
+    MenuPage,
+    DashboardPage
 };
 
 /**
@@ -58,7 +60,12 @@ const routes: VueRoutes = [
     {
         path: "",
         name: "Menu",
-        component: MenuIndex
+        component: MenuPage
+    },
+    {
+        path: "/dashboard",
+        name: "Dashboard",
+        component: DashboardPage
     },
     {
         path: "/login",
@@ -134,6 +141,16 @@ const getters: UserGetters = {
         }
 
         return UserModel.fromState(state.user);
+    },
+
+    /**
+     * Retrieve the JWT Token based on the state of the {@link User}.
+     *
+     * @param state This state is currently loaded by Vuex.
+     * @returns If the token is invalid, then it returns `null`.
+     */
+    token(state: UserState): string | null {
+        return state.token;
     }
 };
 //#endregion
