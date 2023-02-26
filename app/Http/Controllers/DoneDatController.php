@@ -3,7 +3,7 @@
 #region License
 /**
  * Exper-Dat-Reader is a system to read encrypted .dat files and dump their data into .done.dat files.
- *  Copyright (C) 2022  Mestre-Tramador
+ *  Copyright (C) 2023  Mestre-Tramador
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -22,10 +22,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{Dat, DoneDat};
-
+use App\Models\Dat;
+use App\Models\DoneDat;
 use Carbon\Carbon;
-
 use Illuminate\Http\JsonResponse;
 
 /**
@@ -60,7 +59,9 @@ class DoneDatController extends Controller
      */
     public function list(): JsonResponse
     {
-        return $this->respondWithOK(DoneDat::get()->toArray());
+        return $this->respondWithOK(
+            DoneDat::get()->toArray()
+        );
     }
 
     /**
@@ -92,16 +93,14 @@ class DoneDatController extends Controller
          */
         $lastDump = DoneDat::orderBy('created_at', 'DESC')->first();
 
-        if($lastDump)
-        {
+        if ($lastDump) {
             $dats = $dats->where('created_at', '>', $lastDump->created_at);
         }
 
         /** @var \Illuminate\Database\Eloquent\Collection<Dat> */
         $dats = $dats->get();
 
-        if($dats->count() == 0)
-        {
+        if ($dats->count() == 0) {
             return $this->respondWithAccepted('No newer Dat files');
         }
 
@@ -125,19 +124,16 @@ class DoneDatController extends Controller
          */
         $doneDat = new DoneDat();
 
-        if(!$doneDat->save())
-        {
+        if (!$doneDat->save()) {
             return $this->respondWithServerError('Could not save file');
         }
 
-        if
-        (
+        if (
             !app('storage')::disk('local')->append(
                 self::PATH_OUT."/{$doneDat->name}",
                 DoneDat::stringify($dump)
             )
-        )
-        {
+        ) {
             $doneDat->forceDelete();
 
             return $this->respondWithServerError('File was not stored');
@@ -154,7 +150,7 @@ class DoneDatController extends Controller
     /**
      * Read a stored `.done.dat` file with the given ID.
      *
-     * @param int $id
+     * @param  int $id
      * @return JsonResponse
      */
     public function read(int $id): JsonResponse
@@ -180,7 +176,7 @@ class DoneDatController extends Controller
      * Currently it is a *soft* delete, so the database row nor the
      * `.done.dat` file are really deleted.
      *
-     * @param int $id
+     * @param  int $id
      * @return JsonResponse
      */
     public function delete(int $id): JsonResponse
@@ -192,15 +188,13 @@ class DoneDatController extends Controller
          */
         $doneDat = DoneDat::find($id);
 
-        if(!$doneDat || $doneDat->deleted_at)
-        {
+        if (!$doneDat || $doneDat->deleted_at) {
             return $this->respondWithNotFound('File');
         }
 
         $doneDat->deleted_at = Carbon::now();
 
-        if(!$doneDat->save())
-        {
+        if (!$doneDat->save()) {
             return $this->respondWithServerError('File was not saved');
         }
 
@@ -211,13 +205,12 @@ class DoneDatController extends Controller
      * Return a JSON response based on the passed `.done.dat` file,
      * either valid or not.
      *
-     * @param DoneDat|null $doneDat
+     * @param  DoneDat|null $doneDat
      * @return JsonResponse
      */
     private function readResponse(?DoneDat $doneDat): JsonResponse
     {
-        if(!$doneDat || $doneDat->deleted_at)
-        {
+        if (!$doneDat || $doneDat->deleted_at) {
             return $this->respondWithNotFound('File');
         }
 

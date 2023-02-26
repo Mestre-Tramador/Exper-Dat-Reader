@@ -3,7 +3,7 @@
 #region License
 /**
  * Exper-Dat-Reader is a system to read encrypted .dat files and dump their data into .done.dat files.
- *  Copyright (C) 2022  Mestre-Tramador
+ *  Copyright (C) 2023  Mestre-Tramador
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -26,6 +26,8 @@ use App\Events\Event;
 
 /**
  * Base Listener.
+ *
+ * @author Mestre-Tramador
  */
 class Listener
 {
@@ -34,7 +36,10 @@ class Listener
      *
      * @return void
      */
-    public function __construct() { }
+    public function __construct()
+    {
+        //
+    }
 
     /**
      * Handle the event.
@@ -42,5 +47,8 @@ class Listener
      * @param Event $event
      * @return void
      */
-    public function handle(Event $event) { }
+    public function handle(Event $event): void
+    {
+        //
+    }
 }

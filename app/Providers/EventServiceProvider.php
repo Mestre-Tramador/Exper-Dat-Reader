@@ -3,7 +3,7 @@
 #region License
 /**
  * Exper-Dat-Reader is a system to read encrypted .dat files and dump their data into .done.dat files.
- *  Copyright (C) 2022  Mestre-Tramador
+ *  Copyright (C) 2023  Mestre-Tramador
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -26,6 +26,8 @@ use Laravel\Lumen\Providers\EventServiceProvider as ServiceProvider;
 
 /**
  * Service Provider of the Events.
+ *
+ * @author Mestre-Tramador
  */
 class EventServiceProvider extends ServiceProvider
 {
@@ -33,6 +35,7 @@ class EventServiceProvider extends ServiceProvider
      * The event listener mappings for the application.
      *
      * @var array
+     * @ignore Must not be typed.
      */
     protected $listen = [];
 
@@ -41,7 +44,7 @@ class EventServiceProvider extends ServiceProvider
      *
      * @return bool
      */
-    public function shouldDiscoverEvents()
+    public function shouldDiscoverEvents(): bool
     {
         return false;
     }

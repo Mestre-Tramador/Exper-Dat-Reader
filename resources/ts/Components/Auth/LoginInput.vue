@@ -1,6 +1,6 @@
 <!--
     Exper-Dat-Reader is a system to read encrypted .dat files and dump their data into .done.dat files.
-    Copyright (C) 2022  Mestre-Tramador
+    Copyright (C) 2023  Mestre-Tramador
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -28,7 +28,7 @@
             :value="modelValue"
             class="shadow appearance-none border rounded w-full py-2 x-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             :class="{ 'border-red-500': errors.length > 0 }"
-            @input="$emit('update:modelValue', inputValue($event))"
+            @input="($event: Event) => $emit('update:modelValue', inputValue($event))"
         />
 
         <p
@@ -96,6 +96,12 @@ export default {
     emits: ["update:modelValue"],
     setup() {
         return {
+            /**
+             * Get the value of the input to emit.
+             *
+             * @param event The event on the input.
+             * @returns The value on the input, or nothing.
+             */
             inputValue(event: Event | null): string | undefined {
                 return (event?.target as HTMLInputElement | null)?.value;
             }

@@ -3,7 +3,7 @@
 #region License
 /**
  * Exper-Dat-Reader is a system to read encrypted .dat files and dump their data into .done.dat files.
- *  Copyright (C) 2022  Mestre-Tramador
+ *  Copyright (C) 2023  Mestre-Tramador
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -38,6 +38,7 @@ final class Test extends Command
      * The name and signature of the console command.
      *
      * @var string $signature
+     * @ignore Must not be typed.
      */
     protected $signature = 'test';
 
@@ -45,6 +46,7 @@ final class Test extends Command
      * The console command description.
      *
      * @var string $description
+     * @ignore Must not be typed.
      */
     protected $description = 'Call PHPUnit to run the Tests.';
 
@@ -53,7 +55,7 @@ final class Test extends Command
      *
      * @return int
      */
-    public function handle()
+    public function handle(): int
     {
         return shell_exec('./vendor/bin/phpunit tests') ? self::SUCCESS : self::FAILURE;
     }

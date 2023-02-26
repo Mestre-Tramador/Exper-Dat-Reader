@@ -3,7 +3,7 @@
 #region License
 /**
  * Exper-Dat-Reader is a system to read encrypted .dat files and dump their data into .done.dat files.
- *  Copyright (C) 2022  Mestre-Tramador
+ *  Copyright (C) 2023  Mestre-Tramador
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -22,9 +22,11 @@
 
 namespace App\Models;
 
-use App\Models\Util\{IsFile, ModelFile};
-
-use Illuminate\Database\Eloquent\{Model, SoftDeletes};
+use InvalidArgumentException;
+use App\Models\Util\IsFile;
+use App\Models\Util\ModelFile;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * The `.done.dat` files contains a dump of various read `.dat` files.
@@ -33,7 +35,8 @@ use Illuminate\Database\Eloquent\{Model, SoftDeletes};
  */
 class DoneDat extends Model implements ModelFile
 {
-    use IsFile, SoftDeletes;
+    use IsFile;
+    use SoftDeletes;
 
     /**
      * Every file has the `.done.dat` extension.
@@ -79,7 +82,10 @@ class DoneDat extends Model implements ModelFile
      */
     public const LINE_WORST_SELLER = 3;
 
-    /** @inheritDoc */
+    /**
+     * @inheritDoc
+     * @ignore Must not be typed.
+     */
     protected $casts = [
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
@@ -90,9 +96,10 @@ class DoneDat extends Model implements ModelFile
      * Get a list of `.dat` files, read their data
      * and make the dump `array`.
      *
-     * @param iterable $dats
+     * @param  iterable $dats
      * @return array
-     * @throws \InvalidArgumentException
+     *
+     * @throws InvalidArgumentException
      * @final
      */
     final public static function dump(iterable $dats): array
@@ -141,10 +148,8 @@ class DoneDat extends Model implements ModelFile
          * @var int|string $index
          * @var Dat|mixed $dat
          */
-        foreach($dats as $index => $dat)
-        {
-            if($dat instanceof Dat)
-            {
+        foreach ($dats as $index => $dat) {
+            if ($dat instanceof Dat) {
                 /**
                  * The read data.
                  *
@@ -155,34 +160,28 @@ class DoneDat extends Model implements ModelFile
                 self::countPersons($dump, self::LINE_CUSTOMERS_QTD, $customers, $data['customers']);
                 self::countPersons($dump, self::LINE_SELLERS_QTD, $sellers, $data['sellers']);
 
-                if
-                (
+                if (
                     !$dump[self::LINE_MOST_EXP_SALE] &&
                     !$dump[self::LINE_WORST_SELLER]  &&
                     count($data['sales']) >= 1
-                )
-                {
+                ) {
                     $dump[self::LINE_MOST_EXP_SALE] = $data['sales'][0]['id'];
                     $dump[self::LINE_WORST_SELLER]  = $data['sales'][0]['seller'];
                 }
 
-                foreach($data['sales'] as $sale)
-                {
-                    foreach($sale['items'] as $item)
-                    {
+                foreach ($data['sales'] as $sale) {
+                    foreach ($sale['items'] as $item) {
                         /** @var float $bestPrice */
                         $bestPrice = $bestPrice ?? $item['price'];
 
                         /** @var float $worstPrice */
                         $worstPrice = $worstPrice ?? $item['price'];
 
-                        if($item['price'] > $bestPrice)
-                        {
+                        if ($item['price'] > $bestPrice) {
                             $dump[self::LINE_MOST_EXP_SALE] = $sale['id'];
                         }
 
-                        if($item['price'] < $worstPrice)
-                        {
+                        if ($item['price'] < $worstPrice) {
                             $dump[self::LINE_WORST_SELLER] = $sale['seller'];
                         }
                     }
@@ -191,8 +190,22 @@ class DoneDat extends Model implements ModelFile
                 continue;
             }
 
-            throw new \InvalidArgumentException(
-                'Argument #1 ($dats) contains not a instance of '.Dat::class." on index [{$index}]: Given ".gettype($dat)
+            /**
+             * The class of the error.
+             *
+             * @var string $class
+             */
+            $class = Dat::class;
+
+            /**
+             * The type of the wrong argument.
+             *
+             * @var string $type
+             */
+            $type = gettype($dat);
+
+            throw new InvalidArgumentException(
+                "Argument #1 ($dats) contains not a instance of {$class} on index [{$index}]: Given {$type}"
             );
         }
 
@@ -203,7 +216,7 @@ class DoneDat extends Model implements ModelFile
      * Stringify a dump array to a file, breaking
      * it into each line.
      *
-     * @param array $dump
+     * @param  array $dump
      * @return string
      * @final
      */
@@ -218,10 +231,10 @@ class DoneDat extends Model implements ModelFile
      * putting them on it), and finally saving
      * the result on the `$line` of the `&$dump`.
      *
-     * @param array &$dump
-     * @param int $line
-     * @param array &$safe
-     * @param array $data
+     * @param  array &$dump
+     * @param  int   $line
+     * @param  array &$safe
+     * @param  array $data
      * @return void
      */
     private static function countPersons(
@@ -229,12 +242,9 @@ class DoneDat extends Model implements ModelFile
         int $line,
         array &$safe,
         array $data
-    ): void
-    {
-        foreach($data as $item)
-        {
-            if(in_array($item['name'], $safe, true))
-            {
+    ): void {
+        foreach ($data as $item) {
+            if (in_array($item['name'], $safe, true)) {
                 continue;
             }
 
@@ -255,6 +265,11 @@ class DoneDat extends Model implements ModelFile
      */
     public function read(): array
     {
+        /**
+         * The data array containing all keys.
+         *
+         * @var array $data
+         */
         $data = [
             'customers_quantity'     => null,
             'sellers_quantity'       => null,
@@ -262,16 +277,13 @@ class DoneDat extends Model implements ModelFile
             'worst_seller'           => null
         ];
 
-        if($this->file)
-        {
+        if ($this->file) {
             $infos = explode(self::BREAKER, $this->file);
 
-            foreach(array_keys($data) as $index => $key)
-            {
+            foreach (array_keys($data) as $index => $key) {
                 $data[$key] = $infos[$index];
 
-                if($key !== 'worst_seller')
-                {
+                if ($key !== 'worst_seller') {
                     $data[$key] = (int) $data[$key];
                 }
             }
@@ -281,7 +293,7 @@ class DoneDat extends Model implements ModelFile
     }
 
     /** @inheritDoc */
-    public function toArray()
+    public function toArray(): array
     {
         return [
             'id'       => $this->id,

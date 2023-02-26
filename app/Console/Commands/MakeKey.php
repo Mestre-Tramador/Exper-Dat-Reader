@@ -3,7 +3,7 @@
 #region License
 /**
  * Exper-Dat-Reader is a system to read encrypted .dat files and dump their data into .done.dat files.
- *  Copyright (C) 2022  Mestre-Tramador
+ *  Copyright (C) 2023  Mestre-Tramador
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -44,6 +44,7 @@ final class MakeKey extends Command
      * The name and signature of the console command.
      *
      * @var string $signature
+     * @ignore Must not be typed.
      */
     protected $signature = 'make:key';
 
@@ -51,6 +52,7 @@ final class MakeKey extends Command
      * The console command description.
      *
      * @var string $description
+     * @ignore Must not be typed.
      */
     protected $description = 'Make your ENV Key.';
 
@@ -60,7 +62,7 @@ final class MakeKey extends Command
      *
      * @return int
      */
-    public function handle()
+    public function handle(): int
     {
         /**
          * The App's Key.
@@ -69,8 +71,7 @@ final class MakeKey extends Command
          */
         $app_key = env(self::APP_KEY);
 
-        if(strlen($app_key) === 32)
-        {
+        if (strlen($app_key) === 32) {
             return $this->OK();
         }
 
@@ -81,8 +82,7 @@ final class MakeKey extends Command
          */
         $env = base_path('.env');
 
-        if(file_exists($env))
-        {
+        if (file_exists($env)) {
             /**
              * The environment KEY.
              *
@@ -95,10 +95,13 @@ final class MakeKey extends Command
              *
              * @var string $replaced_env
              */
-            $replaced_env = str_replace($key.$app_key, $key.md5(env('APP_NAME')), file_get_contents($env));
+            $replaced_env = str_replace(
+                $key.$app_key,
+                $key.md5(env('APP_NAME')),
+                file_get_contents($env)
+            );
 
-            if(file_put_contents($env, $replaced_env))
-            {
+            if (file_put_contents($env, $replaced_env)) {
                 $this->info('Everything OK!');
 
                 return self::SUCCESS;

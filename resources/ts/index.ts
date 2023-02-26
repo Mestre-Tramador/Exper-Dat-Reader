@@ -1,7 +1,7 @@
 //#region License
 /**
  * Exper-Dat-Reader is a system to read encrypted .dat files and dump their data into .done.dat files.
- *  Copyright (C) 2022  Mestre-Tramador
+ *  Copyright (C) 2023  Mestre-Tramador
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -31,10 +31,16 @@ import type {
     UserState,
     UserPlugins
 } from "vuex-types";
+import {
+    NavigationGuardNext,
+    NavigationGuardWithThis,
+    RouteLocationNormalized
+} from "vue-router";
 
+import DashboardPage from "@Pages/Dashboard/DashboardPage.vue";
 import LoginPage from "@Pages/Auth/LoginPage.vue";
 import MenuPage from "@Pages/Menu/MenuPage.vue";
-import DashboardPage from "@Pages/Dashboard/DashboardPage.vue";
+import NewDatPage from "@Pages/Formulary/NewDatPage.vue";
 
 import "vue-router/dist/vue-router";
 import "vuex/types/vue";
@@ -47,9 +53,10 @@ import "vue-axios/index";
  * that shall be rendered.
  */
 const components: VueComponents = {
+    DashboardPage,
     LoginPage,
     MenuPage,
-    DashboardPage
+    NewDatPage
 };
 
 /**
@@ -71,8 +78,36 @@ const routes: VueRoutes = [
         path: "/login",
         name: "Login",
         component: LoginPage
+    },
+    {
+        path: "/new",
+        name: "New Dat",
+        component: NewDatPage
     }
 ];
+
+/**
+ * Middleware to guard the authentication of the app.
+ *
+ * @param to The destiny Route.
+ * @param from The origin Route.
+ * @param next Callback for the next step.
+ */
+const guard: NavigationGuardWithThis<UserGetters> = function (
+    to: RouteLocationNormalized,
+    from: RouteLocationNormalized,
+    next: NavigationGuardNext
+) {
+    if (to.name !== "Login" && !this.isLoggedIn) {
+        next({ name: "Login" });
+    }
+
+    if (to.name === "Login" && this.isLoggedIn) {
+        next({ name: "Menu" });
+    }
+
+    next();
+};
 //#endregion
 
 //#region Vuex
@@ -172,5 +207,5 @@ const plugins: UserPlugins = [persistance.plugin];
 //#endregion
 
 //#region Exporting
-export { components, routes, state, mutations, getters, plugins };
+export { components, routes, guard, state, mutations, getters, plugins };
 //#endregion

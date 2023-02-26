@@ -3,7 +3,7 @@
 #region License
 /**
  * Exper-Dat-Reader is a system to read encrypted .dat files and dump their data into .done.dat files.
- *  Copyright (C) 2022  Mestre-Tramador
+ *  Copyright (C) 2023  Mestre-Tramador
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -26,41 +26,54 @@ use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\{Model, SoftDeletes};
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-
 use Laravel\Lumen\Auth\Authorizable;
-
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 /**
  * The Users access and manage the files on the system.
+ *
+ * @author Mestre-Tramador
  */
 class User extends Model implements AuthenticatableContract, AuthorizableContract, JWTSubject
 {
-    use Authenticatable, Authorizable, HasFactory, SoftDeletes;
+    use Authenticatable;
+    use Authorizable;
+    use HasFactory;
+    use SoftDeletes;
 
-    /** @inheritDoc */
+    /**
+     * @inheritDoc
+     * @ignore Must not be typed.
+     */
     protected $fillable = ['name', 'email', 'password'];
 
-    /** @inheritDoc */
+    /**
+     * @inheritDoc
+     * @ignore Must not be typed.
+     */
     protected $casts = [
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
         'deleted_at' => 'datetime'
     ];
 
-    /** @inheritDoc */
+    /**
+     * @inheritDoc
+     * @ignore Must not be typed.
+     */
     protected $hidden = ['password'];
 
     /** @inheritDoc */
-    public function getJWTIdentifier()
+    public function getJWTIdentifier(): mixed
     {
         return $this->getKey();
     }
 
     /** @inheritDoc */
-    public function getJWTCustomClaims()
+    public function getJWTCustomClaims(): array
     {
         return [];
     }
@@ -77,7 +90,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     }
 
     /** @inheritDoc */
-    public function toArray()
+    public function toArray(): array
     {
         return [
             'id' => $this->id,

@@ -1,6 +1,6 @@
 <!--
     Exper-Dat-Reader is a system to read encrypted .dat files and dump their data into .done.dat files.
-    Copyright (C) 2022  Mestre-Tramador
+    Copyright (C) 2023  Mestre-Tramador
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,87 +19,39 @@
 <template>
     <head-page-layout title="Dashboard">
         <template #icon>
-            <document-chart-bar-icon class="text-blue-500 h-12 w-12" />
+            <document-chart-bar-icon />
         </template>
 
         <template #page>
-            <div v-if="detail" class="p-4">
-                <div class="flex text-gray-500">
-                    <users-icon
-                        v-if="detail === 'customers_quantity'"
-                        class="h-12 w-12"
-                    />
-
-                    <identification-icon
-                        v-if="detail === 'sellers_quantity'"
-                        class="h-12 w-12"
-                    />
-
-                    <banknotes-icon
-                        v-if="detail === 'most_expensive_sale_id'"
-                        class="h-12 w-12"
-                    />
-
-                    <arrow-trending-down-icon
-                        v-if="detail === 'worst_seller'"
-                        class="h-12 w-12"
-                    />
-
-                    <div class="mx-2 my-auto">
-                        {{ translate(detail) }}
-                    </div>
-                </div>
-
-                <div class="text-center">
-                    <div class="text-2xl font-bold text-blue-500 mb-6">
-                        {{ data[detail] }}
-                    </div>
-
-                    <button
-                        class="bg-blue-400 hover:bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                        type="button"
-                        @click="detail = null"
-                    >
-                        OK
-                    </button>
-                </div>
-            </div>
-            <div
-                v-else
-                class="grid grid-cols-2 gap-2 p-4 text-center text-gray-500"
-            >
-                <div
+            <div class="grid grid-cols-2 gap-2 p-4 text-center">
+                <card
                     v-for="(value, key) in data"
                     :key="key"
-                    class="cursor-pointer hover:text-blue-600"
-                    @click="detail = key"
+                    :title="translate(key)"
+                    :data="normalize(value)"
                 >
-                    <div class="flex">
-                        <div class="m-auto">
-                            <users-icon
-                                v-if="key === 'customers_quantity'"
-                                class="h-6 w-6"
-                            />
+                    <template #icon>
+                        <users-icon
+                            v-if="key === 'customers_quantity'"
+                            class="h-12 w-12"
+                        />
 
-                            <identification-icon
-                                v-if="key === 'sellers_quantity'"
-                                class="h-6 w-6"
-                            />
+                        <identification-icon
+                            v-if="key === 'sellers_quantity'"
+                            class="h-12 w-12"
+                        />
 
-                            <banknotes-icon
-                                v-if="key === 'most_expensive_sale_id'"
-                                class="h-6 w-6"
-                            />
+                        <banknotes-icon
+                            v-if="key === 'most_expensive_sale_id'"
+                            class="h-12 w-12"
+                        />
 
-                            <arrow-trending-down-icon
-                                v-if="key === 'worst_seller'"
-                                class="h-6 w-6"
-                            />
-                        </div>
-                    </div>
-
-                    {{ value }}
-                </div>
+                        <arrow-trending-down-icon
+                            v-if="key === 'worst_seller'"
+                            class="h-12 w-12"
+                        />
+                    </template>
+                </card>
             </div>
         </template>
     </head-page-layout>
@@ -111,6 +63,7 @@ import { mapGetters } from "vuex";
 import { AxiosError, AxiosResponse } from "axios";
 
 import HeadPageLayout from "@Components/Layout/HeadPageLayout.vue";
+import Card from "@Components/Dashboard/DashboardCard.vue";
 
 import { DashboardData } from "@Interfaces/DashboardData";
 
@@ -125,6 +78,7 @@ import {
 export default defineComponent({
     components: {
         HeadPageLayout,
+        Card,
         ArrowTrendingDownIcon,
         BanknotesIcon,
         DocumentChartBarIcon,
@@ -183,6 +137,16 @@ export default defineComponent({
                 case "worst_seller":
                     return "Current worst Seller";
             }
+        },
+
+        /**
+         * Normalize the key data to prevent Typescript errors.
+         *
+         * @param value The same value from the Dashboard data.
+         * @returns The data, only with its type fixed.
+         */
+        normalize(value: string | number | null): string | number | false {
+            return value ?? false;
         }
     }
 });

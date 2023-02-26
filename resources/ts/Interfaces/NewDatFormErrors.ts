@@ -1,6 +1,4 @@
-<?php
-
-#region License
+//#region License
 /**
  * Exper-Dat-Reader is a system to read encrypted .dat files and dump their data into .done.dat files.
  *  Copyright (C) 2023  Mestre-Tramador
@@ -18,34 +16,13 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-#endregion
+//#endregion
 
-namespace Database\Factories;
+import { FormErrors } from "@Interfaces/FormErrors";
 
-use App\Models\User;
-use Illuminate\Database\Eloquent\Factories\Factory;
-
-class UserFactory extends Factory
-{
-    /**
-     * The name of the factory's corresponding model.
-     *
-     * @var string
-     * @ignore Must not be typed.
-     */
-    protected $model = User::class;
-
-    /**
-     * Define the model's default state.
-     *
-     * @return array
-     */
-    public function definition(): array
-    {
-        return [
-            'name' => $this->faker->name,
-            'email' => $this->faker->unique()->safeEmail,
-            'password' => $this->faker->password
-        ];
-    }
+/**
+ * The errors specific to a `NewDatForm`.
+ */
+export interface NewDatFormErrors extends FormErrors {
+    dats: string[];
 }

@@ -3,7 +3,7 @@
 #region License
 /**
  * Exper-Dat-Reader is a system to read encrypted .dat files and dump their data into .done.dat files.
- *  Copyright (C) 2022  Mestre-Tramador
+ *  Copyright (C) 2023  Mestre-Tramador
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -22,24 +22,32 @@
 
 namespace App\Http\Middleware;
 
+use Closure;
+use Exception;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Contracts\Auth\Factory as Auth;
+use Illuminate\Http\Request;
+use Tymon\JWTAuth\Exceptions\TokenExpiredException;
+use Tymon\JWTAuth\Exceptions\TokenInvalidException;
 
 /**
  * Middleware used to validate the JWT on the Request.
+ *
+ * @author Mestre-Tramador
  */
 class Authenticate extends Middleware
 {
     /**
      * The authentication guard factory instance.
      *
-     * @var \Illuminate\Contracts\Auth\Factory
+     * @var Auth $auth
      */
-    protected $auth;
+    protected Auth $auth;
 
     /**
      * Create a new middleware instance.
      *
-     * @param  \Illuminate\Contracts\Auth\Factory  $auth
+     * @param  Auth $auth
      * @return void
      */
     public function __construct(Auth $auth)
@@ -52,15 +60,20 @@ class Authenticate extends Middleware
      *
      * If any error is found, internally an Exception is raised and
      * a response with the 401 HTTP code is returned.
+     *
+     * @param  Request     $request
+     * @param  Closure     $next
+     * @param  string|null $guard
+     * @return mixed
      */
-    public function handle(\Illuminate\Http\Request $request, \Closure $next, ?string $guard = null): mixed
-    {
-        try
-        {
+    public function handle(
+        Request $request,
+        Closure $next,
+        ?string $guard = null
+    ): mixed {
+        try {
             $this->auth->guard($guard)->authenticate();
-        }
-        catch(\Exception $e)
-        {
+        } catch (Exception $e) {
             /**
              * Status to return on error message.
              *
@@ -68,17 +81,14 @@ class Authenticate extends Middleware
              */
             $status = 'Authorization Token not found';
 
-            if
-            (
-                $e instanceof \Tymon\JWTAuth\Exceptions\TokenInvalidException ||
-                $e instanceof \Illuminate\Auth\AuthenticationException
-            )
-            {
+            if (
+                $e instanceof TokenInvalidException ||
+                $e instanceof AuthenticationException
+            ) {
                 $status = 'Token is Invalid';
             }
 
-            if($e instanceof \Tymon\JWTAuth\Exceptions\TokenExpiredException)
-            {
+            if ($e instanceof TokenExpiredException) {
                 $status = 'Token is Expired';
             }
 

@@ -1,6 +1,6 @@
 <!--
     Exper-Dat-Reader is a system to read encrypted .dat files and dump their data into .done.dat files.
-    Copyright (C) 2022  Mestre-Tramador
+    Copyright (C) 2023  Mestre-Tramador
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,7 +19,9 @@
 <template>
     <main-layout>
         <div class="flex">
-            <slot name="icon"></slot>
+            <div class="text-blue-500 h-12 w-12 mb-1">
+                <slot name="icon"></slot>
+            </div>
 
             <div class="mx-2 my-auto text-lg text-blue-400 cursor-default">
                 {{ title }}
@@ -28,7 +30,9 @@
 
         <hr />
 
-        <slot name="page"></slot>
+        <div class="text-gray-500">
+            <slot name="page"></slot>
+        </div>
     </main-layout>
 </template>
 

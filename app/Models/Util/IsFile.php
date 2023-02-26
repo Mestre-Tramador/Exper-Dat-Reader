@@ -3,7 +3,7 @@
 #region License
 /**
  * Exper-Dat-Reader is a system to read encrypted .dat files and dump their data into .done.dat files.
- *  Copyright (C) 2022  Mestre-Tramador
+ *  Copyright (C) 2023  Mestre-Tramador
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -22,9 +22,12 @@
 
 namespace App\Models\Util;
 
-use Exception, LogicException, ReflectionException;
-
-use App\Models\{Dat, DoneDat};
+use App\Models\Dat;
+use App\Models\DoneDat;
+use Exception;
+use LogicException;
+use ReflectionClassConstant;
+use ReflectionException;
 
 /**
  * Make a Model act like a stored file.
@@ -40,18 +43,24 @@ trait IsFile
      *
      * For other `$key`s, it calls its parents implementations.
      *
-     * @param string $key
+     * @param  string $key
      * @return mixed
      */
     public function __get($key)
     {
-        switch($key)
-        {
-            case 'name': return $this->callIfExtConstIsDefined(fn() => $this->getFileName($this->id, $this::class::EXT));
-            case 'file': return $this->callIfExtConstIsDefined(fn() => app('storage')::disk('local')->get(
-                "{$this->getDataPath()}/{$this->getFileName($this->id, $this::class::EXT)}"
-            ));
-            default:     return parent::__get($key);
+        switch ($key) {
+            case 'name':
+                return $this->callIfExtConstIsDefined(
+                    fn(): string => $this->getFileName($this->id, $this::class::EXT)
+                );
+            case 'file':
+                return $this->callIfExtConstIsDefined(
+                    fn(): string|null => app('storage')::disk('local')->get(
+                        "{$this->getDataPath()}/{$this->getFileName($this->id, $this::class::EXT)}"
+                    )
+                );
+            default:
+                return parent::__get($key);
         }
     }
 
@@ -62,14 +71,13 @@ trait IsFile
      * If the given `$name` is null or empty, then a blank
      * `string` is returned.
      *
-     * @param string|null $name
-     * @param string $ext
+     * @param  string|null $name
+     * @param  string      $ext
      * @return string
      */
     protected function getFileName(?string $name, string $ext): string
     {
-        if(!$name)
-        {
+        if (!$name) {
             return '';
         }
 
@@ -84,11 +92,13 @@ trait IsFile
      */
     protected function getDataPath(): string
     {
-        switch($this::class)
-        {
-            case Dat::class:     return 'data/in';
-            case DoneDat::class: return 'data/out';
-            default:             return 'data';
+        switch ($this::class) {
+            case Dat::class:
+                return 'data/in';
+            case DoneDat::class:
+                return 'data/out';
+            default:
+                return 'data';
         }
     }
 
@@ -100,14 +110,14 @@ trait IsFile
      * If the `class` have the constant, then the `$fn`
      * call is returned.
      *
-     * @param callable $fn
+     * @param  callable $fn
      * @return mixed
-     * @throws \LogicException
+     *
+     * @throws LogicException
      */
     private function callIfExtConstIsDefined(callable $fn): mixed
     {
-        try
-        {
+        try {
             /**
              * The `class` name.
              *
@@ -118,9 +128,9 @@ trait IsFile
             /**
              * A reflection to know if the constant is implemented.
              *
-             * @var \ReflectionClassConstant $constant
+             * @var ReflectionClassConstant $constant
              */
-            $constant = new \ReflectionClassConstant($class, 'EXT');
+            $constant = new ReflectionClassConstant($class, 'EXT');
 
             /**
              * The value of the constant.
@@ -129,19 +139,14 @@ trait IsFile
              */
             $value = $constant->getValue();
 
-            if($value && is_string($value))
-            {
+            if ($value && is_string($value)) {
                 return $fn();
             }
 
             throw new Exception("Class {$class} has a non-string value for the constant EXT");
-        }
-        catch(ReflectionException $r)
-        {
+        } catch (ReflectionException $r) {
             throw new LogicException("Class {$class} does not implements constant EXT");
-        }
-        catch(Exception $e)
-        {
+        } catch (Exception $e) {
             throw new LogicException($e->getMessage());
         }
     }

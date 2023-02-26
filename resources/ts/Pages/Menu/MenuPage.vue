@@ -1,6 +1,6 @@
 <!--
     Exper-Dat-Reader is a system to read encrypted .dat files and dump their data into .done.dat files.
-    Copyright (C) 2022  Mestre-Tramador
+    Copyright (C) 2023  Mestre-Tramador
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -29,21 +29,23 @@
         <hr />
 
         <div class="flex mt-4">
-            <!-- Dashboard button. -->
+            <!-- Start of "Dashboard" button. -->
             <router-link
                 class="text-blue-500 hover:text-teal-600 m-auto"
                 :to="{ name: 'Dashboard' }"
             >
                 <document-chart-bar-icon class="h-32 w-32" />
             </router-link>
+            <!-- End of "Dashboard" button. -->
 
-            <!-- Future "Add File" button. -->
+            <!-- Start of "Add File" button. -->
             <router-link
                 class="text-blue-500 hover:text-emerald-500 m-auto"
-                to="/"
+                :to="{ name: 'New Dat' }"
             >
                 <document-plus-icon class="h-32 w-32" />
             </router-link>
+            <!-- End of "Add File" button. -->
 
             <!-- Future "File List" button. -->
             <router-link
@@ -66,7 +68,6 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { mapGetters } from "vuex";
 
 import MainLayout from "@Components/Layout/MainLayout.vue";
 
@@ -85,14 +86,7 @@ export default defineComponent({
         DocumentPlusIcon,
         DocumentTextIcon
     },
-    computed: mapGetters(["isLoggedIn"]),
     created() {
-        if (!this.isLoggedIn) {
-            this.$router.push({ name: "Login" });
-
-            return;
-        }
-
         if (this.$route.query.p) {
             this.$router.push(`/${this.$route.query.p}`);
 

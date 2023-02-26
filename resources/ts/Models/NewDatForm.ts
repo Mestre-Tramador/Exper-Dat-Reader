@@ -1,6 +1,4 @@
-<?php
-
-#region License
+//#region License
 /**
  * Exper-Dat-Reader is a system to read encrypted .dat files and dump their data into .done.dat files.
  *  Copyright (C) 2023  Mestre-Tramador
@@ -18,45 +16,37 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-#endregion
+//#endregion
 
-namespace App\Console;
+import { NewDatFormErrors } from "@Interfaces/NewDatFormErrors";
+import { NewDatFormProps } from "@Interfaces/NewDatFormProps";
 
-use App\Console\Commands\CodeSniff;
-use App\Console\Commands\MakeKey;
-use App\Console\Commands\Serve;
-use App\Console\Commands\Test;
-use Illuminate\Console\Scheduling\Schedule;
-use Laravel\Lumen\Console\Kernel as ConsoleKernel;
+import { Form } from "@Models/Form";
 
 /**
- * Artisan Commands Kernel.
+ * This form is used for multi-file uploads purposes,
+ * so it follows its own {@link NewDatFormProps|Properties}.
  *
  * @author Mestre-Tramador
  */
-class Kernel extends ConsoleKernel
-{
+export class NewDatForm extends Form<NewDatFormProps> {
     /**
-     * The Artisan commands provided by your application.
-     *
-     * @var array
-     * @ignore Must not be typed.
+     * The files stored to upload.
      */
-    protected $commands = [
-        CodeSniff::class,
-        MakeKey::class,
-        Serve::class,
-        Test::class
-    ];
+    public dats: File[];
+
+    /** @inheritdoc */
+    public get errors(): NewDatFormErrors {
+        return super.errors as NewDatFormErrors;
+    }
 
     /**
-     * Define the application's command schedule.
+     * Create the Form.
      *
-     * @param  Schedule $schedule
-     * @return void
+     * @param dats An initial value for the {@link NewDatForm.dats|Dat files}.
+     * @returns The form have the given values and no initial errors.
      */
-    protected function schedule(Schedule $schedule): void
-    {
-        //
+    public static create(dats: File[] = []): NewDatForm {
+        return super._create<NewDatFormProps>({ dats }) as NewDatForm;
     }
 }

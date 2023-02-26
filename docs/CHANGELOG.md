@@ -10,6 +10,27 @@ Versioning].
 - Changelog on different languages
 - GitHub Pull Requests templates
 
+## [0.0.8] - 2023-02-25
+
+### Created
+
+- New Dat Vue Page
+- Dashboard Page Component
+
+### Implemented
+
+- Vue Auth Middleware
+
+### Added
+
+- Composer [squizlabs/php_codesniffer] Package
+- Comments annotations and types on missing PHP files
+
+### Improved
+
+- PHP coding styling in all files
+- Vue coding styling in most of the files
+
 ## [0.0.7] - 2023-02-13
 
 ### Created
@@ -196,7 +217,8 @@ Versioning].
 
 [Keep a Changelog]: https://keepachangelog.com/en/1.0.0/
 [Semantic Versioning]: https://semver.org/spec/v2.0.0.html
-[Unreleased]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.7...HEAD
+[Unreleased]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.8...HEAD
+[0.0.8]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.7...v0.0.8
 [0.0.7]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.6...v0.0.7
 [0.0.6]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.5...v0.0.6
 [0.0.5]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.4...v0.0.5
@@ -206,3 +228,4 @@ Versioning].
 [0.0.1]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/releases/tag/v0.0.1
 [@heroicons/vue]: https://github.com/tailwindlabs/heroicons
 [notihnio/php-multipart-form-data-parser]: https://github.com/notihnio/php-multipart-form-data-parser
+[squizlabs/php_codesniffer]: https://github.com/squizlabs/php_codesniffer

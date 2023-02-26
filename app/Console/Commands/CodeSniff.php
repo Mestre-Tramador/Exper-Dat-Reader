@@ -20,43 +20,56 @@
  */
 #endregion
 
-namespace App\Console;
+namespace App\Console\Commands;
 
-use App\Console\Commands\CodeSniff;
-use App\Console\Commands\MakeKey;
-use App\Console\Commands\Serve;
-use App\Console\Commands\Test;
-use Illuminate\Console\Scheduling\Schedule;
-use Laravel\Lumen\Console\Kernel as ConsoleKernel;
+use Illuminate\Console\Command;
 
 /**
- * Artisan Commands Kernel.
+ * This command runs PHP Code Sniffer to
+ * validate and lint the code.
+ *
  *
  * @author Mestre-Tramador
+ * @final
  */
-class Kernel extends ConsoleKernel
+final class CodeSniff extends Command
 {
     /**
-     * The Artisan commands provided by your application.
+     * The name and signature of the console command.
      *
-     * @var array
+     * @var string $signature
      * @ignore Must not be typed.
      */
-    protected $commands = [
-        CodeSniff::class,
-        MakeKey::class,
-        Serve::class,
-        Test::class
-    ];
+    protected $signature = 'phpcs';
 
     /**
-     * Define the application's command schedule.
+     * The console command description.
      *
-     * @param  Schedule $schedule
-     * @return void
+     * @var string $description
+     * @ignore Must not be typed.
      */
-    protected function schedule(Schedule $schedule): void
+    protected $description = 'Runs PHP Code Sniffer.';
+
+    /**
+     * Run the App locally.
+     *
+     * @return int
+     */
+    public function handle(): int
     {
-        //
+        /**
+         * The shell execution result.
+         *
+         * @var string|false|null $sh
+         */
+        $sh = shell_exec('php vendor/bin/phpcs');
+
+        if ($sh) {
+            $this->line($sh);
+
+            return self::SUCCESS;
+        }
+
+        return self::FAILURE;
     }
 }

@@ -7,15 +7,13 @@
 | API Routes
 |--------------------------------------------------------------------------
 */
-
-$router->group(['prefix' => 'api'], function() use ($router) {
+$router->group(['prefix' => 'api'], function () use ($router): void {
 
     /*
     |----------------------------------------------------------
     | Auth
     |----------------------------------------------------------
     */
-
     $router->post('register', 'AuthController@register');
     $router->post('login', 'AuthController@login');
     $router->post('logout', 'AuthController@logout');
@@ -26,10 +24,9 @@ $router->group(['prefix' => 'api'], function() use ($router) {
     | Dat
     |----------------------------------------------------------
     */
-
-    $router->group(['prefix' => 'dat'], function() use ($router) {
+    $router->group(['prefix' => 'dat'], function () use ($router): void {
         $router->get('/', 'DatController@list');
-        $router->get('/{id}', 'DatController@read');
+        $router->get('/{id:^[0-9]*$}', 'DatController@read');
         $router->post('/', 'DatController@create');
         $router->put('/{id}', 'DatController@update');
         $router->delete('/{id}', 'DatController@delete');
@@ -41,8 +38,7 @@ $router->group(['prefix' => 'api'], function() use ($router) {
     | DoneDat
     |----------------------------------------------------------
     */
-
-    $router->group(['prefix' => 'dump'], function() use ($router) {
+    $router->group(['prefix' => 'dump'], function () use ($router): void {
         $router->get('/', 'DoneDatController@list');
         $router->get('/{id:^[0-9]*$}', 'DoneDatController@read');
         $router->get('/last', 'DoneDatController@last');
@@ -55,7 +51,6 @@ $router->group(['prefix' => 'api'], function() use ($router) {
     | Other
     |----------------------------------------------------------
     */
-
     $router->get('/', 'AppController@index');
     $router->get('/{route:.*}/', 'AppController@index');
 });
@@ -65,6 +60,5 @@ $router->group(['prefix' => 'api'], function() use ($router) {
 | Application Routes
 |--------------------------------------------------------------------------
 */
-
 $router->get('/', 'AppController@app');
 $router->get('/{route:.*}/', 'AppController@index');

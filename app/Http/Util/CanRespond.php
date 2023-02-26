@@ -3,7 +3,7 @@
 #region License
 /**
  * Exper-Dat-Reader is a system to read encrypted .dat files and dump their data into .done.dat files.
- *  Copyright (C) 2022  Mestre-Tramador
+ *  Copyright (C) 2023  Mestre-Tramador
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -22,7 +22,8 @@
 
 namespace App\Http\Util;
 
-use Illuminate\Http\{JsonResponse, RedirectResponse};
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 
 /**
  * Create easily response methods with the most used HTTP codes.
@@ -39,7 +40,7 @@ trait CanRespond
      * * Code: **200**
      * * Status: **OK**
      *
-     * @param array $resource
+     * @param  array $resource
      * @return JsonResponse
      * @final
      */
@@ -54,7 +55,7 @@ trait CanRespond
      * * Code: **201**
      * * Status: **Created**
      *
-     * @param array $resource
+     * @param  array $resource
      * @return JsonResponse
      * @final
      */
@@ -70,7 +71,7 @@ trait CanRespond
      * * Code: **202**
      * * Status: **Accepted**
      *
-     * @param string $message
+     * @param  string $message
      * @return JsonResponse
      * @final
      */
@@ -85,7 +86,7 @@ trait CanRespond
      * * Code: **302**
      * * Status: **Found**
      *
-     * @param string $route
+     * @param  string $route
      * @return RedirectResponse
      * @final
      */
@@ -101,7 +102,7 @@ trait CanRespond
      * * Code: **400**
      * * Status: **Bad Request**
      *
-     * @param string|array $error
+     * @param  string|array $error
      * @return JsonResponse
      * @final
      */
@@ -117,7 +118,7 @@ trait CanRespond
      * * Code: **401**
      * * Status: **Unauthorized**
      *
-     * @param string $error
+     * @param  string $error
      * @return JsonResponse
      * @final
      */
@@ -132,7 +133,7 @@ trait CanRespond
      * * Code: **404**
      * * Status: **Not Found**
      *
-     * @param string $resource
+     * @param  string $resource
      * @return JsonResponse
      * @final
      */
@@ -148,7 +149,7 @@ trait CanRespond
      * * Code: **415**
      * * Status: **Unsupported Media Type**
      *
-     * @param string $error
+     * @param  string $error
      * @return JsonResponse
      * @final
      */
@@ -164,7 +165,7 @@ trait CanRespond
      * * Code: **422**
      * * Status: **Unprocessable Entity**
      *
-     * @param string $error
+     * @param  string $error
      * @return JsonResponse
      * @final
      */
@@ -180,7 +181,7 @@ trait CanRespond
      * * Code: **500**
      * * Status: **Internal Server Error**
      *
-     * @param string|array $error
+     * @param  string|array $error
      * @return JsonResponse
      * @final
      */
@@ -197,8 +198,8 @@ trait CanRespond
      * ['message' => $message]
      * ```
      *
-     * @param string|array $message
-     * @param int $code
+     * @param  string|array $message
+     * @param  int          $code
      * @return JsonResponse
      * @final
      */
@@ -215,8 +216,8 @@ trait CanRespond
      * ['error' => $error]
      * ```
      *
-     * @param string|array $error
-     * @param int $code
+     * @param  string|array $error
+     * @param  int          $code
      * @return JsonResponse
      * @final
      */
@@ -228,8 +229,8 @@ trait CanRespond
     /**
      * Create a response with the given array as its JSON and the code.
      *
-     * @param array $response
-     * @param int $code
+     * @param  array $response
+     * @param  int   $code
      * @return JsonResponse
      * @final
      */

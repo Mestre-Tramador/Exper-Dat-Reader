@@ -3,7 +3,7 @@
 #region License
 /**
  * Exper-Dat-Reader is a system to read encrypted .dat files and dump their data into .done.dat files.
- *  Copyright (C) 2022  Mestre-Tramador
+ *  Copyright (C) 2023  Mestre-Tramador
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -22,18 +22,21 @@
 
 namespace App\Exceptions;
 
+use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Validation\ValidationException;
-
 use Laravel\Lumen\Exceptions\Handler as ExceptionsHandler;
-
 use Symfony\Component\HttpKernel\Exception\HttpException;
-
 use Throwable;
 
 /**
  * Exception Handler of the App.
+ *
+ * @author Mestre-Tramador
  */
 class Handler extends ExceptionsHandler
 {
@@ -41,6 +44,7 @@ class Handler extends ExceptionsHandler
      * A list of the exception types that should not be reported.
      *
      * @var array
+     * @ignore Must not be typed.
      */
     protected $dontReport = [
         AuthorizationException::class,
@@ -54,12 +58,12 @@ class Handler extends ExceptionsHandler
      *
      * This is a great spot to send exceptions to Sentry, Bugsnag, etc.
      *
-     * @param  \Throwable  $exception
+     * @param  Throwable $exception
      * @return void
      *
-     * @throws \Exception
+     * @throws Exception
      */
-    public function report(Throwable $exception)
+    public function report(Throwable $exception): void
     {
         parent::report($exception);
     }
@@ -67,13 +71,14 @@ class Handler extends ExceptionsHandler
     /**
      * Render an exception into an HTTP response.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Throwable  $exception
-     * @return \Illuminate\Http\Response|\Illuminate\Http\JsonResponse
+     * @param  Request   $request
+     * @param  Throwable $exception
+     * @return Response|JsonResponse
      *
-     * @throws \Throwable
+     * @throws Throwable
+     * @ignore `$request` param cannot be typed.
      */
-    public function render($request, Throwable $exception)
+    public function render($request, Throwable $exception): Response|JsonResponse
     {
         return parent::render($request, $exception);
     }

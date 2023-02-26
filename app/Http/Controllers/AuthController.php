@@ -3,7 +3,7 @@
 #region License
 /**
  * Exper-Dat-Reader is a system to read encrypted .dat files and dump their data into .done.dat files.
- *  Copyright (C) 2022  Mestre-Tramador
+ *  Copyright (C) 2023  Mestre-Tramador
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -23,7 +23,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\JsonResponse;
@@ -68,8 +67,7 @@ class AuthController extends Controller
             ]
         );
 
-        try
-        {
+        try {
             /**
              * The new User to be created.
              *
@@ -91,9 +89,7 @@ class AuthController extends Controller
             $token = auth()->fromUser($user);
 
             return $this->respondWithCreated(compact('user', 'token'));
-        }
-        catch(QueryException $e)
-        {
+        } catch (QueryException $e) {
             return $this->respondWithServerError('There was an error saving the User!');
         }
     }
@@ -122,13 +118,11 @@ class AuthController extends Controller
          */
         $auth = auth();
 
-        if($auth->user())
-        {
+        if ($auth->user()) {
             return $this->respondWithAccepted('Already logged in');
         }
 
-        try
-        {
+        try {
             /**
              * A generated Json Web Token for the User.
              *
@@ -136,8 +130,7 @@ class AuthController extends Controller
              */
             $token = $auth->attempt(request(['email', 'password']));
 
-            if(!$token)
-            {
+            if (!$token) {
                 return $this->respondWithUnauthorized();
             }
 
@@ -146,9 +139,7 @@ class AuthController extends Controller
                 'token_type' => 'bearer',
                 'user' => $auth->user()
             ]);
-        }
-        catch(ModelNotFoundException $e)
-        {
+        } catch (ModelNotFoundException $e) {
             return $this->respondWithServerError('There is no User with this credentials registered!');
         }
     }

@@ -3,7 +3,7 @@
 #region License
 /**
  * Exper-Dat-Reader is a system to read encrypted .dat files and dump their data into .done.dat files.
- *  Copyright (C) 2022  Mestre-Tramador
+ *  Copyright (C) 2023  Mestre-Tramador
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -49,11 +49,10 @@ class AppController extends Controller
         /**
          * A possible path on the request.
          *
-         * @var string $req_path
+         * @var string $reqPath
          */
-        if($req_path = request()->path())
-        {
-            $path .= "?p={$req_path}";
+        if ($reqPath = request()->path()) {
+            $path .= "?p={$reqPath}";
         }
 
         return $this->respondWithFound($path);

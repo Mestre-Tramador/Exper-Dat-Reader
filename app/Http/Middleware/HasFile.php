@@ -3,7 +3,7 @@
 #region License
 /**
  * Exper-Dat-Reader is a system to read encrypted .dat files and dump their data into .done.dat files.
- *  Copyright (C) 2022  Mestre-Tramador
+ *  Copyright (C) 2023  Mestre-Tramador
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -22,6 +22,9 @@
 
 namespace App\Http\Middleware;
 
+use Closure;
+use Illuminate\Http\Request;
+
 /**
  * Middleware to validate if (and then the contents)
  * of a sent `.dat` file.
@@ -39,11 +42,18 @@ class HasFile extends Middleware
      *
      * If there is problems with the one of the `.dat` files, a response
      * with the 422 HTTP code is returned otherwise.
+     *
+     * @param  Request     $request
+     * @param  Closure     $next
+     * @param  string|null $guard
+     * @return mixed
      */
-    public function handle(\Illuminate\Http\Request $request, \Closure $next, ?string $guard = null): mixed
-    {
-        if(count($request->files) == 0)
-        {
+    public function handle(
+        Request $request,
+        Closure $next,
+        ?string $guard = null
+    ): mixed {
+        if (count($request->files) == 0) {
             return $this->respondWithMediaError('You\'ve not uploaded any file!');
         }
 
@@ -55,21 +65,19 @@ class HasFile extends Middleware
         $hasDat = false;
 
         /** @var \Symfony\Component\HttpFoundation\File\UploadedFile $file */
-        foreach($request->files as $file)
-        {
-            if(!$hasDat && $file->getClientOriginalExtension() === $guard)
-            {
+        foreach ($request->files as $file) {
+            if (!$hasDat && $file->getClientOriginalExtension() === $guard) {
                 $hasDat = true;
 
-                if($file->getError())
-                {
-                    return $this->respondWithUnprocessable("File {$file->getClientOriginalName()} have problems on upload.");
+                if ($file->getError()) {
+                    return $this->respondWithUnprocessable(
+                        "File {$file->getClientOriginalName()} have problems on upload."
+                    );
                 }
             }
         }
 
-        if(!$hasDat)
-        {
+        if (!$hasDat) {
             return $this->respondWithMediaError('You\'ve not uploaded any .dat file!');
         }
 

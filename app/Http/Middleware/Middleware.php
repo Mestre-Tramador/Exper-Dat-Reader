@@ -3,7 +3,7 @@
 #region License
 /**
  * Exper-Dat-Reader is a system to read encrypted .dat files and dump their data into .done.dat files.
- *  Copyright (C) 2022  Mestre-Tramador
+ *  Copyright (C) 2023  Mestre-Tramador
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -22,10 +22,14 @@
 
 namespace App\Http\Middleware;
 
+use Closure;
 use App\Http\Util\CanRespond;
+use Illuminate\Http\Request;
 
 /**
  * Base Middleware.
+ *
+ * @author Mestre-Tramador
  */
 abstract class Middleware
 {
@@ -34,10 +38,14 @@ abstract class Middleware
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @param  string|null  $guard
+     * @param  Request     $request
+     * @param  Closure     $next
+     * @param  string|null $guard
      * @return mixed
      */
-    abstract function handle(\Illuminate\Http\Request $request, \Closure $next, ?string $guard = null): mixed;
+    abstract public function handle(
+        Request $request,
+        Closure $next,
+        ?string $guard = null
+    ): mixed;
 }

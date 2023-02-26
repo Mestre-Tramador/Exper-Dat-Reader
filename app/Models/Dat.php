@@ -3,7 +3,7 @@
 #region License
 /**
  * Exper-Dat-Reader is a system to read encrypted .dat files and dump their data into .done.dat files.
- *  Copyright (C) 2022  Mestre-Tramador
+ *  Copyright (C) 2023  Mestre-Tramador
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -22,13 +22,12 @@
 
 namespace App\Models;
 
-use App\Models\Util\{IsFile, ModelFile};
-
+use App\Models\Util\IsFile;
+use App\Models\Util\ModelFile;
 use Carbon\Carbon;
-
-use Illuminate\Database\Eloquent\{Model, SoftDeletes};
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
@@ -38,7 +37,8 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  */
 class Dat extends Model implements ModelFile
 {
-    use IsFile, SoftDeletes;
+    use IsFile;
+    use SoftDeletes;
 
     /**
      * Every file has the `.dat` extension.
@@ -79,7 +79,10 @@ class Dat extends Model implements ModelFile
      */
     private const ID_SALE = '003';
 
-    /** @inheritDoc */
+    /**
+     * @inheritDoc
+     * @ignore Must not be typed.
+     */
     protected $casts = [
         'first_read_at' => 'datetime',
         'last_read_at'  => 'datetime',
@@ -91,13 +94,12 @@ class Dat extends Model implements ModelFile
     /**
      * Validate if an uploaded file is actually a valid `.dat` file.
      *
-     * @param UploadedFile $file
+     * @param  UploadedFile $file
      * @return bool
      */
     public static function validate(UploadedFile $file): bool
     {
-        if($file->getClientOriginalExtension() === self::EXT)
-        {
+        if ($file->getClientOriginalExtension() === self::EXT) {
             return (substr_count(trim($file->getContent()), self::SEPARATOR) % 3) == 0;
         }
 
@@ -126,10 +128,8 @@ class Dat extends Model implements ModelFile
             'sales'     => []
         ];
 
-        if($this->file)
-        {
-            foreach(preg_split('/\n|\r\n?/', trim($this->file)) as $line)
-            {
+        if ($this->file) {
+            foreach (preg_split('/\n|\r\n?/', trim($this->file)) as $line) {
                 /**
                  * The information on the current line, grouped.
                  *
@@ -151,8 +151,7 @@ class Dat extends Model implements ModelFile
 
                 array_splice($infos, 0, 1);
 
-                switch($id)
-                {
+                switch ($id) {
                     case self::ID_SELLER:
                         [$cpf, $name, $wage] = $infos;
 
@@ -163,7 +162,7 @@ class Dat extends Model implements ModelFile
                          *
                          * @var string $cpf
                          */
-                        $cpf  = $this->makeCPF($cpf);
+                        $cpf = $this->makeCPF($cpf);
 
                         /**
                          * The name of the seller or
@@ -182,7 +181,7 @@ class Dat extends Model implements ModelFile
                         $wage = (float) $wage;
 
                         $data['sellers'][] = compact('cpf', 'name', 'wage');
-                    break;
+                        break;
 
                     case self::ID_CUSTOMER:
                         [$cnpj, $name, $branch] = $infos;
@@ -213,7 +212,7 @@ class Dat extends Model implements ModelFile
                         $branch = $this->makeName($branch);
 
                         $data['customers'][] = compact('cnpj', 'name', 'branch');
-                    break;
+                        break;
 
                     case self::ID_SALE:
                         [$id, $items, $seller] = $infos;
@@ -241,7 +240,7 @@ class Dat extends Model implements ModelFile
                         $seller = $this->makeName($seller);
 
                         $data['sales'][] = compact('id', 'items', 'seller');
-                    break;
+                        break;
                 }
             }
 
@@ -265,7 +264,7 @@ class Dat extends Model implements ModelFile
     }
 
     /** @inheritDoc */
-    public function toArray()
+    public function toArray(): array
     {
         return [
             'id'          => $this->id,
@@ -284,16 +283,20 @@ class Dat extends Model implements ModelFile
      *
      * The format consists on: *xxx.xxx.xxx-xx*
      *
-     * @param string $str
+     * @param  string $str
      * @return string
      */
     private function makeCPF(string $str): string
     {
-        if(strlen($str) != 11 || !is_numeric($str))
-        {
+        if (strlen($str) != 11 || !is_numeric($str)) {
             return $str;
         }
 
+        /**
+         * The CPF string.
+         *
+         * @var string $cpf
+         */
         $cpf  =     substr($str, 0, 3);
         $cpf .= '.'.substr($str, 3, 3);
         $cpf .= '.'.substr($str, 5, 3);
@@ -307,20 +310,24 @@ class Dat extends Model implements ModelFile
      *
      * The format consists on: *xx.xxx.xxx/xxxx-xx*
      *
-     * @param string $str
+     * @param  string $str
      * @return string
      */
     private function makeCNPJ(string $str): string
     {
-        if(strlen($str) != 14 || !is_numeric($str))
-        {
+        if (strlen($str) != 14 || !is_numeric($str)) {
             return $str;
         }
 
-        $cnpj  =     substr($str, 0,  2);
-        $cnpj .= '.'.substr($str, 2,  3);
-        $cnpj .= '.'.substr($str, 5,  3);
-        $cnpj .= '/'.substr($str, 9,  4);
+        /**
+         * The CNPJ string.
+         *
+         * @var string $cnpj
+         */
+        $cnpj  =     substr($str, 0, 2);
+        $cnpj .= '.'.substr($str, 2, 3);
+        $cnpj .= '.'.substr($str, 5, 3);
+        $cnpj .= '/'.substr($str, 9, 4);
         $cnpj .= '-'.substr($str, 13, 2);
 
         return $cnpj;
@@ -329,11 +336,16 @@ class Dat extends Model implements ModelFile
     /**
      * Break a pascal case `string` into a name.
      *
-     * @param string $str
+     * @param  string $str
      * @return string
      */
     private function makeName(string $str): string
     {
+        /**
+         * The name to be made.
+         *
+         * @var array $name
+         */
         $name = preg_split('/(?=[A-Z])/', $str);
         $name = implode(' ', $name);
         $name = trim($name);
@@ -344,16 +356,21 @@ class Dat extends Model implements ModelFile
     /**
      * Convert a stringified `array` into an actual `array`.
      *
-     * @param string $str
+     * @param  string $str
      * @return array
      */
     private function makeItems(string $str): array
     {
+        /**
+         * The items to be made.
+         *
+         * @var string $items
+         */
         $items = preg_replace('/[\[\]]/', '', $str);
         $items = trim($items);
         $items = explode(',', $items);
         $items = array_map(
-            function($item) {
+            function (string $item): array {
                 [$id, $quantity, $price] = explode('-', $item);
 
                 return [

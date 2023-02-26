@@ -1,6 +1,6 @@
 <!--
     Exper-Dat-Reader is a system to read encrypted .dat files and dump their data into .done.dat files.
-    Copyright (C) 2022  Mestre-Tramador
+    Copyright (C) 2023  Mestre-Tramador
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -71,7 +71,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { mapGetters, mapMutations } from "vuex";
+import { mapMutations } from "vuex";
 import { AxiosError, AxiosResponse } from "axios";
 
 import LoginInput from "@Components/Auth/LoginInput.vue";
@@ -94,24 +94,14 @@ export default defineComponent({
             form: AuthForm.create()
         };
     },
-    computed: mapGetters(["isLoggedIn"]),
-    created() {
-        if (this.isLoggedIn) {
-            this.$router.push({ name: "Menu" });
-        }
-    },
     methods: {
         ...mapMutations(["setUser", "setToken"]),
 
         /**
          * Execute the login and redirect to the Menu if
          * successful, otherwise present the errors.
-         *
-         * @param event Theve default submit event.
          */
-        login(event: Event): void {
-            event.preventDefault();
-
+        login(): void {
             this.form.clearErrors();
 
             this.$http

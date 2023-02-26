@@ -3,7 +3,7 @@
 #region License
 /**
  * Exper-Dat-Reader is a system to read encrypted .dat files and dump their data into .done.dat files.
- *  Copyright (C) 2022  Mestre-Tramador
+ *  Copyright (C) 2023  Mestre-Tramador
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -23,11 +23,13 @@
 namespace App\Providers;
 
 use App\Models\User;
-
+use Illuminate\Http\Request;
 use Illuminate\Support\ServiceProvider;
 
 /**
  * Service Provider of Authentication.
+ *
+ * @author Mestre-Tramador
  */
 class AuthServiceProvider extends ServiceProvider
 {
@@ -36,20 +38,28 @@ class AuthServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register() { }
+    public function register(): void
+    {
+        //
+    }
 
     /**
      * Boot the authentication services for the application.
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
-        $this->app['auth']->viaRequest('api', function($request) {
-            if($request->input('api_token'))
-            {
-                return User::where('api_token', $request->input('api_token'))->first();
+        $this->app['auth']->viaRequest(
+            'api',
+            function (Request $request): User|null {
+                if ($request->input('api_token')) {
+                    return User::where(
+                        'api_token',
+                        $request->input('api_token')
+                    )->first();
+                }
             }
-        });
+        );
     }
 }

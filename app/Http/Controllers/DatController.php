@@ -3,7 +3,7 @@
 #region License
 /**
  * Exper-Dat-Reader is a system to read encrypted .dat files and dump their data into .done.dat files.
- *  Copyright (C) 2022  Mestre-Tramador
+ *  Copyright (C) 2023  Mestre-Tramador
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -23,11 +23,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dat;
-
 use Carbon\Carbon;
-
 use Illuminate\Http\JsonResponse;
-
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
@@ -55,7 +52,7 @@ class DatController extends Controller
         $this->middleware('auth:api');
         $this->middleware('file:dat', [
             'only' => [
-                'store',
+                'create',
                 'update'
             ]
         ]);
@@ -68,7 +65,11 @@ class DatController extends Controller
      */
     public function list(): JsonResponse
     {
-        return $this->respondWithOK(Dat::with('user')->get()->toArray());
+        return $this->respondWithOK(
+            Dat::with('user')
+            ->get()
+            ->toArray()
+        );
     }
 
     /**
@@ -104,8 +105,7 @@ class DatController extends Controller
         $code = 422;
 
         /** @var UploadedFile $file */
-        foreach(request()->files as $file)
-        {
+        foreach (request()->files as $file) {
             /**
              * The current data of the file
              * being read.
@@ -116,8 +116,7 @@ class DatController extends Controller
                 'file' => $file->getClientOriginalName()
             ];
 
-            if(!Dat::validate($file))
-            {
+            if (!Dat::validate($file)) {
                 $readFile['error'] = 'Incorrect formatted data';
 
                 $readFiles[] = $readFile;
@@ -144,8 +143,7 @@ class DatController extends Controller
             $dat->first_read_at = $now;
             $dat->last_read_at  = $now;
 
-            if(!$dat->save())
-            {
+            if (!$dat->save()) {
                 $readFile['error'] = 'Could not save file';
 
                 $code = 500;
@@ -155,8 +153,7 @@ class DatController extends Controller
                 continue;
             }
 
-            if(!$storage->putFileAs(self::PATH_IN, $file, $dat->name))
-            {
+            if (!$storage->putFileAs(self::PATH_IN, $file, $dat->name)) {
                 $readFile['error'] = 'File was not stored';
 
                 $code = 500;
@@ -181,7 +178,7 @@ class DatController extends Controller
     /**
      * Read a stored `.dat` file with the given ID.
      *
-     * @param int $id
+     * @param  int $id
      * @return JsonResponse
      */
     public function read(int $id): JsonResponse
@@ -193,8 +190,7 @@ class DatController extends Controller
          */
         $dat = Dat::find($id);
 
-        if(!$dat || $dat->deleted_at)
-        {
+        if (!$dat || $dat->deleted_at) {
             return $this->respondWithNotFound('File');
         }
 
@@ -204,7 +200,7 @@ class DatController extends Controller
     /**
      * Update the current `.dat` file referenced by the `$id`.
      *
-     * @param int $id
+     * @param  int $id
      * @return JsonResponse
      */
     public function update(int $id): JsonResponse
@@ -216,8 +212,7 @@ class DatController extends Controller
          */
         $dat = Dat::find($id);
 
-        if(!$dat || $dat->deleted_at)
-        {
+        if (!$dat || $dat->deleted_at) {
             return $this->respondWithNotFound('File');
         }
 
@@ -237,8 +232,7 @@ class DatController extends Controller
          */
         $file = $files->get(array_key_first($files->all()));
 
-        if(!Dat::validate($file))
-        {
+        if (!Dat::validate($file)) {
             return $this->respondWithUnprocessable('Invalid file');
         }
 
@@ -249,15 +243,19 @@ class DatController extends Controller
          */
         $storage = app('storage')::disk('local');
 
-        if(!$storage->putFileAs(self::PATH_IN, $file, $dat->name))
-        {
+        if (
+            !$storage->putFileAs(
+                self::PATH_IN,
+                $file,
+                $dat->name
+            )
+        ) {
             return $this->respondWithServerError('File was not stored');
         }
 
         $dat->updated_at = Carbon::now();
 
-        if(!$dat->save())
-        {
+        if (!$dat->save()) {
             return $this->respondWithServerError('File was not saved');
         }
 
@@ -270,7 +268,7 @@ class DatController extends Controller
      * Currently it is a *soft* delete, so the database row nor the
      * `.dat` file are really deleted.
      *
-     * @param int $id
+     * @param  int $id
      * @return JsonResponse
      */
     public function delete(int $id): JsonResponse
@@ -282,15 +280,13 @@ class DatController extends Controller
          */
         $dat = Dat::find($id);
 
-        if(!$dat || $dat->deleted_at)
-        {
+        if (!$dat || $dat->deleted_at) {
             return $this->respondWithNotFound('File');
         }
 
         $dat->deleted_at = Carbon::now();
 
-        if(!$dat->delete())
-        {
+        if (!$dat->delete()) {
             return $this->respondWithServerError('File was not saved');
         }
 

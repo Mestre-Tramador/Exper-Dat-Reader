@@ -3,7 +3,7 @@
 #region License
 /**
  * Exper-Dat-Reader is a system to read encrypted .dat files and dump their data into .done.dat files.
- *  Copyright (C) 2022  Mestre-Tramador
+ *  Copyright (C) 2023  Mestre-Tramador
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -22,10 +22,9 @@
 
 namespace App\Http\Middleware;
 
+use Closure;
 use Illuminate\Http\Request;
-
 use Notihnio\MultipartFormDataParser\MultipartFormDataParser;
-
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
@@ -39,20 +38,29 @@ class ParsePUT extends Middleware
     /**
      * Parse a FormData correctly on the `PUT` and `PATCH`s requests.
      *
-     * @param Request $request
-     * @param \Closure $next
-     * @param string|null $guard
+     * @param  Request     $request
+     * @param  Closure     $next
+     * @param  string|null $guard
      * @return mixed
      */
-    public function handle(Request $request, \Closure $next, ?string $guard = null): mixed
-    {
-        if($request->method() !== 'PUT' && $request->method() !== 'PATCH')
-        {
+    public function handle(
+        Request $request,
+        Closure $next,
+        ?string $guard = null
+    ): mixed {
+        if (
+            $request->method() !== 'PUT' &&
+            $request->method() !== 'PATCH'
+        ) {
             return $next($request);
         }
 
-        if(preg_match('/multipart\/form-data/', $request->headers->get('Content-Type')))
-        {
+        if (
+            preg_match(
+                '/multipart\/form-data/',
+                $request->headers->get('Content-Type')
+            )
+        ) {
             /**
              * The parsed form-data.
              *
@@ -60,8 +68,7 @@ class ParsePUT extends Middleware
              */
             $formData = MultipartFormDataParser::parse($request);
 
-            if(!$formData)
-            {
+            if (!$formData) {
                 return $this->respondWithClientError('Your data is invalid!');
             }
 
@@ -69,8 +76,7 @@ class ParsePUT extends Middleware
              * @var string $name
              * @var array $file
              */
-            foreach($formData->files as $name => $file)
-            {
+            foreach ($formData->files as $name => $file) {
                 $formData->files[$name] = new UploadedFile(
                     $file['tmp_name'],
                     $file['name'],
