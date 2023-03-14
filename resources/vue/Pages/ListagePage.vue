@@ -52,8 +52,8 @@ export default component({
             /**
              * The Dats files to show on the list.
              */
-            dats: [] as Dat[] | null
-        };
+            dats: []
+        } as { dats: Dat[] | null };
     },
     computed: getters(["token"]),
     mounted() {

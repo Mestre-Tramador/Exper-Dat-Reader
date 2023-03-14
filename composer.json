@@ -1,7 +1,7 @@
 {
   "name": "mestre-tramador/exper-dat-reader",
   "description": "Read .dat files easily and store their dumped data.",
-  "version": "0.0.8",
+  "version": "0.0.10",
   "type": "library",
   "keywords": [
     "exper",

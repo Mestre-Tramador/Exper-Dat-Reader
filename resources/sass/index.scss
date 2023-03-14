@@ -26,3 +26,10 @@
     background: #5cc2ea;
     background: radial-gradient(circle, #5cc2ea 0%, #3393cc 25%, #0059a7 100%);
 }
+
+.main-layout-preserve {
+    #main-card {
+        min-height: 25vh;
+        min-width:  55vh;
+    }
+}

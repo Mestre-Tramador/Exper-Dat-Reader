@@ -17,7 +17,7 @@
 -->
 
 <template>
-    <layout>
+    <layout class="main-layout-preserve">
         <div class="flex">
             <img
                 src="imgs/logo.png"
@@ -28,7 +28,18 @@
 
         <hr />
 
-        <div class="flex mt-4">
+        <div v-if="error" class="mt-4 text-6xl text-center text-red-500">
+            {{ error }}
+
+            <br />
+
+            <span class="text-4xl">Recarregando a página...</span>
+        </div>
+        <div
+            v-else-if="dumping"
+            class="w-20 h-20 mx-48 my-8 rounded-full animate-spin border-y-2 border-dashed border-gray-400 border-t-transparent"
+        ></div>
+        <div v-else class="flex mt-4">
             <!-- Start of "Dashboard" button. -->
             <router-link
                 class="text-blue-500 hover:text-teal-600 m-auto"
@@ -56,19 +67,22 @@
             </router-link>
             <!-- End of "File List" button. -->
 
-            <!-- Future "Dump Files" button. -->
-            <router-link
+            <!-- Start of "Dump Files" button. -->
+            <button
                 class="text-blue-500 hover:text-cyan-800 m-auto"
-                to="/"
+                @click="dump"
             >
                 <dump-icon class="h-32 w-32" />
-            </router-link>
+            </button>
+            <!-- End of "Dump Files" button. -->
         </div>
     </layout>
 </template>
 
 <script lang="ts">
 import { defineComponent as component } from "vue";
+import { mapGetters as getters } from "vuex";
+import { AxiosError as Error } from "axios";
 
 import Layout from "@Components/MainLayout.vue";
 
@@ -87,11 +101,44 @@ export default component({
         ListageIcon,
         NewDatIcon
     },
+    data() {
+        return {
+            dumping: false,
+            error: null
+        } as { dumping: boolean; error: string | null };
+    },
+    computed: getters(["token"]),
     created() {
         if (this.$route.query.p) {
             this.$router.push(`/${this.$route.query.p}`);
 
             return;
+        }
+    },
+    methods: {
+        /**
+         * Call on the API to dump all the Dat files,
+         * then show the results directly on the Dashboard.
+         */
+        dump(): void {
+            this.dumping = true;
+
+            this.$http
+                .post("/api/dump", null, {
+                    headers: {
+                        Authorization: `Bearer ${this.token}`
+                    }
+                })
+                .then(() => this.$router.push({ name: "Dashboard" }))
+                .catch((err: Error) => {
+                    this.dumping = false;
+
+                    this.error =
+                        (err.response?.data as string) ??
+                        "Erro não identificado";
+
+                    setTimeout(window.location.reload, 1.5e3);
+                });
         }
     }
 });

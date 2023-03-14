@@ -8,7 +8,24 @@ Versioning].
 ## [Unreleased]
 
 - Changelog on different languages
+- Wiki on different languages
 - GitHub Pull Requests templates
+- Unit Testing
+
+## [0.0.10] - 2023-03-14
+
+### Implemented
+
+- Dump function on Menu
+
+### Improved
+
+- Sass styling of the main screen
+- Casting on some Vue files
+
+### Added
+
+- License headers on missing files
 
 ## [0.0.9] - 2023-03-13
 

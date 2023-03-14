@@ -95,18 +95,18 @@ export default component({
                 sellers_quantity: null,
                 most_expensive_sale_id: null,
                 worst_seller: null
-            } as Data,
+            },
 
             /**
              * Keys the specific data presented in the Dashboard.
              */
-            detail: null as keyof Data | null,
+            detail: null,
 
             /**
              * Error message, if any.
              */
-            error: null as unknown
-        };
+            error: null
+        } as { data: Data; detail: keyof Data | null; error: unknown };
     },
     computed: getters(["token"]),
     mounted() {

@@ -21,7 +21,7 @@
         <navbar v-if="isLoggedIn"></navbar>
 
         <div class="flex h-screen w-screen">
-            <div class="bg-white border-b py-4 m-auto rounded">
+            <div id="main-card" class="bg-white border-b py-4 m-auto rounded">
                 <div class="container mx-auto">
                     <slot></slot>
                 </div>
