@@ -24,6 +24,13 @@ import { FormProps } from "@Interfaces/FormProps";
  * The properties specific to a `AuthForm`.
  */
 export interface AuthFormProps extends FormProps {
+    /**
+     * Email field value.
+     */
     email: string;
+
+    /**
+     * Password field value.
+     */
     password: string;
 }

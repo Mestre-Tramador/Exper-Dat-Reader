@@ -17,29 +17,42 @@
 -->
 
 <template>
-    <section>
-        <main-navbar v-if="isLoggedIn"></main-navbar>
+    <layout>
+        <div class="flex">
+            <div class="text-blue-500 h-12 w-12 mb-1">
+                <slot name="icon"></slot>
+            </div>
 
-        <div class="flex h-screen w-screen">
-            <div class="bg-white border-b py-4 m-auto rounded">
-                <div class="container mx-auto">
-                    <slot></slot>
-                </div>
+            <div class="mx-2 my-auto text-lg text-blue-400 cursor-default">
+                {{ title }}
             </div>
         </div>
-    </section>
+
+        <hr />
+
+        <div class="text-gray-500">
+            <slot name="page"></slot>
+        </div>
+    </layout>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import { mapGetters } from "vuex";
+import { defineComponent as component } from "vue";
 
-import MainNavbar from "@Components/Layout/MainNavbar.vue";
+import Layout from "@Components/MainLayout.vue";
 
-export default defineComponent({
+export default component({
     components: {
-        MainNavbar
+        Layout
     },
-    computed: mapGetters(["isLoggedIn"])
+    props: {
+        /**
+         * The Title of the page.
+         */
+        title: {
+            type: String,
+            default: ""
+        }
+    }
 });
 </script>

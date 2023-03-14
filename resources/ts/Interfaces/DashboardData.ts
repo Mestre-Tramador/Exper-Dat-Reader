@@ -23,8 +23,23 @@
  * {@link https://github.com/Mestre-Tramador/Exper-Dat-Reader/wiki/API.Routes.DoneDatLast Last Done Dat} request.
  */
 export interface DashboardData {
+    /**
+     * Quantity of Customers.
+     */
     customers_quantity: number | null;
+
+    /**
+     * Quantity of Sellers.
+     */
     sellers_quantity: number | null;
+
+    /**
+     * The ID of the most expensive sale.
+     */
     most_expensive_sale_id: number | null;
+
+    /**
+     * Worst profit seller.
+     */
     worst_seller: string | null;
 }

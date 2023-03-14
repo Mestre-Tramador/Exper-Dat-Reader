@@ -21,6 +21,9 @@
 //#region Imports
 import * as VuexPersist from "vuex-persist";
 
+import axios from "axios";
+
+import { AxiosResponse } from "axios";
 import { User as UserModel } from "@Models/User";
 
 import type { VueComponents, VueRoutes } from "vue-types";
@@ -34,17 +37,20 @@ import type {
 import {
     NavigationGuardNext,
     NavigationGuardWithThis,
+    RouteLocationNamedRaw,
     RouteLocationNormalized
 } from "vue-router";
 
-import DashboardPage from "@Pages/Dashboard/DashboardPage.vue";
-import LoginPage from "@Pages/Auth/LoginPage.vue";
-import MenuPage from "@Pages/Menu/MenuPage.vue";
-import NewDatPage from "@Pages/Formulary/NewDatPage.vue";
+import DashboardPage from "@Pages/DashboardPage.vue";
+import LoginPage from "@Pages/LoginPage.vue";
+import IndexPage from "@Pages/IndexPage.vue";
+import NewDatPage from "@Pages/NewDatPage.vue";
+import ListagePage from "@Pages/ListagePage.vue";
 
 import "vue-router/dist/vue-router";
 import "vuex/types/vue";
 import "vue-axios/index";
+
 //#endregion
 
 //#region Vue
@@ -55,8 +61,9 @@ import "vue-axios/index";
 const components: VueComponents = {
     DashboardPage,
     LoginPage,
-    MenuPage,
-    NewDatPage
+    IndexPage,
+    NewDatPage,
+    ListagePage
 };
 
 /**
@@ -66,8 +73,8 @@ const components: VueComponents = {
 const routes: VueRoutes = [
     {
         path: "",
-        name: "Menu",
-        component: MenuPage
+        name: "Index",
+        component: IndexPage
     },
     {
         path: "/dashboard",
@@ -83,6 +90,11 @@ const routes: VueRoutes = [
         path: "/new",
         name: "New Dat",
         component: NewDatPage
+    },
+    {
+        path: "/list",
+        name: "Listage",
+        component: ListagePage
     }
 ];
 
@@ -98,15 +110,55 @@ const guard: NavigationGuardWithThis<UserGetters> = function (
     from: RouteLocationNormalized,
     next: NavigationGuardNext
 ) {
-    if (to.name !== "Login" && !this.isLoggedIn) {
-        next({ name: "Login" });
+    /**
+     * Route object to make the redirect.
+     */
+    const route: RouteLocationNamedRaw = { name: "Login" };
+
+    /**
+     * Verify if the User is authenticated.
+     */
+    const authenticated = this.isAuthenticated as unknown as
+        | Promise<AxiosResponse>
+        | false;
+
+    /**
+     * Handle the request if the User
+     * is authenticated.
+     */
+    const handleAuthenticated = (): void => {
+        if (to.name === "Login") {
+            route.name = "Index";
+
+            next(route);
+
+            return;
+        }
+
+        next();
+    };
+
+    /**
+     * Handle the request if the User
+     * is unauthenticated.
+     */
+    const handleUnauthenticated = (): void => {
+        if (to.name !== "Login") {
+            next(route);
+
+            return;
+        }
+
+        next();
+    };
+
+    if (authenticated) {
+        authenticated.then(handleAuthenticated).catch(handleUnauthenticated);
+
+        return;
     }
 
-    if (to.name === "Login" && this.isLoggedIn) {
-        next({ name: "Menu" });
-    }
-
-    next();
+    handleUnauthenticated();
 };
 //#endregion
 
@@ -158,6 +210,20 @@ const getters: UserGetters = {
      */
     isLoggedIn(state: UserState): boolean {
         return !!state.token;
+    },
+
+    /**
+     * Validate if the User is authenticated by the API.
+     *
+     * @param state This state is currently loaded by Vuex.
+     * @returns `true` if the token is valid and present.
+     */
+    isAuthenticated(state: UserState) {
+        if (!state.token) {
+            return false;
+        }
+
+        return axios.get(`api/auth?token=${state.token}`);
     },
 
     /**

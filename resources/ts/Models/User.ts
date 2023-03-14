@@ -20,6 +20,12 @@
 
 import { User as StateUser } from "vuex-types";
 
+/**
+ * A User is a person who can upload files and
+ * use the Exper-Dat-Reader.
+ *
+ * @author Mestre-Tramador
+ */
 export class User {
     //#region Constructor
     /**
@@ -33,8 +39,8 @@ export class User {
     private constructor(
         private _id: number,
         private _name: string,
-        private _email: string,
-        private _creation: string
+        private _email: string | null,
+        private _creation: string | null
     ) {}
     //#endregion
 
@@ -47,21 +53,23 @@ export class User {
      * @param email The email to show on screen.
      * @param creation The creation date to show in the profile section.
      * @returns If no error occurs, then the instance is created.
-     * @throws {RangeError} When creation date is invalid.
+     * @throws {RangeError} When creation date is set but invalid.
      */
     public static from(
         id: number,
         name: string,
-        email: string,
-        creation: string
+        email: string | null = null,
+        creation: string | null = null
     ): User {
-        /**
-         * Simple holder to see if creation date is valid.
-         */
-        const date: Date = new Date(creation);
+        if (creation) {
+            /**
+             * Simple holder to see if creation date is valid.
+             */
+            const date: Date = new Date(creation);
 
-        if (isNaN(date.getTime())) {
-            throw new RangeError(`${date.toString()}!`);
+            if (isNaN(date.getTime())) {
+                throw new RangeError(`${date.toString()}!`);
+            }
         }
 
         return new this(id, name, email, creation);
@@ -97,15 +105,15 @@ export class User {
     /**
      * Get the User's email.
      */
-    public get email(): string {
+    public get email(): string | null {
         return this._email;
     }
 
     /**
      * Get the User's creation date.
      */
-    public get creation(): Date {
-        return new Date(this._creation);
+    public get creation(): Date | null {
+        return this._creation ? new Date(this._creation) : null;
     }
     //#endregion
 }

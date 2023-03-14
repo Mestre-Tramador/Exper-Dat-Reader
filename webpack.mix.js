@@ -49,10 +49,10 @@ mix.webpackConfig({
             ".vue"
         ],
         alias: {
-            "@Components": path.resolve(__dirname, "resources/ts/Components/"),
             "@Interfaces": path.resolve(__dirname, "resources/ts/Interfaces/"),
             "@Models": path.resolve(__dirname, "resources/ts/Models/"),
-            "@Pages": path.resolve(__dirname, "resources/ts/Pages/"),
+            "@Components": path.resolve(__dirname, "resources/vue/Components/"),
+            "@Pages": path.resolve(__dirname, "resources/vue/Pages/"),
         }
     },
 });

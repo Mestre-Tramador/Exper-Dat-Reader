@@ -17,9 +17,9 @@
 -->
 
 <template>
-    <head-page-layout title="Dashboard">
+    <layout title="Dashboard">
         <template #icon>
-            <document-chart-bar-icon />
+            <icon />
         </template>
 
         <template #page>
@@ -31,22 +31,22 @@
                     :data="normalize(value)"
                 >
                     <template #icon>
-                        <users-icon
+                        <customers-quantity-icon
                             v-if="key === 'customers_quantity'"
                             class="h-12 w-12"
                         />
 
-                        <identification-icon
+                        <sellers-quantity-icon
                             v-if="key === 'sellers_quantity'"
                             class="h-12 w-12"
                         />
 
-                        <banknotes-icon
+                        <most-expensive-sale-id-icon
                             v-if="key === 'most_expensive_sale_id'"
                             class="h-12 w-12"
                         />
 
-                        <arrow-trending-down-icon
+                        <worst-seller-icon
                             v-if="key === 'worst_seller'"
                             class="h-12 w-12"
                         />
@@ -54,36 +54,36 @@
                 </card>
             </div>
         </template>
-    </head-page-layout>
+    </layout>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import { mapGetters } from "vuex";
-import { AxiosError, AxiosResponse } from "axios";
+import { defineComponent as component } from "vue";
+import { mapGetters as getters } from "vuex";
+import { AxiosError as Error, AxiosResponse as Response } from "axios";
 
-import HeadPageLayout from "@Components/Layout/HeadPageLayout.vue";
-import Card from "@Components/Dashboard/DashboardCard.vue";
+import Layout from "@Components/HeadPageLayout.vue";
+import Card from "@Components/DashboardCard.vue";
 
-import { DashboardData } from "@Interfaces/DashboardData";
+import { DashboardData as Data } from "@Interfaces/DashboardData";
 
 import {
-    ArrowTrendingDownIcon,
-    BanknotesIcon,
-    DocumentChartBarIcon,
-    IdentificationIcon,
-    UsersIcon
+    ArrowTrendingDownIcon as WorstSellerIcon,
+    BanknotesIcon as MostExpensiveSaleIdIcon,
+    DocumentChartBarIcon as Icon,
+    IdentificationIcon as SellersQuantityIcon,
+    UsersIcon as CustomersQuantityIcon
 } from "@heroicons/vue/24/solid";
 
-export default defineComponent({
+export default component({
     components: {
-        HeadPageLayout,
+        Layout,
         Card,
-        ArrowTrendingDownIcon,
-        BanknotesIcon,
-        DocumentChartBarIcon,
-        IdentificationIcon,
-        UsersIcon
+        CustomersQuantityIcon,
+        Icon,
+        MostExpensiveSaleIdIcon,
+        SellersQuantityIcon,
+        WorstSellerIcon
     },
     data() {
         return {
@@ -95,12 +95,12 @@ export default defineComponent({
                 sellers_quantity: null,
                 most_expensive_sale_id: null,
                 worst_seller: null
-            } as DashboardData,
+            } as Data,
 
             /**
              * Keys the specific data presented in the Dashboard.
              */
-            detail: null as keyof DashboardData | null,
+            detail: null as keyof Data | null,
 
             /**
              * Error message, if any.
@@ -108,7 +108,7 @@ export default defineComponent({
             error: null as unknown
         };
     },
-    computed: mapGetters(["token"]),
+    computed: getters(["token"]),
     mounted() {
         this.$http
             .get("api/dump/last", {
@@ -116,8 +116,8 @@ export default defineComponent({
                     Authorization: `Bearer ${this.token}`
                 }
             })
-            .then((res: AxiosResponse<DashboardData>) => (this.data = res.data))
-            .catch((err: AxiosError) => (this.error = err.response?.data));
+            .then((res: Response<Data>) => (this.data = res.data))
+            .catch((err: Error) => (this.error = err.response?.data));
     },
     methods: {
         /**
@@ -126,7 +126,7 @@ export default defineComponent({
          * @param key The key of the Dashboard.
          * @returns The string with the correct text.
          */
-        translate(key: keyof DashboardData): string {
+        translate(key: keyof Data): string {
             switch (key) {
                 case "customers_quantity":
                     return "Quantity of Customers";

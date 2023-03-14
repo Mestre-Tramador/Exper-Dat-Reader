@@ -45,7 +45,8 @@ class AuthController extends Controller
         $this->middleware('auth:api', [
             'except' => [
                 'login',
-                'register'
+                'register',
+                'verify'
             ]
         ]);
     }
@@ -140,7 +141,7 @@ class AuthController extends Controller
                 'user' => $auth->user()
             ]);
         } catch (ModelNotFoundException $e) {
-            return $this->respondWithServerError('There is no User with this credentials registered!');
+            return $this->respondWithUnauthorized('There is no User with this credentials registered!');
         }
     }
 
@@ -155,5 +156,29 @@ class AuthController extends Controller
         auth()->logout();
 
         return $this->respondWithOK(['message' => 'Successful logout']);
+    }
+
+    /**
+     * Make a simple verification if there is a User
+     * attached to the JWT.
+     *
+     * @return JsonResponse
+     */
+    public function verify(): JsonResponse
+    {
+        $this->validate(request(), ['token' => 'required|string']);
+
+        /**
+         * The authentication class.
+         *
+         * @var \Tymon\JWTAuth\JWTAuth $auth
+         */
+        $auth = auth();
+
+        if ($auth->user()) {
+            return $this->respondWithNoContent();
+        }
+
+        return $this->respondWithUnauthorized();
     }
 }

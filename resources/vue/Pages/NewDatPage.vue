@@ -17,15 +17,15 @@
 -->
 
 <template>
-    <head-page-layout title="New Dat">
+    <layout title="New Dat">
         <template #icon>
-            <document-plus-icon />
+            <icon />
         </template>
 
         <template #page>
             <form class="text-center" @submit.prevent="upload">
                 <div class="p-2">
-                    <new-dat-file-input
+                    <control
                         id="dats"
                         v-model="form.dats"
                         :error="form.errors.message"
@@ -40,36 +40,36 @@
                 </button>
             </form>
         </template>
-    </head-page-layout>
+    </layout>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import { mapGetters } from "vuex";
-import { AxiosError } from "axios";
+import { defineComponent as component } from "vue";
+import { mapGetters as getters } from "vuex";
+import { AxiosError as Error } from "axios";
 
-import HeadPageLayout from "@Components/Layout/HeadPageLayout.vue";
-import NewDatFileInput from "@Components/Formulary/NewDatFileInput.vue";
+import Layout from "@Components/HeadPageLayout.vue";
+import Control from "@Components/NewDatFileInput.vue";
 
-import { DocumentPlusIcon } from "@heroicons/vue/24/solid";
-import { NewDatForm } from "@Models/NewDatForm";
-import { NewDatFormErrors } from "@Interfaces/NewDatFormErrors";
+import { DocumentPlusIcon as Icon } from "@heroicons/vue/24/solid";
+import { NewDatForm as Form } from "@Models/NewDatForm";
+import { NewDatFormErrors as Errors } from "@Interfaces/NewDatFormErrors";
 
-export default defineComponent({
+export default component({
     components: {
-        HeadPageLayout,
-        NewDatFileInput,
-        DocumentPlusIcon
+        Layout,
+        Control,
+        Icon
     },
     data() {
         return {
             /**
              * Handle the current form.
              */
-            form: NewDatForm.create()
+            form: Form.create()
         };
     },
-    computed: mapGetters(["token"]),
+    computed: getters(["token"]),
     methods: {
         /**
          * Uploads all the files to the API.
@@ -88,7 +88,7 @@ export default defineComponent({
                     }
                 })
                 .then(() => window.location.replace("/"))
-                .catch((err: AxiosError<NewDatFormErrors>) => {
+                .catch((err: Error<Errors>) => {
                     const data = err.response?.data;
 
                     this.form.errors.dats = data?.dats ?? [];

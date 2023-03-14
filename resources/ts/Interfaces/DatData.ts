@@ -18,25 +18,35 @@
  */
 //#endregion
 
-import { User } from "vuex-types";
+import { UserData } from "./UserData";
 
 /**
  * The response data of the
- * {@link https://github.com/Mestre-Tramador/Exper-Dat-Reader/wiki/API.Routes.Login Login} request.
+ * {@link https://github.com/Mestre-Tramador/Exper-Dat-Reader/wiki/API.Routes.DatList Dat List} request.
  */
-export interface LoginData {
+export interface DatData {
     /**
-     * The JWT Token.
+     * The ID of the file.
      */
-    access_token: string;
+    id: number;
 
     /**
-     * Token type of Auth.
+     * Name of the file saved.
      */
-    token_type: "bearer";
+    name: string;
 
     /**
-     * The User authenticated.
+     * First time read.
      */
-    user: User;
+    first_read: string;
+
+    /**
+     * Last time read.
+     */
+    last_read: string;
+
+    /**
+     * Simple uploader User info.
+     */
+    user: UserData;
 }

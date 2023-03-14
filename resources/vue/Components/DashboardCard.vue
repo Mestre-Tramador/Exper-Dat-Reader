@@ -17,7 +17,7 @@
 -->
 
 <template>
-    <div class="p-1 w-96 h-20 bg-teal-100 rounded-lg shadow-md">
+    <div class="p-1 w-96 h-20 rounded-lg shadow-md" :class="bg">
         <div
             class="flex w-full h-full py-2 px-4 bg-white rounded-lg justify-between"
         >
@@ -45,9 +45,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent as component } from "vue";
 
-export default defineComponent({
+export default component({
     props: {
         /**
          * The bold string on the top of the card.
@@ -65,6 +65,14 @@ export default defineComponent({
         data: {
             type: [String, Number, Boolean],
             required: true
+        },
+
+        /**
+         * A background to style the card.
+         */
+        bg: {
+            type: String,
+            default: "bg-teal-100"
         }
     }
 });

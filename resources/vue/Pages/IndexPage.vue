@@ -17,7 +17,7 @@
 -->
 
 <template>
-    <main-layout>
+    <layout>
         <div class="flex">
             <img
                 src="imgs/logo.png"
@@ -34,7 +34,7 @@
                 class="text-blue-500 hover:text-teal-600 m-auto"
                 :to="{ name: 'Dashboard' }"
             >
-                <document-chart-bar-icon class="h-32 w-32" />
+                <dashboard-icon class="h-32 w-32" />
             </router-link>
             <!-- End of "Dashboard" button. -->
 
@@ -43,48 +43,49 @@
                 class="text-blue-500 hover:text-emerald-500 m-auto"
                 :to="{ name: 'New Dat' }"
             >
-                <document-plus-icon class="h-32 w-32" />
+                <new-dat-icon class="h-32 w-32" />
             </router-link>
             <!-- End of "Add File" button. -->
 
-            <!-- Future "File List" button. -->
+            <!-- Start of "File List" button. -->
             <router-link
                 class="text-blue-500 hover:text-blue-700 m-auto"
-                to="/"
+                :to="{ name: 'Listage' }"
             >
-                <document-text-icon class="h-32 w-32" />
+                <listage-icon class="h-32 w-32" />
             </router-link>
+            <!-- End of "File List" button. -->
 
             <!-- Future "Dump Files" button. -->
             <router-link
                 class="text-blue-500 hover:text-cyan-800 m-auto"
                 to="/"
             >
-                <document-check-icon class="h-32 w-32" />
+                <dump-icon class="h-32 w-32" />
             </router-link>
         </div>
-    </main-layout>
+    </layout>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent as component } from "vue";
 
-import MainLayout from "@Components/Layout/MainLayout.vue";
+import Layout from "@Components/MainLayout.vue";
 
 import {
-    DocumentChartBarIcon,
-    DocumentCheckIcon,
-    DocumentPlusIcon,
-    DocumentTextIcon
+    DocumentChartBarIcon as DashboardIcon,
+    DocumentCheckIcon as DumpIcon,
+    DocumentPlusIcon as NewDatIcon,
+    DocumentTextIcon as ListageIcon
 } from "@heroicons/vue/24/solid";
 
-export default defineComponent({
+export default component({
     components: {
-        MainLayout,
-        DocumentChartBarIcon,
-        DocumentCheckIcon,
-        DocumentPlusIcon,
-        DocumentTextIcon
+        Layout,
+        DashboardIcon,
+        DumpIcon,
+        ListageIcon,
+        NewDatIcon
     },
     created() {
         if (this.$route.query.p) {

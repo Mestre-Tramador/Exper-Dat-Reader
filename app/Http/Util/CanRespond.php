@@ -81,6 +81,21 @@ trait CanRespond
     }
 
     /**
+     * Respond without a JSON Message, but maybe with some headers.
+     *
+     * * Code: **204**
+     * * Status: **No Content**
+     *
+     * @param  string $message
+     * @return JsonResponse
+     * @final
+     */
+    final protected function respondWithNoContent(): JsonResponse
+    {
+        return $this->respond([], 204);
+    }
+
+    /**
      * Respond and redirect to the new `$route`.
      *
      * * Code: **302**

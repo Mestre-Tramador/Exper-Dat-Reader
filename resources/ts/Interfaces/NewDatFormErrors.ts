@@ -24,5 +24,8 @@ import { FormErrors } from "@Interfaces/FormErrors";
  * The errors specific to a `NewDatForm`.
  */
 export interface NewDatFormErrors extends FormErrors {
+    /**
+     * Errors from the files.
+     */
     dats: string[];
 }

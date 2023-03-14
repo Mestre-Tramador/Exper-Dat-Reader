@@ -42,7 +42,9 @@
 </template>
 
 <script lang="ts">
-export default {
+import { defineComponent as component } from "vue";
+
+export default component({
     props: {
         /**
          * The Element `id` attribute.
@@ -107,5 +109,5 @@ export default {
             }
         };
     }
-};
+});
 </script>

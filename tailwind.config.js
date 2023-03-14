@@ -6,8 +6,8 @@
 module.exports = {
   content: [
     "./resources/views/*.blade.php",
-    "./resources/ts/Pages/**/*.vue",
-    "./resources/ts/Components/**/*.vue",
+    "./resources/vue/Pages/**/*.vue",
+    "./resources/vue/Components/**/*.vue",
   ],
   theme: {
     extend: {

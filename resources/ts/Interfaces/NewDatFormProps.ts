@@ -24,5 +24,8 @@ import { FormProps } from "@Interfaces/FormProps";
  * The properties specific to a `NewDatForm`.
  */
 export interface NewDatFormProps extends FormProps {
+    /**
+     * The files to upload.
+     */
     dats: File[];
 }

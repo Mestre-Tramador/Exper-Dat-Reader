@@ -38,7 +38,7 @@
             @change="emitFiles"
         />
 
-        <document-arrow-up-icon class="w-6 h6" />
+        <icon class="w-6 h6" />
 
         <span v-if="!error" class="block">Drop your files here</span>
         <span v-else class="block italic">{{ error }}</span>
@@ -46,13 +46,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent as component } from "vue";
 
-import { DocumentArrowUpIcon } from "@heroicons/vue/24/solid";
+import { DocumentArrowUpIcon as Icon } from "@heroicons/vue/24/solid";
 
-export default defineComponent({
+export default component({
     components: {
-        DocumentArrowUpIcon
+        Icon
     },
     props: {
         /**

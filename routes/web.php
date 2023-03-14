@@ -14,6 +14,7 @@ $router->group(['prefix' => 'api'], function () use ($router): void {
     | Auth
     |----------------------------------------------------------
     */
+    $router->get('auth', 'AuthController@verify');
     $router->post('register', 'AuthController@register');
     $router->post('login', 'AuthController@login');
     $router->post('logout', 'AuthController@logout');

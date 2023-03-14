@@ -83,12 +83,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import { mapGetters, mapMutations } from "vuex";
+import { defineComponent as component } from "vue";
+import { mapGetters as getters, mapMutations as mutations } from "vuex";
 
-import { VueRoute } from "vue-types";
+import { VueRoute as Route } from "vue-types";
 
-export default defineComponent({
+export default component({
     data() {
         return {
             /**
@@ -99,7 +99,7 @@ export default defineComponent({
             /**
              * The pages on the dropdown menu.
              */
-            get pages(): VueRoute[] {
+            get pages(): Route[] {
                 return [
                     {
                         route: "/",
@@ -109,9 +109,9 @@ export default defineComponent({
             }
         };
     },
-    computed: mapGetters(["user"]),
+    computed: getters(["user"]),
     methods: {
-        ...mapMutations(["setUser", "setToken"]),
+        ...mutations(["setUser", "setToken"]),
 
         /**
          * Switch between "open" and "close" the dropdown menu.

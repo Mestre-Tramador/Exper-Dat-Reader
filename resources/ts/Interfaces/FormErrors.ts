@@ -27,6 +27,10 @@
  * to the whole Form.
  */
 export interface FormErrors {
-    message: string;
     [error: string]: string | string[];
+
+    /**
+     * A general error.
+     */
+    message: string;
 }

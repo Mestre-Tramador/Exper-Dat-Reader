@@ -11,10 +11,10 @@
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "paths": {
-      "@Components/*": ["resources/ts/Components/*"],
       "@Interfaces/*": ["resources/ts/Interfaces/*"],
       "@Models/*": ["resources/ts/Models/*"],
-      "@Pages/*": ["resources/ts/Pages/*"]
+      "@Components/*": ["resources/vue/Components/*"],
+      "@Pages/*": ["resources/vue/Pages/*"]
     },
     "strictBindCallApply": true,
     "strictFunctionTypes": true,

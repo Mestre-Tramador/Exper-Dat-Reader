@@ -24,6 +24,13 @@ import { FormErrors } from "@Interfaces/FormErrors";
  * The errors specific to a `AuthForm`.
  */
 export interface AuthFormErrors extends FormErrors {
+    /**
+     * Errors of the email field.
+     */
     email: string[];
+
+    /**
+     * Errors of the password field.
+     */
     password: string[];
 }
