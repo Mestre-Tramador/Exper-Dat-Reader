@@ -1,5 +1,14 @@
 {
   "MD024": {
     "siblings_only": true
-  }
+  },
+  "MD033": {
+    "allowed_elements": [
+      "p",
+      "a",
+      "img"
+    ]
+  },
+  "MD036": false,
+  "MD041": false
 }

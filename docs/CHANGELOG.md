@@ -5,12 +5,29 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog], and this project adheres to [Semantic
 Versioning].
 
+**Read it also in: [Español], [Português Brasileiro]**
+
 ## [Unreleased]
 
-- Changelog on different languages
 - Wiki on different languages
 - GitHub Pull Requests templates
 - Unit Testing
+
+## [0.0.11] - 2023-05-31
+
+### Added
+
+- Changelog on different languages
+
+### Updated
+
+- [Keep a Changelog] URL to new version
+- Some Composer packages
+- Sass Folder Name
+
+### Fixed
+
+- Documentation files with incorrect words or styling
 
 ## [0.0.10] - 2023-03-14
 
@@ -79,7 +96,7 @@ Versioning].
 ### Implemented
 
 - Last Done Dat API Route
-- Typescript Response Data interfaces with keys
+- TypesScript Response Data interfaces with keys
 
 ### Improved
 
@@ -110,7 +127,7 @@ Versioning].
 
 ### Improved
 
-- General readability on some JavaScript and Typescript files
+- General readability on some JavaScript and TypeScript files
 
 ### Fixed
 
@@ -249,13 +266,14 @@ Versioning].
 
 ### Other
 
-- Initial Commit
 - Documented PHP files as of Laravel's Standards
-- Set documentation for Github's Community Standards
+- Set documentation for GitHub's Community Standards
 
-[Keep a Changelog]: https://keepachangelog.com/en/1.0.0/
+[Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 [Semantic Versioning]: https://semver.org/spec/v2.0.0.html
-[Unreleased]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.9...HEAD
+[Unreleased]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.11...HEAD
+[0.0.11]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.10...v0.0.11
+[0.0.10]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.9...v0.0.10
 [0.0.9]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.8...v0.0.9
 [0.0.8]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.7...v0.0.8
 [0.0.7]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.6...v0.0.7

@@ -1,4 +1,4 @@
-# Pautas de contribución
+# Pautas de Contribución
 
 Si desea contribuir, primero es bueno leer el [Código de conducta] y la
 [Política de Seguridad], ambos archivos pueden resolver un montón de preguntas

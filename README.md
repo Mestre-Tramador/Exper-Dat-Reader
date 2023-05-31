@@ -1,5 +1,4 @@
-<!-- markdownlint-disable MD033 MD041 -->
-<p align="center">
+<p id="exper-dat-reader" align="center">
     <a href="#exper-dat-reader">
         <img
             src="docs/assets/images/logo.png"
@@ -9,33 +8,35 @@
         />
     </a>
 </p>
-<!-- markdownlint-enable MD033 MD041 -->
 
 **Read it also in: [Español], [Português Brasileiro]**
 
 ---
 
-<!-- markdownlint-disable MD013 MD033 -->
 <p align="center">
-    <a href="https://www.php.net/" target="_blank"><img src="docs/assets/badges/php.svg" alt="PHP" /></a>
-    <a href="https://www.typescriptlang.org/" target="_blank"><img src="docs/assets/badges/ts.svg" alt="TypeScript" /></a>
-    <a href="https://sass-lang.com/" target="_blank"><img src="docs/assets/badges/sass.svg" alt="Sass" /></a>
-    <a href="https://lumen.laravel.com/docs/9.x" target="_blank"><img src="docs/assets/badges/lumen.svg" alt="Lumen" /></a>
-    <a href="https://vuejs.org/" target="_blank"><img src="docs/assets/badges/vue.svg" alt="Vue.js" /></a>
-    <a href="https://tailwindcss.com/" target="_blank"><img src="docs/assets/badges/tailwindcss.svg" alt="Tailwind CSS" /></a>
-    <a href="https://www.sqlite.org/index.html" target="_blank"><img src="docs/assets/badges/sqlite.svg" alt="SQLite" /></a>
+
+[![PHP](docs/assets/badges/php.svg)](https://www.php.net/)
+[![TypeScript](assets/badges/ts.svg)](https://www.typescriptlang.org/)
+[![Sass](assets/badges/sass.svg)](https://sass-lang.com/)
+[![Lumen](assets/badges/lumen.svg)](https://lumen.laravel.com/docs/9.x)
+[![Vue](assets/badges/vue.svg)](https://vuejs.org/)
+[![Tailwind CSS](assets/badges/tailwindcss.svg)](https://tailwindcss.com/)
+[![SQLite](assets/badges/sqlite.svg)](https://www.sqlite.org/index.html)
+
 </p>
+
 <p align="center">
-    <a href="https://getcomposer.org/" target="_blank"><img src="docs/assets/badges/composer.svg" alt="Composer" /></a>
-    <a href="https://jwt.io/" target="_blank"><img src="docs/assets/badges/jwt.svg" alt="Json Web Tokens" /></a>
-    <a href="https://www.npmjs.com/" target="_blank"><img src="docs/assets/badges/npm.svg" alt="npm" /></a>
-    <a href="https://postcss.org/" target="_blank"><img src="docs/assets/badges/postcss.svg" alt="PostCSS" /></a>
-    <a href="https://eslint.org/" target="_blank"><img src="docs/assets/badges/eslint.svg" alt="ESLint" /></a>
-    <a href="https://prettier.io/" target="_blank"><img src="docs/assets/badges/prettier.svg" alt="Prettier" /></a>
-    <a href="https://editorconfig.org/" target="_blank"><img src="docs/assets/badges/editorconfig.svg" alt="EditorConfig" /></a>
-    <a href="https://keepachangelog.com/en/1.0.0/" target="_blank"><img src="docs/assets/badges/changelog.svg" alt="Keep a Changelog" /></a>
+
+[![Composer](docs/assets/badges/composer.svg)](https://getcomposer.org/)
+[![Json Web Tokens](docs/assets/badges/jwt.svg)](https://jwt.io/)
+[![npm](docs/assets/badges/npm.svg)](https://www.npmjs.com/)
+[![PostCSS](docs/assets/badges/postcss.svg)](https://postcss.org/)
+[![ESLint](docs/assets/badges/eslint.svg)](https://eslint.org/)
+[![Prettier](docs/assets/badges/prettier.svg)](https://prettier.io/)
+[![EditorConfig](docs/assets/badges/editorconfig.svg)](https://editorconfig.org/)
+[![Keep a Changelog](docs/assets/badges/changelog.svg)](https://keepachangelog.com/en/1.1.0/)
+
 </p>
-<!-- markdownlint-enable MD013 MD033 -->
 
 The Exper-Dat-Reader is a project based on an old test to a job application which
 required a PHP/JS system to read encrypted `.dat` files and dump their data into

@@ -1,6 +1,6 @@
 {
   "name": "exper-dat-reader",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "Read .dat files easily and store their dumped data.",
   "keywords": [
     "exper",
