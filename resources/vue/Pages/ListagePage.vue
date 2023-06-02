@@ -63,9 +63,7 @@ export default component({
                     Authorization: `Bearer ${this.token}`
                 }
             })
-            .then(
-                (res: Response<Data[]>) => (this.dats = Dat.fromData(res.data))
-            )
+            .then((res: Response<Data[]>) => (this.dats = Dat.fromData(res.data)))
             .catch(() => (this.dats = null));
     }
 });

@@ -19,16 +19,10 @@
 <template>
     <layout>
         <div class="max-w-2xl">
-            <img
-                src="imgs/logo.png"
-                alt="Exper-Dat-Reader"
-                class="w-1/2 my-2 mx-auto"
-            />
+            <img src="imgs/logo.png" alt="Exper-Dat-Reader" class="w-1/2 my-2 mx-auto" />
 
             <div class="w-full mb-4">
-                <div
-                    class="h-1 mx-auto gradient w-1/2 opacity-25 my-0 py-0 rounded"
-                ></div>
+                <div class="h-1 mx-auto gradient w-1/2 opacity-25 my-0 py-0 rounded"></div>
             </div>
 
             <div class="flex flex-wrap">

@@ -31,11 +31,7 @@
             @input="($event: Event) => $emit('update:modelValue', inputValue($event))"
         />
 
-        <p
-            v-for="(error, index) in errors"
-            :key="index"
-            class="text-red-500 text-xs italic"
-        >
+        <p v-for="(error, index) in errors" :key="index" class="text-red-500 text-xs italic">
             {{ error }}
         </p>
     </div>

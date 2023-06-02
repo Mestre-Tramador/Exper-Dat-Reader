@@ -134,10 +134,7 @@ export default component({
          * Emit the files as an array.
          */
         emitFiles(): void {
-            this.$emit(
-                "update:modelValue",
-                this.rechangeFiles(this.getInput())
-            );
+            this.$emit("update:modelValue", this.rechangeFiles(this.getInput()));
         },
 
         /**

@@ -13,6 +13,18 @@ Versioning].
 - Plantillas de Pull Requests de GitHub
 - Unit Testing
 
+## [0.0.12] - 2023-06-02
+
+### Mejorado
+
+- Estilo de las listas de ignorados y de atributos de Git
+- Ancho de línea del Prettier, por lo tanto, legibilidad de archivos JavaScript
+  y TypeScript
+
+### Arreglado
+
+- Rutas incorrectas para las insignias en el archivo léame principal
+
 ## [0.0.11] - 2023-05-31
 
 ### Adicionado
@@ -271,7 +283,8 @@ Versioning].
 
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 [Semantic Versioning]: https://semver.org/spec/v2.0.0.html
-[No Publicado]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.11...HEAD
+[No Publicado]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.12...HEAD
+[0.0.12]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.11...v0.0.12
 [0.0.11]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.10...v0.0.11
 [0.0.10]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.9...v0.0.10
 [0.0.9]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.8...v0.0.9

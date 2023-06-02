@@ -25,11 +25,7 @@
         <template #page>
             <form class="text-center" @submit.prevent="upload">
                 <div class="p-2">
-                    <control
-                        id="dats"
-                        v-model="form.dats"
-                        :error="form.errors.message"
-                    />
+                    <control id="dats" v-model="form.dats" :error="form.errors.message" />
                 </div>
 
                 <button

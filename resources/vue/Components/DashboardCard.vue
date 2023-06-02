@@ -18,9 +18,7 @@
 
 <template>
     <div class="p-1 w-96 h-20 rounded-lg shadow-md" :class="bg">
-        <div
-            class="flex w-full h-full py-2 px-4 bg-white rounded-lg justify-between"
-        >
+        <div class="flex w-full h-full py-2 px-4 bg-white rounded-lg justify-between">
             <div class="my-auto">
                 <p class="font-bold">
                     {{ title }}

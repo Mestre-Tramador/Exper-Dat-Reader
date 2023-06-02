@@ -82,9 +82,7 @@ export class Dat {
         });
 
         if (first.getTime() > last.getTime()) {
-            throw new RangeError(
-                `${first.toString()} is bigger than ${last.toString()}!`
-            );
+            throw new RangeError(`${first.toString()} is bigger than ${last.toString()}!`);
         }
 
         return new this(id, name, first_read, last_read, user);

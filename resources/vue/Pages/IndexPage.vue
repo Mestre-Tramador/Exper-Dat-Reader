@@ -19,11 +19,7 @@
 <template>
     <layout class="main-layout-preserve">
         <div class="flex">
-            <img
-                src="imgs/logo.png"
-                alt="Exper-Dat-Reader"
-                class="w-96 my-2 mx-auto"
-            />
+            <img src="imgs/logo.png" alt="Exper-Dat-Reader" class="w-96 my-2 mx-auto" />
         </div>
 
         <hr />
@@ -59,19 +55,13 @@
             <!-- End of "Add File" button. -->
 
             <!-- Start of "File List" button. -->
-            <router-link
-                class="text-blue-500 hover:text-blue-700 m-auto"
-                :to="{ name: 'Listage' }"
-            >
+            <router-link class="text-blue-500 hover:text-blue-700 m-auto" :to="{ name: 'Listage' }">
                 <listage-icon class="h-32 w-32" />
             </router-link>
             <!-- End of "File List" button. -->
 
             <!-- Start of "Dump Files" button. -->
-            <button
-                class="text-blue-500 hover:text-cyan-800 m-auto"
-                @click="dump"
-            >
+            <button class="text-blue-500 hover:text-cyan-800 m-auto" @click="dump">
                 <dump-icon class="h-32 w-32" />
             </button>
             <!-- End of "Dump Files" button. -->
@@ -133,9 +123,7 @@ export default component({
                 .catch((err: Error) => {
                     this.dumping = false;
 
-                    this.error =
-                        (err.response?.data as string) ??
-                        "Erro não identificado";
+                    this.error = (err.response?.data as string) ?? "Erro não identificado";
 
                     setTimeout(window.location.reload, 1.5e3);
                 });

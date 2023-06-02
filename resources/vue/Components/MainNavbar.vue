@@ -27,11 +27,7 @@
                     :aria-expanded="show"
                     @click="showMenu"
                 >
-                    <img
-                        class="w-9 h-9 rounded-full"
-                        src="imgs/user.jpg"
-                        alt="User"
-                    />
+                    <img class="w-9 h-9 rounded-full" src="imgs/user.jpg" alt="User" />
                     <span class="sr-only">Open User menu.</span>
                 </button>
 

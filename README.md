@@ -16,12 +16,12 @@
 <p align="center">
 
 [![PHP](docs/assets/badges/php.svg)](https://www.php.net/)
-[![TypeScript](assets/badges/ts.svg)](https://www.typescriptlang.org/)
-[![Sass](assets/badges/sass.svg)](https://sass-lang.com/)
-[![Lumen](assets/badges/lumen.svg)](https://lumen.laravel.com/docs/9.x)
-[![Vue](assets/badges/vue.svg)](https://vuejs.org/)
-[![Tailwind CSS](assets/badges/tailwindcss.svg)](https://tailwindcss.com/)
-[![SQLite](assets/badges/sqlite.svg)](https://www.sqlite.org/index.html)
+[![TypeScript](docs/assets/badges/ts.svg)](https://www.typescriptlang.org/)
+[![Sass](docs/assets/badges/sass.svg)](https://sass-lang.com/)
+[![Lumen](docs/assets/badges/lumen.svg)](https://lumen.laravel.com/docs/9.x)
+[![Vue](docs/assets/badges/vue.svg)](https://vuejs.org/)
+[![Tailwind CSS](docs/assets/badges/tailwindcss.svg)](https://tailwindcss.com/)
+[![SQLite](docs/assets/badges/sqlite.svg)](https://www.sqlite.org/index.html)
 
 </p>
 

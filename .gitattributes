@@ -1,8 +1,3 @@
-################################################
-#         Laravel Git Attributes File.         #
-# Got from: https://github.com/laravel/laravel #
-################################################
-
 # General configuration preset on Laravel.
 * text=auto
 
@@ -11,10 +6,6 @@
 *.blade.php diff=html
 *.css       diff=css
 *.md        diff=markdown
-
-CHANGELOG.md export-ignore
-.styleci.yml export-ignore
-/.github     export-ignore
 
 # Fix .env example File being considered
 # a Shell Script.

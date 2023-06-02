@@ -19,5 +19,8 @@ insert_final_newline = true
 
 # JSON, XML, YAML and so are better
 # with less indent spacing.
-[*.{json,xml,yml,yaml,lock}]
+#
+# Also Markdown becomes more easier
+# to indent.
+[*.{md,json,xml,yml,yaml,lock}]
 indent_size = 2

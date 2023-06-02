@@ -13,6 +13,17 @@ Versioning].
 - GitHub Pull Requests templates
 - Unit Testing
 
+## [0.0.12] - 2023-06-02
+
+### Improved
+
+- Git Ignore list and Git Attributes list styling
+- Prettier line width, thus readability of JavaScript and TypeScript files
+
+### Fixed
+
+- Incorrect paths for badges on main readme
+
 ## [0.0.11] - 2023-05-31
 
 ### Added
@@ -271,7 +282,8 @@ Versioning].
 
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 [Semantic Versioning]: https://semver.org/spec/v2.0.0.html
-[Unreleased]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.11...HEAD
+[Unreleased]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.12...HEAD
+[0.0.12]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.11...v0.0.12
 [0.0.11]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.10...v0.0.11
 [0.0.10]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.9...v0.0.10
 [0.0.9]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.8...v0.0.9

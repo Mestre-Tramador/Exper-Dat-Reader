@@ -18,7 +18,7 @@
 
 <template>
     <section>
-        <navbar v-if="isLoggedIn"></navbar>
+        <navbar v-if="isLoggedIn" />
 
         <div class="flex h-screen w-screen">
             <div id="main-card" class="bg-white border-b py-4 m-auto rounded">

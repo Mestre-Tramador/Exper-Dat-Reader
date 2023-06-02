@@ -27,13 +27,7 @@ import { AxiosResponse } from "axios";
 import { User as UserModel } from "@Models/User";
 
 import type { VueComponents, VueRoutes } from "vue-types";
-import type {
-    UserGetters,
-    UserMutations,
-    User,
-    UserState,
-    UserPlugins
-} from "vuex-types";
+import type { UserGetters, UserMutations, User, UserState, UserPlugins } from "vuex-types";
 import {
     NavigationGuardNext,
     NavigationGuardWithThis,
@@ -118,9 +112,7 @@ const guard: NavigationGuardWithThis<UserGetters> = function (
     /**
      * Verify if the User is authenticated.
      */
-    const authenticated = this.isAuthenticated as unknown as
-        | Promise<AxiosResponse>
-        | false;
+    const authenticated = this.isAuthenticated as unknown as Promise<AxiosResponse> | false;
 
     /**
      * Handle the request if the User

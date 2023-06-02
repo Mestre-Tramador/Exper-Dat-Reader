@@ -25,15 +25,7 @@ import * as Vuex from "vuex";
 import axios from "axios";
 import VueAxios from "vue-axios";
 
-import {
-    components,
-    routes,
-    guard,
-    state,
-    mutations,
-    getters,
-    plugins
-} from "../ts/index.ts";
+import { components, routes, guard, state, mutations, getters, plugins } from "../ts/index.ts";
 
 //#region Plugins
 /**

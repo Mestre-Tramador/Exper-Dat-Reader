@@ -46,10 +46,7 @@
                             class="h-12 w-12"
                         />
 
-                        <worst-seller-icon
-                            v-if="key === 'worst_seller'"
-                            class="h-12 w-12"
-                        />
+                        <worst-seller-icon v-if="key === 'worst_seller'" class="h-12 w-12" />
                     </template>
                 </card>
             </div>
