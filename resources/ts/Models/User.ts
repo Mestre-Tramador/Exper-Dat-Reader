@@ -21,7 +21,7 @@
 import { User as StateUser } from "vuex-types";
 
 /**
- * A User is a person who can upload files and
+ * An User is a person who can upload files and
  * use the Exper-Dat-Reader.
  *
  * @author Mestre-Tramador

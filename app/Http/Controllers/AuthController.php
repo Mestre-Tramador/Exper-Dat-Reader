@@ -98,7 +98,7 @@ class AuthController extends Controller
     /**
      * Login into the API, getting a JWT for the use on the system.
      *
-     * If there is already a User, then it's redirected to the main page.
+     * If there is already an User, then it's redirected to the main page.
      *
      * @return JsonResponse
      */
@@ -159,7 +159,7 @@ class AuthController extends Controller
     }
 
     /**
-     * Make a simple verification if there is a User
+     * Make a simple verification if there is an User
      * attached to the JWT.
      *
      * @return JsonResponse

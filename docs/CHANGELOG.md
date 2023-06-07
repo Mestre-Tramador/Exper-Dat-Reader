@@ -11,7 +11,27 @@ Versioning].
 
 - Wiki on different languages
 - GitHub Pull Requests templates
-- Unit Testing
+
+## [0.0.13] - 2023-06-07
+
+### Implemented
+
+- Unit testing on User API Routes
+- Unit testing on Dat API Routes
+
+### Added
+
+- New trait to get the storage path of `.dat` and `.done.dat` files based on the
+  implementing class
+- Environment keys for unit testing
+- Readme files unit testing tutorial
+
+### Fixed
+
+- Ignored JavaScript files Prettier and ESLint errors
+- Artisan commands wrong or missing exit codes
+- Routes with ID paths regex
+- Various misspellings on doc comments
 
 ## [0.0.12] - 2023-06-02
 
@@ -282,7 +302,10 @@ Versioning].
 
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 [Semantic Versioning]: https://semver.org/spec/v2.0.0.html
-[Unreleased]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.12...HEAD
+[Español]: CHANGELOG.ES.md
+[Português Brasileiro]: CHANGELOG.PT-BR.md
+[Unreleased]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.13...HEAD
+[0.0.13]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.12...v0.0.13
 [0.0.12]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.11...v0.0.12
 [0.0.11]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.10...v0.0.11
 [0.0.10]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.9...v0.0.10

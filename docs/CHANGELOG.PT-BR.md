@@ -10,7 +10,27 @@ O formato é baseado em [Keep a Changelog], e esse projeto adere à [Semantic Ve
 
 - Wiki em diferentes línguas
 - Templates de Pull Requests do GitHub
-- Unit Testing
+
+## [0.0.13] - 2023-06-07
+
+### Implementado
+
+- Tests em rotas de API de Usuários
+- Tests em rotas API dos arquivos Dat
+
+### Adicionado
+
+- Novo trait para obter o caminho de armazenamento dos arquivos `.dat` e
+  `.done.dat` com base na classe de implementação
+- Keys de ambiente para testes
+- Tutorial de unit testing de arquivos leiame
+
+### Corrigido
+
+- Erros nos arquivos JavaScript ignorados por Prettier e ESLint
+- Exit codes errados ou faltando em comandos Artisan
+- Regex em rotas com partes de ID
+- Vários erros ortográficos nos comentários de documentação
 
 ## [0.0.12] - 2023-06-02
 
@@ -283,7 +303,10 @@ O formato é baseado em [Keep a Changelog], e esse projeto adere à [Semantic Ve
 
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 [Semantic Versioning]: https://semver.org/spec/v2.0.0.html
-[Não Publicado]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.12...HEAD
+[English]: CHANGELOG.md
+[Español]: CHANGELOG.ES.md
+[Não Publicado]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.13...HEAD
+[0.0.13]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.12...v0.0.13
 [0.0.12]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.11...v0.0.12
 [0.0.11]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.10...v0.0.11
 [0.0.10]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.9...v0.0.10

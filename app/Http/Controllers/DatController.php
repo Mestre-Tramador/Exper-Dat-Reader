@@ -23,6 +23,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dat;
+use App\Models\Util\FilePaths;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -35,12 +36,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  */
 class DatController extends Controller
 {
-    /**
-     * The storage path to `.dat` files.
-     *
-     * @var string
-     */
-    private const PATH_IN = 'data/in';
+    use FilePaths;
 
     /**
      * Create a new controller instance.
@@ -153,7 +149,13 @@ class DatController extends Controller
                 continue;
             }
 
-            if (!$storage->putFileAs(self::PATH_IN, $file, $dat->name)) {
+            if (
+                !$storage->putFileAs(
+                    $this->getDataPath(),
+                    $file,
+                    $dat->name
+                )
+            ) {
                 $readFile['error'] = 'File was not stored';
 
                 $code = 500;
@@ -245,7 +247,7 @@ class DatController extends Controller
 
         if (
             !$storage->putFileAs(
-                self::PATH_IN,
+                $this->getDataPath(),
                 $file,
                 $dat->name
             )

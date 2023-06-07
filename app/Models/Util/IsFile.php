@@ -22,8 +22,6 @@
 
 namespace App\Models\Util;
 
-use App\Models\Dat;
-use App\Models\DoneDat;
 use Exception;
 use LogicException;
 use ReflectionClassConstant;
@@ -36,9 +34,12 @@ use ReflectionException;
  */
 trait IsFile
 {
+    use FilePaths;
+
     /**
      * Additionally has two new attributes for the files:
      * * **name:** Return a string on the format `id.ext`;
+     * * **path:** The data path of the file, including its name;
      * * **file:** Get the contents of the stored file, or return `null`.
      *
      * For other `$key`s, it calls its parents implementations.
@@ -53,12 +54,10 @@ trait IsFile
                 return $this->callIfExtConstIsDefined(
                     fn(): string => $this->getFileName($this->id, $this::class::EXT)
                 );
+            case 'path':
+                return "{$this->getDataPath()}/{$this->name}";
             case 'file':
-                return $this->callIfExtConstIsDefined(
-                    fn(): string|null => app('storage')::disk('local')->get(
-                        "{$this->getDataPath()}/{$this->getFileName($this->id, $this::class::EXT)}"
-                    )
-                );
+                return app('storage')::disk('local')->get($this->path);
             default:
                 return parent::__get($key);
         }
@@ -82,24 +81,6 @@ trait IsFile
         }
 
         return "{$name}.{$ext}";
-    }
-
-    /**
-     * According to the `class` which is using the
-     * `trait`, a path in the storage is returned.
-     *
-     * @return string
-     */
-    protected function getDataPath(): string
-    {
-        switch ($this::class) {
-            case Dat::class:
-                return 'data/in';
-            case DoneDat::class:
-                return 'data/out';
-            default:
-                return 'data';
-        }
     }
 
     /**

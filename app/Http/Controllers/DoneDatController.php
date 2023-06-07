@@ -24,6 +24,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Dat;
 use App\Models\DoneDat;
+use App\Models\Util\FilePaths;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 
@@ -35,12 +36,7 @@ use Illuminate\Http\JsonResponse;
  */
 class DoneDatController extends Controller
 {
-    /**
-     * The storage path to `.done.dat` files.
-     *
-     * @var string
-     */
-    private const PATH_OUT = 'data/out';
+    use FilePaths;
 
     /**
      * Create a new controller instance.
@@ -130,7 +126,7 @@ class DoneDatController extends Controller
 
         if (
             !app('storage')::disk('local')->append(
-                self::PATH_OUT."/{$doneDat->name}",
+                "{$this->getDataPath()}/{$doneDat->name}",
                 DoneDat::stringify($dump)
             )
         ) {

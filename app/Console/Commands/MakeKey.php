@@ -72,7 +72,9 @@ final class MakeKey extends Command
         $app_key = env(self::APP_KEY);
 
         if (strlen($app_key) === 32) {
-            return $this->OK();
+            $this->info('Key already made!');
+
+            return self::SUCCESS;
         }
 
         /**
@@ -111,5 +113,7 @@ final class MakeKey extends Command
 
             return self::FAILURE;
         }
+
+        return self::FAILURE;
     }
 }

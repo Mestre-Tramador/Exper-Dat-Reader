@@ -19,8 +19,8 @@ node_modules/
 .env
 .env.backup
 
-# Database file
-database/database.sqlite
+# Database files
+database/*.sqlite
 
 # PHPUnit
 .phpunit.result.cache

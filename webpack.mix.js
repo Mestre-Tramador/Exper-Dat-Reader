@@ -39,33 +39,25 @@ mix.webpackConfig({
         ]
     },
     resolve: {
-        extensions: [
-            "*",
-            ".js",
-            ".jsx",
-            ".ts",
-            ".d.ts",
-            ".tsx",
-            ".vue"
-        ],
+        extensions: ["*", ".js", ".jsx", ".ts", ".d.ts", ".tsx", ".vue"],
         alias: {
-            "@Interfaces": path.resolve(__dirname, "resources/ts/Interfaces/"),
-            "@Models": path.resolve(__dirname, "resources/ts/Models/"),
-            "@Components": path.resolve(__dirname, "resources/vue/Components/"),
-            "@Pages": path.resolve(__dirname, "resources/vue/Pages/"),
+            "@Interfaces": path.resolve(__dirname, "resources", "ts", "Interfaces"),
+            "@Models": path.resolve(__dirname, "resources", "ts", "Models"),
+            "@Components": path.resolve(__dirname, "resources", "vue", "Components"),
+            "@Pages": path.resolve(__dirname, "resources", "vue", "Pages")
         }
-    },
+    }
 });
 //#endregion
 
 //#region JS
-mix.ts("resources/ts/*.ts", "public/dist/js");
+mix.ts("resources/ts/index.ts", "public/dist/js");
 mix.js("resources/js/app.js", "public/dist/js");
 mix.vue({ version: 3 });
 //#endregion
 
 //#region CSS
-mix.sass("resources/sass/index.scss", "public/dist/css/app.css");
+mix.sass("resources/scss/index.scss", "public/dist/css/app.css");
 mix.postCss("resources/css/tailwind.css", "public/dist/css").tailwind("./tailwind.config.js");
 //#endregion
 

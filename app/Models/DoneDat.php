@@ -32,6 +32,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * The `.done.dat` files contains a dump of various read `.dat` files.
  *
  * @author Mestre-Tramador
+ * @method static string getDataPath() Can return publicly the path of the saving destination.
  */
 class DoneDat extends Model implements ModelFile
 {

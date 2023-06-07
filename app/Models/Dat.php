@@ -34,6 +34,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  * A `.dat` file contains a series of encrypted data.
  *
  * @author Mestre-Tramador
+ * @method static string getDataPath() Can return publicly the path of the saving destination.
  */
 class Dat extends Model implements ModelFile
 {

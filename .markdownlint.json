@@ -6,7 +6,9 @@
     "allowed_elements": [
       "p",
       "a",
-      "img"
+      "img",
+      "details",
+      "summary"
     ]
   },
   "MD036": false,

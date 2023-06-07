@@ -57,6 +57,19 @@ final class Test extends Command
      */
     public function handle(): int
     {
-        return shell_exec('./vendor/bin/phpunit tests') ? self::SUCCESS : self::FAILURE;
+        /**
+         * The shell execution result.
+         *
+         * @var string|false|null $sh
+         */
+        $sh = shell_exec('./vendor/bin/phpunit');
+
+        if ($sh) {
+            $this->line($sh);
+
+            return self::SUCCESS;
+        }
+
+        return self::FAILURE;
     }
 }

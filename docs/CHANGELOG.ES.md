@@ -11,7 +11,27 @@ Versioning].
 
 - Wiki en diferentes idiomas
 - Plantillas de Pull Requests de GitHub
-- Unit Testing
+
+## [0.0.13] - 2023-06-07
+
+### Implementado
+
+- Pruebas en las rutas de la API de Usuarios
+- Pruebas en las rutas de la API de los archivos Dat
+
+### Adicionado
+
+- Nuevo trait para obtener la ruta de almacenamiento de los archivos `.dat` y
+  `.done.dat` en función de la clase de implementación
+- Keys de entorno para pruebas
+- Tutorial de unit testing de archivos léame
+
+### Arreglado
+
+- Errores en archivos JavaScript ignorados por Prettier y ESLint
+- Exit codes incorrectos o faltantes en comandos de Artisan
+- Regex de las rutas con partes de ID
+- Varias faltas de ortografía en los comentarios de documentación
 
 ## [0.0.12] - 2023-06-02
 
@@ -283,7 +303,10 @@ Versioning].
 
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 [Semantic Versioning]: https://semver.org/spec/v2.0.0.html
-[No Publicado]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.12...HEAD
+[English]: CHANGELOG.md
+[Português Brasileiro]: CHANGELOG.PT-BR.md
+[No Publicado]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.13...HEAD
+[0.0.13]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.12...v0.0.13
 [0.0.12]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.11...v0.0.12
 [0.0.11]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.10...v0.0.11
 [0.0.10]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.9...v0.0.10

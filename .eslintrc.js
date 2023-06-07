@@ -20,31 +20,12 @@ module.exports = {
         parser: "@typescript-eslint/parser",
         sourceType: "module"
     },
-    plugins: [
-        "vue",
-        "@typescript-eslint",
-        "prettier"
-    ],
+    plugins: ["vue", "@typescript-eslint", "prettier"],
     rules: {
-        indent: [
-            "error",
-            4,
-            { SwitchCase: 1 }
-        ],
-        "linebreak-style": [
-            "error",
-            "unix"
-        ],
-        quotes: [
-            "error",
-            "double"
-        ],
-        semi: [
-            "error",
-            "always"
-        ],
-        "prettier/prettier": [
-            "error"
-        ]
-    },
+        indent: ["error", 4, { SwitchCase: 1 }],
+        "linebreak-style": ["error", "unix"],
+        quotes: ["error", "double"],
+        semi: ["error", "always"],
+        "prettier/prettier": ["error"]
+    }
 };
