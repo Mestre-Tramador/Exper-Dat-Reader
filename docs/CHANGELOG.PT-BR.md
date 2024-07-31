@@ -11,6 +11,17 @@ O formato é baseado em [Keep a Changelog], e esse projeto adere à [Semantic Ve
 - Wiki em diferentes línguas
 - Templates de Pull Requests do GitHub
 
+## [0.0.14] - 2024-08-01
+
+### Adicionado
+
+- Arquivo Code Owners
+
+### Fixed
+
+- Erro de Typescript na página de Listage
+- Git Attributes nos arquivos binários
+
 ## [0.0.13] - 2023-06-07
 
 ### Implementado
@@ -305,7 +316,8 @@ O formato é baseado em [Keep a Changelog], e esse projeto adere à [Semantic Ve
 [Semantic Versioning]: https://semver.org/spec/v2.0.0.html
 [English]: CHANGELOG.md
 [Español]: CHANGELOG.ES.md
-[Não Publicado]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.13...HEAD
+[Não Publicado]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.14...HEAD
+[0.0.14]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.13...v0.0.14
 [0.0.13]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.12...v0.0.13
 [0.0.12]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.11...v0.0.12
 [0.0.11]: https://github.com/Mestre-Tramador/Exper-Dat-Reader/compare/v0.0.10...v0.0.11

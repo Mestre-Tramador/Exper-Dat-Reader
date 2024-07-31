@@ -1,5 +1,5 @@
-# General configuration preset on Laravel.
-* text=auto
+# General configuration preset on Laravel
+* text=auto eol=lf
 
 *.php       diff=php
 *.html      diff=html
@@ -10,3 +10,9 @@
 # Fix .env example File being considered
 # a Shell Script.
 *.env.example linguist-language=INI
+
+# Put images and other files as binary
+*.png binary -text
+*.jpg binary -text
+*.svg binary -text
+*.ico binary -text

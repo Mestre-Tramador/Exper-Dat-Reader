@@ -23,7 +23,8 @@
         </template>
 
         <template #page>
-            <list id="listage" :dats="(dats as Dat[])" />
+            <!-- @vue-ignore -->
+            <list id="listage" :dats="dats" />
         </template>
     </layout>
 </template>
